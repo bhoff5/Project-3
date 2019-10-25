@@ -5,31 +5,38 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 
-class Books extends Component {
+class Main extends Component {
   state = {
-    books: [],
+    bills: "",
+    assignedToPay: [],
+    unpaidTenants: [],
+    paidTenants: [],
+    amount: "",
+    dueDate: "",
     title: "",
-    author: "",
+    description: "",
+    creator: "",
     synopsis: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadBills();
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
+  loadBills = () => {
+    API.getBills()
+      .then(res => {
+        this.setState({ bills: res.data, title: "", author: "", synopsis: "" });
+        console.log(res.data);
+      })
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteBill = id => {
+    API.deleteBill(id)
+      .then(res => this.loadBills())
       .catch(err => console.log(err));
   };
 
@@ -43,12 +50,12 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
+      API.saveBill({
         title: this.state.title,
         author: this.state.author,
         synopsis: this.state.synopsis
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadBills())
         .catch(err => console.log(err));
     }
   };
@@ -59,9 +66,9 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Add Bill</h1>
             </Jumbotron>
-            <form>
+            {/* <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -84,24 +91,39 @@ class Books extends Component {
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Submit Bill
               </FormBtn>
-            </form>
+            </form> */}
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Active Bills</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.bills.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
+                {this.state.bills.map(bill => (
+                  <ListItem key={bill._id}>
+                    <Link to={"/bills/" + bill._id}>
+                      <strong>{bill.title}</strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <p>
+                      Created by: {bill.creator}
+                      <br></br>
+                      Description: {bill.description}
+                      <br></br>
+                      Amount: ${bill.amount}
+                      <br></br>
+                      Due Date: {bill.dueDate}
+                      <br></br>
+                      Payers:{" "}
+                    </p>
+                    <List>
+                      {bill.assignedToPay.map(payer => (
+                        <ListItem key={payer.name}>{payer.name}</ListItem>
+                      ))}
+                    </List>
+
+                    <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -115,4 +137,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Main;
