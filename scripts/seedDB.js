@@ -5,9 +5,16 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
 // const householdSeed = [
 //   {
+//     _id: "qwerty12345",
 //     name: "Test House",
 //     dateCreated: new Date(Date.now()),
 //     tenants: ["Brian", "Colin", "Paul", "Shannon"]
+//   },
+//   {
+//     _id: "asfdjkl",
+//     name: "Test House 2: Test Houser",
+//     dateCreated: new Date(Date.now()),
+//     tenants: ["Albert", "Barry", "Chris", "David"]
 //   }
 // ];
 
@@ -26,23 +33,25 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
 const billSeed = [
   {
+    household: "qwerty12345",
     title: "Monthly Rent",
     description: "Rent for the month of November",
     amount: 1500,
     dueDate: "11/1/2019",
     creator: "Colin",
-    assignedToPay: [{ name: "Brian" }, { name: "Paul" }, { name: "Shannon" }]
+    assignedToPay: [{ name: "Brian", paid: true }, { name: "Paul", paid: false }, { name: "Shannon", paid: false }]
   },
   {
+    household: "asdfjkl",
     title: "Electric Bill",
-    description: "",
+    description: "MORE POWER",
     amount: 150,
     dueDate: "11/3/2019",
-    creator: "Colin",
+    creator: "Albert",
     assignedToPay: [
-      { name: "Brian", paid: false },
-      { name: "Paul", paid: false },
-      { name: "Shannon", paid: false }
+      { name: "Barry", paid: false },
+      { name: "Chris", paid: true },
+      { name: "David", paid: false }
     ]
   }
 ];

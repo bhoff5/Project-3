@@ -7,7 +7,7 @@ router.route("/")
 
 router
   .route("/:id")
-  .get(billController.findById)
+  .get(billController.findByHousehold)
   .put(billController.update)
   .delete(billController.remove);
 
