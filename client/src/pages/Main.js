@@ -10,9 +10,7 @@ import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 class Main extends Component {
   state = {
     bills: "",
-    assignedToPay: [],
-    unpaidTenants: [],
-    paidTenants: [],
+    assignedToPay: "",
     amount: "",
     dueDate: "",
     title: "",
@@ -28,8 +26,9 @@ class Main extends Component {
   loadBills = () => {
     API.getBills()
       .then(res => {
-        this.setState({ bills: res.data, title: "", author: "", synopsis: "" });
-        console.log(res.data);
+        this.setState({
+          bills: res.data
+        });
       })
       .catch(err => console.log(err));
   };
@@ -39,6 +38,21 @@ class Main extends Component {
       .then(res => this.loadBills())
       .catch(err => console.log(err));
   };
+
+  toggleItem(name) {
+    console.log(JSON.stringify(this.state.bills));
+    let testName = name;
+    let updatedItems = this.state.bills.map(item => ({
+      ...item,
+      assignedToPay: item.assignedToPay.map(item => ({
+        ...item,
+        // paid: testName === item.name ? !item.paid : item.paid
+        paid: true
+      }))
+    }));
+    this.setState({ bills: updatedItems });
+    console.log(updatedItems);
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -119,7 +133,13 @@ class Main extends Component {
                     </p>
                     <List>
                       {bill.assignedToPay.map(payer => (
-                        <ListItem key={payer.name}>{payer.name}</ListItem>
+                        <ListItem
+                          key={payer.name}
+                          id={payer.name}
+                          onClick={() => this.toggleItem(payer.name)}
+                        >
+                          {payer.name}
+                        </ListItem>
                       ))}
                     </List>
 
