@@ -4,19 +4,13 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import { List, ListItem, ListName } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 
 class Main extends Component {
   state = {
     bills: "",
-    assignedToPay: "",
-    amount: "",
-    dueDate: "",
-    title: "",
-    description: "",
-    creator: "",
-    synopsis: ""
+    assignedToPay: "test1"
   };
 
   componentDidMount() {
@@ -27,10 +21,12 @@ class Main extends Component {
     API.getBills()
       .then(res => {
         this.setState({
-          bills: res.data
+          bills: res.data,
+          assignedToPay: "test"
         });
       })
       .catch(err => console.log(err));
+    console.log(this.state.assignedToPay);
   };
 
   deleteBill = id => {
@@ -39,25 +35,40 @@ class Main extends Component {
       .catch(err => console.log(err));
   };
 
-  toggleItem(name) {
-    console.log(JSON.stringify(this.state.bills));
-    let testName = name;
+  toggleItem(name, id) {
     let updatedItems = this.state.bills.map(item => ({
       ...item,
       assignedToPay: item.assignedToPay.map(item => ({
         ...item,
-        // paid: testName === item.name ? !item.paid : item.paid
-        paid: true
+        paid: item.name === name ? !item.paid : item.paid
       }))
     }));
     this.setState({ bills: updatedItems });
-    console.log(updatedItems);
+    setTimeout(() => this.updateBill(id), 1000);
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
+    });
+  };
+
+  updateBill = id => {
+    let tempItem;
+    console.log(JSON.stringify(this.state.assignedToPay));
+    this.state.bills
+      .filter(function(item) {
+        if (item._id === id) {
+          return item;
+        }
+      })
+      .map(item => {
+        tempItem = item.assignedToPay;
+      });
+    this.setState({ assignedToPay: tempItem });
+    API.updateBill(id, {
+      assignedToPay: this.state.assignedToPay
     });
   };
 
@@ -117,9 +128,9 @@ class Main extends Component {
               <List>
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
-                    <Link to={"/bills/" + bill._id}>
+                    {/* <Link to={"/bills/" + bill._id}>
                       <strong>{bill.title}</strong>
-                    </Link>
+                    </Link> */}
                     <p>
                       Created by: {bill.creator}
                       <br></br>
@@ -133,13 +144,16 @@ class Main extends Component {
                     </p>
                     <List>
                       {bill.assignedToPay.map(payer => (
-                        <ListItem
+                        <ListName
                           key={payer.name}
+                          paid={payer.paid}
                           id={payer.name}
-                          onClick={() => this.toggleItem(payer.name)}
+                          onClick={() => {
+                            this.toggleItem(payer.name, bill._id);
+                          }}
                         >
                           {payer.name}
-                        </ListItem>
+                        </ListName>
                       ))}
                     </List>
 

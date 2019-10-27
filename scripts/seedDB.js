@@ -39,7 +39,11 @@ const billSeed = [
     amount: 1500,
     dueDate: "11/1/2019",
     creator: "Colin",
-    assignedToPay: [{ name: "Brian", paid: true }, { name: "Paul", paid: false }, { name: "Shannon", paid: false }]
+    assignedToPay: [
+      { name: "Brian", paid: false },
+      { name: "Paul", paid: false },
+      { name: "Shannon", paid: false }
+    ]
   },
   {
     household: "asdfjkl",
@@ -50,7 +54,7 @@ const billSeed = [
     creator: "Albert",
     assignedToPay: [
       { name: "Barry", paid: false },
-      { name: "Chris", paid: true },
+      { name: "Chris", paid: false },
       { name: "David", paid: false }
     ]
   }

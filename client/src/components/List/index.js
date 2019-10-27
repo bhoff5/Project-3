@@ -11,6 +11,23 @@ export function List({ children }) {
   );
 }
 
-export function ListItem({ children }) {
-  return <li className="list-group-item">{children}</li>;
+export function ListItem(props) {
+  return (
+    <li className="list-group-item" onClick={props.onClick}>
+      {props.children}
+    </li>
+  );
+}
+
+export function ListName(props) {
+  return (
+    <li
+      className={
+        props.paid ? "list-group-item completed" : "list-group-item item"
+      }
+      onClick={props.onClick}
+    >
+      {props.children}
+    </li>
+  );
 }
