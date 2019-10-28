@@ -53,9 +53,9 @@ const billSeed = [
     dueDate: "11/3/2019",
     creator: "Albert",
     assignedToPay: [
-      { name: "Barry", paid: false },
-      { name: "Chris", paid: false },
-      { name: "David", paid: false }
+      { name: "Brian", paid: false },
+      { name: "Shannon", paid: false },
+      { name: "Paul", paid: false }
     ]
   }
 ];

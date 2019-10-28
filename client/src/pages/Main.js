@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import { isArray } from "util";
 
 class Main extends Component {
   state = {
@@ -26,7 +27,6 @@ class Main extends Component {
         });
       })
       .catch(err => console.log(err));
-    console.log(this.state.assignedToPay);
   };
 
   deleteBill = id => {
@@ -35,28 +35,8 @@ class Main extends Component {
       .catch(err => console.log(err));
   };
 
-  toggleItem(name, id) {
-    let updatedItems = this.state.bills.map(item => ({
-      ...item,
-      assignedToPay: item.assignedToPay.map(item => ({
-        ...item,
-        paid: item.name === name ? !item.paid : item.paid
-      }))
-    }));
-    this.setState({ bills: updatedItems });
-    setTimeout(() => this.updateBill(id), 1000);
-  }
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
   updateBill = id => {
     let tempItem;
-    console.log(JSON.stringify(this.state.assignedToPay));
     this.state.bills
       .filter(function(item) {
         if (item._id === id) {
@@ -69,6 +49,55 @@ class Main extends Component {
     this.setState({ assignedToPay: tempItem });
     API.updateBill(id, {
       assignedToPay: this.state.assignedToPay
+    });
+  };
+
+  toggleItem(name, id) {
+    let updatedItems = this.state.bills.map(item => ({
+      ...item,
+      assignedToPay:
+        item._id === id
+          ? item.assignedToPay
+              .filter(payerItem => payerItem.name === name)
+              .filter(payerItem => payerItem.paid === false).length !== 0
+            ? [
+                ...item.assignedToPay.filter(
+                  payerItem => payerItem.name !== name
+                ),
+                ...item.assignedToPay
+                  .filter(payerItem => payerItem.name === name)
+                  .map(payerItem => ({
+                    ...payerItem,
+                    paid:
+                      payerItem.name === name ? !payerItem.paid : payerItem.paid
+                  }))
+              ]
+            : [
+                ...item.assignedToPay
+                  .filter(payerItem => payerItem.name === name)
+                  .map(payerItem => ({
+                    ...payerItem,
+                    paid:
+                      payerItem.name === name ? !payerItem.paid : payerItem.paid
+                  })),
+                ...item.assignedToPay.filter(function(payerItem) {
+                  console.log("paid test");
+                  return payerItem.name !== name;
+                })
+              ]
+          : item.assignedToPay
+    }));
+    console.log(updatedItems);
+
+    this.setState({ bills: updatedItems });
+    // this.reorderItems(name, id);
+    setTimeout(() => this.updateBill(id), 1000);
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
     });
   };
 
