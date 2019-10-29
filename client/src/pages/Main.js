@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import Post from "../components/Post";
 
 class Main extends Component {
   state = {
@@ -77,6 +78,9 @@ class Main extends Component {
   render() {
     return (
       <Container fluid>
+
+        <Post />
+
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -152,6 +156,7 @@ class Main extends Component {
             )}
           </Col>
         </Row>
+
       </Container>
     );
   }
