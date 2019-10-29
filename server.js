@@ -1,11 +1,24 @@
 const express = require("express");
 
+const morgan = require("morgan");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const config = require("./config/database");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 require("dotenv").config();
+
+//Makes the server CORS-ENABLE
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+//Initializes Passport
+app.use(passport.initialize());
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -18,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
+mongoose.connect(process.env.MONGODB_URI || config.database);
 
 // Start the API server
 app.listen(PORT, function() {
