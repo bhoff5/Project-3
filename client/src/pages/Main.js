@@ -151,6 +151,10 @@ class Main extends Component {
       cInd = 0;
       uInd = 0;
     };
+    // let payerLength;
+    // let payerLengthFunc = function() {
+    //   payerLength = this.state.bill.assignedToPay.length;
+    // };
     return (
       <Container fluid>
         <Row>
@@ -210,10 +214,12 @@ class Main extends Component {
                       </Col>
                       <Col size="md-6">
                         <List>
+                          {/* {payerLengthFunc()} */}
                           {bill.assignedToPay.map(payer => (
                             <ListName
                               key={payer.name}
                               paid={payer.paid}
+                              // eachAmount={bill.amount / payerLength}
                               height={this.getHeight(bill._id)}
                               index={payer.paid ? cInd++ : uInd++}
                               id={payer.name}
@@ -224,6 +230,7 @@ class Main extends Component {
                               {payer.name}
                             </ListName>
                           ))}
+
                           <div
                             id="items-uncompleted-spacer"
                             style={{ height: `${this.getHeight(bill._id)}px` }}

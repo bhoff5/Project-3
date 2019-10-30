@@ -57,7 +57,13 @@ export function ListName(props) {
           </svg>
         </div>
       </label>
-      <div className="itemNameTextContent">{props.children}</div>
+      <div className="itemNameTextContent">
+        {/* <div>{props.children}</div> */}
+        <div id="textbox">
+          <p className="alignleft">{props.children}</p>
+          {/* <p className="alignright">{`$${props.eachAmount}`}</p> */}
+        </div>
+      </div>
     </li>
   );
 }
