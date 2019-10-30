@@ -1,9 +1,16 @@
+body {
+  background-color: #f0fdc9;
+}
+
 .list-overflow-container {
-  max-height: 545px;
-  border: 1px #DDDDDD solid;
-  border-radius: 4px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: 245px;
+  /* border: 1px #dddddd solid; */
+  /* border-radius: 4px; */
+  /* overflow-y: scroll; */
+  /* overflow-x: hidden; */
+  position: relative;
+  transition: all 0.3s ease-in;
+  transition-delay: 0.4s;
 }
 
 .list-overflow-container ul {
@@ -21,7 +28,7 @@
 }
 
 .list-overflow-container li a {
-  color: #2A878C;
+  color: #2a878c;
 }
 
 .list-overflow-container li:first-child {
@@ -30,4 +37,105 @@
 
 .list-overflow-container li:last-child {
   border-bottom: none;
+}
+
+.item {
+  /* background-color: rgb(255, 95, 95); */
+  position: absolute;
+  width: 40%;
+  height: 40px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.completed {
+  /* background-color: rgb(88, 247, 88); */
+  position: absolute;
+  width: 40%;
+  height: 40px;
+  color: #c8c8c8;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.list-group-item {
+  transition: all 0.3s ease-in, background-color 0s;
+  transition-delay: 0.4s;
+  width: 100%;
+}
+
+.list-group-item {
+  padding: 0 0;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  /* border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;  */
+}
+
+.list-overflow-container li:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.list-overflow-container li:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.billContainer {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.705);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#items-uncompleted-spacer {
+  width: 100%;
+  transition: all 0.3s ease-in;
+  transition-delay: 0.4s;
+}
+
+#items-completed-spacer {
+  width: 100%;
+  transition: all 0.3s ease-in;
+  transition-delay: 0.4s;
+}
+
+#itemCountSpacer {
+  width: 100%;
+  height: 43px;
+  /* background-color: red; */
+  position: relative;
+  color: #c8c8c8;
+  margin-top: 10px;
+  transition: all 0.3s ease-in;
+  transition-delay: 0.4s;
+}
+
+#itemCountSpacer:after {
+  background-color: #c8c8c8;
+  content: "";
+  height: 1px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+
+.itemNameTextContent {
+  width: 80%;
 }
