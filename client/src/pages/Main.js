@@ -158,7 +158,6 @@ class Main extends Component {
     return (
       <Container fluid>
 
-        <Post />
 
         <Row>
           {/* <Col size="md-6">
