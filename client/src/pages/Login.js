@@ -1,33 +1,12 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 
 class Login extends Component {
   state = {};
-
-  componentDidMount() {
-    this.loadBills();
-  }
-
-  loadBills = () => {
-    API.getBills()
-      .then(res => {
-        this.setState({ bills: res.data, title: "", author: "", synopsis: "" });
-        console.log(res.data);
-      })
-      .catch(err => console.log(err));
-  };
-
-  deleteBill = id => {
-    API.deleteBill(id)
-      .then(res => this.loadBills())
-      .catch(err => console.log(err));
-  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -38,13 +17,14 @@ class Login extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBill({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.username && this.state.password) {
+      API.login({
+        username: this.state.username,
+        password: this.state.password
       })
-        .then(res => this.loadBills())
+        .then(response => {
+          console.log(response.data)
+        })
         .catch(err => console.log(err));
     }
   };
@@ -59,15 +39,15 @@ class Login extends Component {
             </Jumbotron>
             <form>
               <Input
-                value=""
+                value={this.state.username}
                 onChange={this.handleInputChange}
-                name="Username"
+                name="username"
                 placeholder="Username (required)"
               />
               <Input
-                value=""
+                value={this.state.password}
                 onChange={this.handleInputChange}
-                name="Password"
+                name="password"
                 placeholder="Password (required)"
               />
 
