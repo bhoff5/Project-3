@@ -4,19 +4,14 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import { List, ListItem, ListName } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+
 
 class Main extends Component {
   state = {
     bills: "",
-    assignedToPay: "",
-    amount: "",
-    dueDate: "",
-    title: "",
-    description: "",
-    creator: "",
-    synopsis: ""
+    assignedToPay: "test1"
   };
 
   componentDidMount() {
@@ -27,7 +22,8 @@ class Main extends Component {
     API.getBills()
       .then(res => {
         this.setState({
-          bills: res.data
+          bills: res.data,
+          assignedToPay: "test"
         });
       })
       .catch(err => console.log(err));
@@ -39,20 +35,94 @@ class Main extends Component {
       .catch(err => console.log(err));
   };
 
-  toggleItem(name) {
-    console.log(JSON.stringify(this.state.bills));
-    let testName = name;
+  updateBill = id => {
+    let tempItem;
+    this.state.bills
+      .filter(function(item) {
+        if (item._id === id) {
+          return item;
+        }
+      })
+      .map(item => {
+        tempItem = item.assignedToPay;
+      });
+    this.setState({ assignedToPay: tempItem });
+    API.updateBill(id, {
+      assignedToPay: this.state.assignedToPay
+    });
+  };
+
+  getHeight(id) {
+    let unpaidItems = this.state.bills
+      .filter(item => item._id === id)[0]
+      .assignedToPay.filter(item => !item.paid).length;
+    return unpaidItems * 43;
+  }
+
+  getCompletedHeight(id) {
+    let unpaidItems = this.state.bills
+      .filter(item => item._id === id)[0]
+      .assignedToPay.filter(item => item.paid).length;
+    return unpaidItems * 43;
+  }
+
+  toggleItem(name, id) {
     let updatedItems = this.state.bills.map(item => ({
       ...item,
-      assignedToPay: item.assignedToPay.map(item => ({
-        ...item,
-        // paid: testName === item.name ? !item.paid : item.paid
-        paid: true
-      }))
+      assignedToPay:
+        item._id === id
+          ? item.assignedToPay.map(item => ({
+              ...item,
+              paid: item.name === name ? !item.paid : item.paid
+            }))
+          : item.assignedToPay
     }));
+
     this.setState({ bills: updatedItems });
-    console.log(updatedItems);
+    setTimeout(() => this.updateBill(id), 1000);
   }
+
+  // toggleItem(name, id) {
+  //   let updatedItems = this.state.bills.map(item => ({
+  //     ...item,
+  //     assignedToPay:
+  //       item._id === id
+  //         ? item.assignedToPay
+  //             .filter(payerItem => payerItem.name === name)
+  //             .filter(payerItem => payerItem.paid === false).length !== 0
+  //           ? [
+  //               ...item.assignedToPay.filter(
+  //                 payerItem => payerItem.name !== name
+  //               ),
+  //               ...item.assignedToPay
+  //                 .filter(payerItem => payerItem.name === name)
+  //                 .map(payerItem => ({
+  //                   ...payerItem,
+  //                   paid:
+  //                     payerItem.name === name ? !payerItem.paid : payerItem.paid
+  //                 }))
+  //             ]
+  //           : [
+  //               ...item.assignedToPay
+  //                 .filter(payerItem => payerItem.name === name)
+  //                 .map(payerItem => ({
+  //                   ...payerItem,
+  //                   paid:
+  //                     payerItem.name === name ? !payerItem.paid : payerItem.paid
+  //                 })),
+  //               ...item.assignedToPay.filter(function(payerItem) {
+  //                 console.log("paid test");
+  //                 return payerItem.name !== name;
+  //               })
+  //             ]
+  //         : item.assignedToPay
+  //   }));
+  //   console.log(updatedItems);
+
+  //   this.setState({ bills: updatedItems });
+  //   // this.reorderItems(name, id);
+  //   setTimeout(() => this.updateBill(id), 1000);
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -75,14 +145,26 @@ class Main extends Component {
   };
 
   render() {
+    let cInd = 0;
+    let uInd = 0;
+    let resetVariables = function() {
+      cInd = 0;
+      uInd = 0;
+    };
+    // let payerLength;
+    // let payerLengthFunc = function() {
+    //   payerLength = this.state.bill.assignedToPay.length;
+    // };
     return (
       <Container fluid>
+
+
         <Row>
-          <Col size="md-6">
+          {/* <Col size="md-6">
             <Jumbotron>
               <h1>Add Bill</h1>
             </Jumbotron>
-            {/* <form>
+            <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -107,9 +189,9 @@ class Main extends Component {
               >
                 Submit Bill
               </FormBtn>
-            </form> */}
-          </Col>
-          <Col size="md-6 sm-12">
+            </form>
+          </Col> */}
+          <Col size="md-12">
             <Jumbotron>
               <h1>Active Bills</h1>
             </Jumbotron>
@@ -117,33 +199,62 @@ class Main extends Component {
               <List>
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
-                    <Link to={"/bills/" + bill._id}>
-                      <strong>{bill.title}</strong>
-                    </Link>
-                    <p>
-                      Created by: {bill.creator}
-                      <br></br>
-                      Description: {bill.description}
-                      <br></br>
-                      Amount: ${bill.amount}
-                      <br></br>
-                      Due Date: {bill.dueDate}
-                      <br></br>
-                      Payers:{" "}
-                    </p>
-                    <List>
-                      {bill.assignedToPay.map(payer => (
-                        <ListItem
-                          key={payer.name}
-                          id={payer.name}
-                          onClick={() => this.toggleItem(payer.name)}
-                        >
-                          {payer.name}
-                        </ListItem>
-                      ))}
-                    </List>
+                    <div>{resetVariables()}</div>
+                    <Row>
+                      <Col size="md-6">
+                        <p>
+                          Created by: {bill.creator}
+                          <br></br>
+                          Description: {bill.description}
+                          <br></br>
+                          Amount: ${bill.amount}
+                          <br></br>
+                          Due Date: {bill.dueDate}
+                          <br></br>
+                          Payers:{" "}
+                        </p>
+                      </Col>
+                      <Col size="md-6">
+                        <List>
+                          {/* {payerLengthFunc()} */}
+                          {bill.assignedToPay.map(payer => (
+                            <ListName
+                              key={payer.name}
+                              paid={payer.paid}
+                              // eachAmount={bill.amount / payerLength}
+                              height={this.getHeight(bill._id)}
+                              index={payer.paid ? cInd++ : uInd++}
+                              id={payer.name}
+                              onClick={() => {
+                                this.toggleItem(payer.name, bill._id);
+                              }}
+                            >
+                              {payer.name}
+                            </ListName>
+                          ))}
 
-                    <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
+                          <div
+                            id="items-uncompleted-spacer"
+                            style={{ height: `${this.getHeight(bill._id)}px` }}
+                          ></div>
+                          <div id="itemCountSpacer">
+                            {uInd === 0
+                              ? `Everyone has paid!`
+                              : cInd === 0
+                              ? `No one has paid`
+                              : cInd === 1
+                              ? `${cInd} person has paid`
+                              : `${cInd} people have paid`}
+                          </div>
+                          <div
+                            id="items-completed-spacer"
+                            style={{
+                              height: `${this.getCompletedHeight(bill._id)}px`
+                            }}
+                          ></div>
+                        </List>
+                      </Col>
+                    </Row>
                   </ListItem>
                 ))}
               </List>
@@ -152,6 +263,7 @@ class Main extends Component {
             )}
           </Col>
         </Row>
+
       </Container>
     );
   }
