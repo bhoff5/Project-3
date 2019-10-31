@@ -38,7 +38,7 @@ class Main extends Component {
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function(item) {
+      .filter(function (item) {
         if (item._id === id) {
           return item;
         }
@@ -72,9 +72,9 @@ class Main extends Component {
       assignedToPay:
         item._id === id
           ? item.assignedToPay.map(item => ({
-              ...item,
-              paid: item.name === name ? !item.paid : item.paid
-            }))
+            ...item,
+            paid: item.name === name ? !item.paid : item.paid
+          }))
           : item.assignedToPay
     }));
 
@@ -147,7 +147,7 @@ class Main extends Component {
   render() {
     let cInd = 0;
     let uInd = 0;
-    let resetVariables = function() {
+    let resetVariables = function () {
       cInd = 0;
       uInd = 0;
     };
@@ -191,30 +191,38 @@ class Main extends Component {
               </FormBtn>
             </form>
           </Col> */}
+
+
           <Col size="md-12">
             <Jumbotron>
               <h1>Active Bills</h1>
             </Jumbotron>
+
+
+
             {this.state.bills.length ? (
               <List>
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
                     <div>{resetVariables()}</div>
                     <Row>
+                      <h3>{bill.description}</h3>
+                      <hr />
+                    </Row>
+                    <Row>
                       <Col size="md-6">
                         <p>
-                          Created by: {bill.creator}
-                          <br></br>
-                          Description: {bill.description}
-                          <br></br>
-                          Amount: ${bill.amount}
-                          <br></br>
-                          Due Date: {bill.dueDate}
-                          <br></br>
-                          Payers:{" "}
+                          Bill posted by: {bill.creator}
+                          <br />
+                          Total amount due: ${bill.amount}
+                          <br />
+                          Your part: ${bill.amount / 4}
+                          <br />
+                          Due date: {bill.dueDate}
                         </p>
                       </Col>
                       <Col size="md-6">
+                        Payers:{" "}
                         <List>
                           {/* {payerLengthFunc()} */}
                           {bill.assignedToPay.map(payer => (
@@ -241,10 +249,10 @@ class Main extends Component {
                             {uInd === 0
                               ? `Everyone has paid!`
                               : cInd === 0
-                              ? `No one has paid`
-                              : cInd === 1
-                              ? `${cInd} person has paid`
-                              : `${cInd} people have paid`}
+                                ? `No one has paid`
+                                : cInd === 1
+                                  ? `${cInd} person has paid`
+                                  : `${cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"
@@ -259,8 +267,8 @@ class Main extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
 
