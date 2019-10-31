@@ -19,5 +19,8 @@ export default {
   },
   updateBill: function(id, billData) {
     return axios.put("api/bills/" + id, billData);
+  },
+  login: function(userData) {
+    return axios.post("/api/users/login", userData);
   }
 };
