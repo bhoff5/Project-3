@@ -3,3 +3,17 @@
        position:fixed; bottom:0; left:0; z-index:1030;
      }
   }
+
+  img {
+   position: absolute;
+   left: -235px;
+   top: 10px;
+ }
+
+ @media(max-width: 700px) {
+   img {
+      display: none;
+    }
+ }
+ 
+ 
