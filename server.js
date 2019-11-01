@@ -1,12 +1,12 @@
 const express = require("express");
-
-const morgan = require("morgan");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const config = require("./config/database");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+var session = require("express-session"),
+    bodyParser = require("body-parser");
 
 require("dotenv").config();
 
@@ -18,7 +18,12 @@ app.use(function(req, res, next) {
 });
 
 //Initializes Passport
+app.use(express.static("public"));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
+app.use(passport.session());
+require("./config/passport")(passport);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || config.database);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
 // Start the API server
 app.listen(PORT, function() {
