@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
 export function Post(props) {
+  console.log(props);
   return (
     <p>
+      <h3>{props.title}</h3>
+      <br />
+      {props.description}
+      <br />
       Bill posted by: {props.creator}
       <br />
       Total amount due: ${props.amount}
