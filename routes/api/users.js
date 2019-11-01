@@ -19,6 +19,7 @@ router.post("/signup", function (req, res) {
 
     newUser.save(function (err) {
       if (err) {
+        console.log(err)
         return res.json({ success: false, msg: "Username already exists." });
       }
       res.json({ success: true, msg: "Successfully created new user." });
@@ -26,15 +27,18 @@ router.post("/signup", function (req, res) {
   }
 });
 
-router.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
+router.post("/login",
+  passport.authenticate("local"),
+  (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    res.redirect('/');
+    let userInfo = {
+      username: req.user.username
+    };
+    res.send(userInfo);
 });
 
-router.get('/logout', function(req, res){
+router.post("/logout", (req, res) => {
   req.logout();
   res.redirect('/login');
 });

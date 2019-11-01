@@ -19,11 +19,17 @@ app.use(function(req, res, next) {
 
 //Initializes Passport
 app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
+app.use( (req, res, next) => {
+  console.log("req.session", req.session);
+  console.log("req.user", req.user);
+
+  return next();
+})
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

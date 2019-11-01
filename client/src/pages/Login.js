@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 
 class Login extends Component {
-  state = {};
+  state = {
+    username: "",
+    password: "",
+    redirectTo: null
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -24,42 +28,56 @@ class Login extends Component {
       })
         .then(response => {
           console.log(response.data)
+          if (response.status === 200) {
+            console.log("Sign-in successful");
+            this.props.updateUser({
+              loggedIn: true,
+              username: response.data.username
+            })
+            this.setState({
+              redirectTo: "/"
+            });
+          }
         })
         .catch(err => console.log(err));
     }
   };
 
   render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Log In</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                name="username"
-                placeholder="Username (required)"
-              />
-              <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                placeholder="Password (required)"
-              />
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Log In</h1>
+              </Jumbotron>
+              <form>
+                <Input
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  name="username"
+                  placeholder="Username (required)"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  placeholder="Password (required)"
+                />
 
-              <FormBtn disabled="" onClick={this.handleFormSubmit}>
-                Submit
+                <FormBtn disabled="" onClick={this.handleFormSubmit}>
+                  Submit
               </FormBtn>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+              </form>
+            </Col>
+          </Row>
+        </Container>
+      );
+    };
+  };
+};
 
 export default Login;
