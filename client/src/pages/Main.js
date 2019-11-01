@@ -200,13 +200,16 @@ class Main extends Component {
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
                     <div>{resetVariables()}</div>
-                    <Row>
-                      <h3>{bill.description}</h3>
-                      <hr />
-                    </Row>
+
                     <Row>
                       <Col size="md-6">
-                        <Post assignedToPay={bill.assignedToPay}></Post>
+                        <Post
+                          title={bill.title}
+                          description={bill.description}
+                          amount={bill.amount}
+                          creator={bill.creator}
+                          dueDate={bill.dueDate}
+                        ></Post>
                       </Col>
                       <Col size="md-6">
                         Payers:{" "}
