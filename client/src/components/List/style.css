@@ -9,8 +9,8 @@ body {
   /* overflow-y: scroll; */
   /* overflow-x: hidden; */
   position: relative;
-  transition: top 0.3s ease-in;
-  transition-delay: 0.4s;
+  /* transition: all 0.3s ease-in;
+  transition-delay: 0.4s; */
 }
 
 .list-overflow-container ul {
@@ -58,6 +58,8 @@ body {
 }
 
 .list-group-item {
+  transition: top 0.3s ease-in, background-color 0s;
+  transition-delay: 0.4s;
   width: 100%;
 }
 
@@ -96,13 +98,13 @@ body {
 
 #items-uncompleted-spacer {
   width: 100%;
-  transition: top 0.3s ease-in;
+  transition: all 0.3s ease-in;
   transition-delay: 0.4s;
 }
 
 #items-completed-spacer {
   width: 100%;
-  transition: top 0.3s ease-in;
+  transition: all 0.3s ease-in;
   transition-delay: 0.4s;
 }
 

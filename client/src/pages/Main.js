@@ -212,7 +212,6 @@ class Main extends Component {
                         ></Post>
                       </Col>
                       <Col size="md-6">
-                        Payers:{" "}
                         <List>
                           {/* {payerLengthFunc()} */}
                           {bill.assignedToPay.map(payer => (
