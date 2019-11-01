@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
-
+import Post from "../components/Post";
 
 class Main extends Component {
   state = {
@@ -38,7 +38,7 @@ class Main extends Component {
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function (item) {
+      .filter(function(item) {
         if (item._id === id) {
           return item;
         }
@@ -72,9 +72,9 @@ class Main extends Component {
       assignedToPay:
         item._id === id
           ? item.assignedToPay.map(item => ({
-            ...item,
-            paid: item.name === name ? !item.paid : item.paid
-          }))
+              ...item,
+              paid: item.name === name ? !item.paid : item.paid
+            }))
           : item.assignedToPay
     }));
 
@@ -147,7 +147,7 @@ class Main extends Component {
   render() {
     let cInd = 0;
     let uInd = 0;
-    let resetVariables = function () {
+    let resetVariables = function() {
       cInd = 0;
       uInd = 0;
     };
@@ -157,8 +157,6 @@ class Main extends Component {
     // };
     return (
       <Container fluid>
-
-
         <Row>
           {/* <Col size="md-6">
             <Jumbotron>
@@ -192,13 +190,10 @@ class Main extends Component {
             </form>
           </Col> */}
 
-
           <Col size="md-12">
             <Jumbotron>
               <h1>Active Bills</h1>
             </Jumbotron>
-
-
 
             {this.state.bills.length ? (
               <List>
@@ -211,15 +206,7 @@ class Main extends Component {
                     </Row>
                     <Row>
                       <Col size="md-6">
-                        <p>
-                          Bill posted by: {bill.creator}
-                          <br />
-                          Total amount due: ${bill.amount}
-                          <br />
-                          Your part: ${bill.amount / 4}
-                          <br />
-                          Due date: {bill.dueDate}
-                        </p>
+                        <Post assignedToPay={bill.assignedToPay}></Post>
                       </Col>
                       <Col size="md-6">
                         Payers:{" "}
@@ -249,10 +236,10 @@ class Main extends Component {
                             {uInd === 0
                               ? `Everyone has paid!`
                               : cInd === 0
-                                ? `No one has paid`
-                                : cInd === 1
-                                  ? `${cInd} person has paid`
-                                  : `${cInd} people have paid`}
+                              ? `No one has paid`
+                              : cInd === 1
+                              ? `${cInd} person has paid`
+                              : `${cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"
@@ -267,11 +254,10 @@ class Main extends Component {
                 ))}
               </List>
             ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <h3>No Results to Display</h3>
+            )}
           </Col>
         </Row>
-
       </Container>
     );
   }
