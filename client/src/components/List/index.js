@@ -36,7 +36,9 @@ export function ListName(props) {
   return (
     <li
       className={
-        props.paid ? "list-group-item completed" : "list-group-item item"
+        props.paid
+          ? "list-group-item listName completed"
+          : "list-group-item listName item"
       }
       onClick={props.onClick}
       style={{ top: `${topVal}px` }}
