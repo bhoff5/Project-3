@@ -5,7 +5,9 @@ import API from "../utils/API";
 class Main extends Component {
   state = {};
   render() {
-    return <p>Hello!</p>;
+    return (
+      <BillForm />
+    );
   }
 }
 
