@@ -14,7 +14,7 @@ class Nav extends Component {
             <ul id="nav-mobile" className="left">
               <li>
                 <a
-                  href="sass.html"
+                  href="/"
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Home
@@ -22,7 +22,7 @@ class Nav extends Component {
               </li>
               <li>
                 <a
-                  href="badges.html"
+                  href="/signup"
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Invite
@@ -30,7 +30,9 @@ class Nav extends Component {
               </li>
               <li>
                 <a
-                  href="collapsible.html"
+
+                  href="/newbill"
+
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   New Bill
