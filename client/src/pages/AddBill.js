@@ -1,12 +1,13 @@
+
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import BillForm from "../components/BillForm";
 
-class Main extends Component {
+class AddBill extends Component {
   state = {};
   render() {
-    return <p>Hello!</p>;
+    return <BillForm></BillForm>;
   }
 }
-
-export default Main;
+export default AddBill;
