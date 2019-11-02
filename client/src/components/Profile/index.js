@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-import "./style.css";
+import API from "../../utils/API";
+//import "./style.css";
 
 class Profile extends Component {
 
@@ -36,7 +36,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <Container fluid>
+            <div>
                 {/* should display username, associated email, associated households and household validation code. additional bonus of "invite a new user" button. Also bonus: "create a new household" */}
 
                 <div class="row">
@@ -70,7 +70,7 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
-            </Container>
+            </div>
         );
     }
 };
