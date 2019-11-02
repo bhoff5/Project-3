@@ -10,6 +10,9 @@ var session = require("express-session"),
 
 require("dotenv").config();
 
+const MongoStore = require('connect-mongo')(session);
+
+
 //Makes the server CORS-ENABLE
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -43,6 +46,15 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
+
+app.use(
+  session({
+  secret: "additional-pylons",
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: false,
+  saveUninitialized: false
+  })
+);
 
 // Start the API server
 app.listen(PORT, function() {
