@@ -13,8 +13,21 @@ class Main extends Component {
     assignedToPay: "test1"
   };
 
+  cInd = 0;
+  uInd = 0;
+
+  resetVariables = () => {
+    this.cInd = 0;
+    this.uInd = 0;
+  };
+
   componentDidMount() {
     this.loadBills();
+  }
+
+  componentDidUpdate() {
+    this.cInd = 0;
+    this.uInd = 0;
   }
 
   loadBills = () => {
@@ -81,48 +94,6 @@ class Main extends Component {
     setTimeout(() => this.updateBill(id), 1000);
   }
 
-  // toggleItem(name, id) {
-  //   let updatedItems = this.state.bills.map(item => ({
-  //     ...item,
-  //     assignedToPay:
-  //       item._id === id
-  //         ? item.assignedToPay
-  //             .filter(payerItem => payerItem.name === name)
-  //             .filter(payerItem => payerItem.paid === false).length !== 0
-  //           ? [
-  //               ...item.assignedToPay.filter(
-  //                 payerItem => payerItem.name !== name
-  //               ),
-  //               ...item.assignedToPay
-  //                 .filter(payerItem => payerItem.name === name)
-  //                 .map(payerItem => ({
-  //                   ...payerItem,
-  //                   paid:
-  //                     payerItem.name === name ? !payerItem.paid : payerItem.paid
-  //                 }))
-  //             ]
-  //           : [
-  //               ...item.assignedToPay
-  //                 .filter(payerItem => payerItem.name === name)
-  //                 .map(payerItem => ({
-  //                   ...payerItem,
-  //                   paid:
-  //                     payerItem.name === name ? !payerItem.paid : payerItem.paid
-  //                 })),
-  //               ...item.assignedToPay.filter(function(payerItem) {
-  //                 console.log("paid test");
-  //                 return payerItem.name !== name;
-  //               })
-  //             ]
-  //         : item.assignedToPay
-  //   }));
-  //   console.log(updatedItems);
-
-  //   this.setState({ bills: updatedItems });
-  //   // this.reorderItems(name, id);
-  //   setTimeout(() => this.updateBill(id), 1000);
-  // }
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -144,12 +115,12 @@ class Main extends Component {
   };
 
   render() {
-    let cInd = 0;
-    let uInd = 0;
-    let resetVariables = function() {
-      cInd = 0;
-      uInd = 0;
-    };
+    // let cInd = 0;
+    // let uInd = 0;
+    // let resetVariables = function() {
+    //   cInd = 0;
+    //   uInd = 0;
+    // };
     // let payerLength;
     // let payerLengthFunc = function() {
     //   payerLength = this.state.bill.assignedToPay.length;
@@ -157,38 +128,6 @@ class Main extends Component {
     return (
       <Container fluid>
         <Row>
-          {/* <Col size="md-6">
-            <Jumbotron>
-              <h1>Add Bill</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Bill
-              </FormBtn>
-            </form>
-          </Col> */}
-
           <Col size="md-12">
             <Jumbotron>
               <h1>Active Bills</h1>
@@ -198,7 +137,7 @@ class Main extends Component {
               <List>
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
-                    <div>{resetVariables()}</div>
+                    <div>{this.resetVariables()}</div>
 
                     <Row>
                       <Col size="md-6">
@@ -219,7 +158,7 @@ class Main extends Component {
                               paid={payer.paid}
                               // eachAmount={bill.amount / payerLength}
                               height={this.getHeight(bill._id)}
-                              index={payer.paid ? cInd++ : uInd++}
+                              index={payer.paid ? this.cInd++ : this.uInd++}
                               id={payer.name}
                               onClick={() => {
                                 this.toggleItem(payer.name, bill._id);
@@ -234,13 +173,13 @@ class Main extends Component {
                             style={{ height: `${this.getHeight(bill._id)}px` }}
                           ></div>
                           <div id="itemCountSpacer">
-                            {uInd === 0
+                            {this.uInd === 0
                               ? `Everyone has paid!`
-                              : cInd === 0
+                              : this.cInd === 0
                               ? `No one has paid`
-                              : cInd === 1
-                              ? `${cInd} person has paid`
-                              : `${cInd} people have paid`}
+                              : this.cInd === 1
+                              ? `${this.cInd} person has paid`
+                              : `${this.cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"

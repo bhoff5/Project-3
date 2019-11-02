@@ -10,4 +10,5 @@ class AddBill extends Component {
     return <BillForm></BillForm>;
   }
 }
+
 export default AddBill;
