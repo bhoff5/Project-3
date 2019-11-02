@@ -35,13 +35,19 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          email: response.data.user.email,
+          displayName: response.data.user.displayName,
+          households: response.data.user.households
         });
       } else {
         console.log("Get user: no user");
         this.setState({
           loggedIn: false,
-          username: null
+          username: null,
+          email: null,
+          displayName: null,
+          households: null
         });
       }
     });

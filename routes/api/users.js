@@ -19,6 +19,7 @@ router.post("/signup", function (req, res) {
   } else {
     let newUser = new User({
       username: req.body.username,
+      email: req.body.email,
       displayName: req.body.displayName,
       password: req.body.password
     });
@@ -54,7 +55,7 @@ router.post("/logout", (req, res) => {
 });
 
 router
-  .route("/:id")
+  .route("/:username")
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
