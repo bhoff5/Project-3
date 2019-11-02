@@ -22,5 +22,8 @@ export default {
   },
   login: function(userData) {
     return axios.post("/api/users/login", userData);
+  },
+  signup: function(userData) {
+    return axios.post("/api/users/signup", userData);
   }
 };
