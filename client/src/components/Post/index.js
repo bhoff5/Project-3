@@ -3,7 +3,7 @@ import React from "react";
 export function Post(props) {
   console.log(props);
   return (
-    <p>
+    <div>
       <h3>{props.title}</h3>
       <br />
       {props.description}
@@ -15,7 +15,7 @@ export function Post(props) {
       Your part: ${props.amount / 4}
       <br />
       Due date: {props.dueDate}
-    </p>
+    </div>
   );
 }
 export default Post;
