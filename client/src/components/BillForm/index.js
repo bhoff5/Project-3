@@ -50,7 +50,7 @@ class BillForm extends Component {
                             </div>
                         </div>
                         {/* Idea for additional field: a drop down of the names of memebers of your household and you select who is paying. This will help set the number by which the total is divided to determine how much each person owes as well as the names on the right side of the bill post either checked paid or unpaid */}
-                        <button className="btn waves-effect waves-light" type="submit" name="action" id="billSubmit">
+                        <button class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn" type="submit" name="action" id="billSubmit">
                             Submit
                         </button>
                     </div>

@@ -5,9 +5,10 @@ mongoose.promise = Promise;
 
 const userSchema = new Schema({
   username: { type: String, unique: true, required: true },
+  email: { type: String, unique: true, required: true },
   displayName: { type: String, required: true },
   password: { type: String, required: true },
-  households: [String]
+  households: { any: Array }
 });
 
 userSchema.methods = {
