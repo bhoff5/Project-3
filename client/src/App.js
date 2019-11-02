@@ -30,8 +30,6 @@ class App extends Component {
 
   getUser() {
     axios.get("/user/").then(response => {
-      console.log("Get user response: ");
-      console.log(response.data);
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
 
@@ -53,12 +51,21 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Nav updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Nav />
           <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/newbill" component={AddBill} />
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/"
+              render={() => <Main />}
+            />
+            <Route exact path="/login"
+              render={() =>
+                <Login updateUser={this.updateUser}
+              />}
+            />
+            <Route exact path="/newbill"
+              render={() => <AddBill />} 
+            />
+            <Route exact path="/signup"
+              render={() => <Signup />} />
             <Route component={NoMatch} />
           </Switch>
         </div>
