@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const routes = require("./routes");
+const dbConnection = require("./config/");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -9,6 +10,9 @@ var session = require("express-session"),
     bodyParser = require("body-parser");
 
 require("dotenv").config();
+
+const MongoStore = require('connect-mongo')(session);
+
 
 //Makes the server CORS-ENABLE
 app.use(function(req, res, next) {
@@ -41,8 +45,15 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
+
+app.use(
+  session({
+  secret: "additional-pylons",
+  store: new MongoStore({ mongooseConnection: dbConnection }),
+  resave: false,
+  saveUninitialized: false
+  })
+);
 
 // Start the API server
 app.listen(PORT, function() {

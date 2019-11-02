@@ -3,9 +3,15 @@ const userController = require("../../controllers/userController");
 const passport = require("passport");
 const User = require("../../models/user");
 
-router.route("/")
-  .get(userController.findAll)
-  .post(userController.create);
+router.get("/", (req, res, next) => {
+  console.log("====user!!====")
+  console.log(req.user)
+  if (req.user) {
+    res.json({ user: req.user })
+  } else {
+    res.json({ user: null })
+  }
+});
 
 router.post("/signup", function (req, res) {
   if (!req.body.username || !req.body.displayName || !req.body.password) {
@@ -13,6 +19,7 @@ router.post("/signup", function (req, res) {
   } else {
     let newUser = new User({
       username: req.body.username,
+      email: req.body.email,
       displayName: req.body.displayName,
       password: req.body.password
     });
@@ -39,12 +46,16 @@ router.post("/login",
 });
 
 router.post("/logout", (req, res) => {
-  req.logout();
-  res.redirect('/login');
+  if (req.user) {
+    req.logout();
+    res.send({ msg: "logging out "})
+  } else {
+    res.send({ msg: "no user to log out"})
+  }
 });
 
 router
-  .route("/:id")
+  .route("/:username")
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);

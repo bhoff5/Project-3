@@ -27,13 +27,16 @@ class Login extends Component {
         password: this.state.password
       })
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
           if (response.status === 200) {
             console.log("Sign-in successful");
             this.props.updateUser({
               loggedIn: true,
-              username: response.data.username
-            })
+              username: response.data.username,
+              email: response.data.email,
+              displayName: response.data.displayName,
+              households: response.data.households
+            });
             this.setState({
               redirectTo: "/"
             });
@@ -45,7 +48,7 @@ class Login extends Component {
 
   render() {
     if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
         <Container fluid>
@@ -70,14 +73,17 @@ class Login extends Component {
 
                 <FormBtn disabled="" onClick={this.handleFormSubmit}>
                   Submit
-              </FormBtn>
+                </FormBtn>
+                <p>
+                  Not a member? <a href="/signup">Sign up now!</a>
+                </p>
               </form>
             </Col>
           </Row>
         </Container>
       );
-    };
-  };
-};
+    }
+  }
+}
 
 export default Login;
