@@ -14,16 +14,16 @@ class Nav extends Component {
             <ul id="nav-mobile" className="left">
               <li>
                 <a
-                  href="sass.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  href="/"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Home
                 </a>
               </li>
               <li>
                 <a
-                  href="badges.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  href="/signup"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Invite
                 </a>
