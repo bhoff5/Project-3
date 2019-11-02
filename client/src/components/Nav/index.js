@@ -15,7 +15,7 @@ class Nav extends Component {
               <li>
                 <a
                   href="sass.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Home
                 </a>
@@ -23,7 +23,7 @@ class Nav extends Component {
               <li>
                 <a
                   href="badges.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Invite
                 </a>
@@ -31,7 +31,7 @@ class Nav extends Component {
               <li>
                 <a
                   href="collapsible.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   New Bill
                 </a>
@@ -39,7 +39,7 @@ class Nav extends Component {
               <li>
                 <a
                   href="collapsible.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Log Out
                 </a>
