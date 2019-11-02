@@ -1,7 +1,39 @@
 import React, { Component } from "react";
+import API from "../utils/API";
 import "./style.css";
 
-class ProfileInfo extends Component {
+class Profile extends Component {
+
+
+    state = {
+        username: "",
+        displayName: "",
+        password: "",
+        msg: ""
+    };
+
+
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.username && this.state.password && this.state.displayName) {
+            API.signup({
+                username: this.state.username,
+                displayName: this.state.displayName,
+                password: this.state.password
+            })
+                .then(res => this.setState({ msg: res.data.msg }))
+                .catch(err => console.log(err));
+        }
+    };
+
     render() {
         return (
             <Container fluid>
@@ -15,21 +47,11 @@ class ProfileInfo extends Component {
                         <div class="card-content">
                             <span>Your email address:</span><span id="userEmail"></span>
                             <br />
-                            <span>Your display name:</span><span id="userId"></span>
+                            <span>Your display name:</span><span id="userId">{this.state.displayName}</span>
                             <br />
                         </div>
                     </div>
                 </div>
-            </Container>
-        );
-    }
-};
-
-class ProfileHouseholds extends Component {
-    render() {
-        return (
-            <Container fluid>
-                {/* should display username, associated email, associated households and household validation code. additional bonus of "invite a new user" button. Also bonus: "create a new household" */}
 
                 <div class="row">
                     <div class="card" id="householdsList">
@@ -55,5 +77,4 @@ class ProfileHouseholds extends Component {
 
 
 
-export default ProfileInfo;
-export default ProfileHouseholds;
+export default Profile;
