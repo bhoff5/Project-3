@@ -6,7 +6,9 @@ class Main extends Component {
     componentDidMount() { }
     render() {
         return (
-            <Profile />
+            <Profile
+                displayName={this.state.displayName}
+            />
         );
     }
 }
