@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import Post from "../components/Post";
-import Profile from "../components/Profile";
 
 class Main extends Component {
   state = {
@@ -194,10 +193,6 @@ class Main extends Component {
             <Jumbotron>
               <h1>Active Bills</h1>
             </Jumbotron>
-
-            <Profile
-              displayName={this.state.displayName}
-            />
 
             {this.state.bills.length ? (
               <List>
