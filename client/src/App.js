@@ -60,18 +60,35 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/"
-              render={() => <Main />}
+              render={() => <Main
+                username={this.state.username}
+                displayName={this.state.displayName}
+                email={this.state.email}
+                households={this.state.households}/>}
             />
             <Route exact path="/login"
               render={() =>
                 <Login updateUser={this.updateUser}
+                username={this.state.username}
+                displayName={this.state.displayName}
+                email={this.state.email}
+                households={this.state.households} 
               />}
             />
             <Route exact path="/newbill"
-              render={() => <AddBill />} 
+              render={() => <AddBill 
+                username={this.state.username}
+                displayName={this.state.displayName}
+                email={this.state.email}
+                households={this.state.households}
+                />} 
             />
             <Route exact path="/signup"
-              render={() => <Signup />} />
+              render={() => <Signup
+                username={this.state.username}
+                displayName={this.state.displayName}
+                email={this.state.email}
+                households={this.state.households}/>} />
             <Route component={NoMatch} />
           </Switch>
         </div>
