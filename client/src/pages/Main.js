@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import Post from "../components/Post";
+import Profile from "../components/Profile";
 
 class Main extends Component {
   state = {
@@ -37,7 +38,7 @@ class Main extends Component {
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function(item) {
+      .filter(function (item) {
         if (item._id === id) {
           return item;
         }
@@ -71,9 +72,9 @@ class Main extends Component {
       assignedToPay:
         item._id === id
           ? item.assignedToPay.map(item => ({
-              ...item,
-              paid: item.name === name ? !item.paid : item.paid
-            }))
+            ...item,
+            paid: item.name === name ? !item.paid : item.paid
+          }))
           : item.assignedToPay
     }));
 
@@ -146,7 +147,7 @@ class Main extends Component {
   render() {
     let cInd = 0;
     let uInd = 0;
-    let resetVariables = function() {
+    let resetVariables = function () {
       cInd = 0;
       uInd = 0;
     };
@@ -194,6 +195,10 @@ class Main extends Component {
               <h1>Active Bills</h1>
             </Jumbotron>
 
+            <Profile
+              displayName={}
+            />
+
             {this.state.bills.length ? (
               <List>
                 {this.state.bills.map(bill => (
@@ -237,10 +242,10 @@ class Main extends Component {
                             {uInd === 0
                               ? `Everyone has paid!`
                               : cInd === 0
-                              ? `No one has paid`
-                              : cInd === 1
-                              ? `${cInd} person has paid`
-                              : `${cInd} people have paid`}
+                                ? `No one has paid`
+                                : cInd === 1
+                                  ? `${cInd} person has paid`
+                                  : `${cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"
@@ -255,8 +260,8 @@ class Main extends Component {
                 ))}
               </List>
             ) : (
-              <p>No Results to Display</p>
-            )}
+                <p>No Results to Display</p>
+              )}
           </Col>
         </Row>
       </Container>
