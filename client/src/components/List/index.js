@@ -30,7 +30,6 @@ export function ListName(props) {
         index * 43;
     // _.sumBy(meta.uncompleted.items.slice(0, index), "height"),
     let top = paid ? height + prevHeight + 43 : prevHeight;
-    console.log(index);
     return top;
   }
   let topVal = getTop();

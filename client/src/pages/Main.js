@@ -5,7 +5,6 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
-import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import Post from "../components/Post";
 
 class Main extends Component {
@@ -256,7 +255,7 @@ class Main extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <p>No Results to Display</p>
             )}
           </Col>
         </Row>
