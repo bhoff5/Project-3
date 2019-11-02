@@ -30,8 +30,10 @@ class Nav extends Component {
               </li>
               <li>
                 <a
-                  href="collapsible.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+
+                  href="/newbill"
+
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   New Bill
                 </a>
@@ -39,7 +41,7 @@ class Nav extends Component {
               <li>
                 <a
                   href="collapsible.html"
-                  class="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
+                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Log Out
                 </a>

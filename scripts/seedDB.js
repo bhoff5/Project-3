@@ -31,6 +31,14 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
 // Run "node scripts/seedDB.js" from terminal in the root directory to seed a household. Then, comment out the two blocks of code above, uncomment the code below and run "node scripts/seedDB.js" again to populate bills.
 
+const userSeed = [
+  {
+    username: "SpinningRobo",
+    displayName: ""
+  }
+]
+
+
 const billSeed = [
   {
     household: "qwerty12345",

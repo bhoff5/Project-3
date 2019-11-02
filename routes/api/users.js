@@ -3,9 +3,15 @@ const userController = require("../../controllers/userController");
 const passport = require("passport");
 const User = require("../../models/user");
 
-router.route("/")
-  .get(userController.findAll)
-  .post(userController.create);
+router.get("/", (req, res, next) => {
+  console.log("====user!!====")
+  console.log(req.user)
+  if (req.user) {
+    res.json({ user: req.user })
+  } else {
+    res.json({ user: null })
+  }
+});
 
 router.post("/signup", function (req, res) {
   if (!req.body.username || !req.body.displayName || !req.body.password) {
