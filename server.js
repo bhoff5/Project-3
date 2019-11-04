@@ -7,17 +7,19 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 var session = require("express-session"),
-    bodyParser = require("body-parser");
+  bodyParser = require("body-parser");
 
 require("dotenv").config();
 
-const MongoStore = require('connect-mongo')(session);
-
+const MongoStore = require("connect-mongo")(session);
 
 //Makes the server CORS-ENABLE
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
@@ -28,12 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
   console.log("req.session", req.session);
   console.log("req.user", req.user);
 
   return next();
-})
+});
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -45,13 +47,12 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-
 app.use(
   session({
-  secret: "additional-pylons",
-  store: new MongoStore({ mongooseConnection: dbConnection }),
-  resave: false,
-  saveUninitialized: false
+    secret: "additional-pylons",
+    store: new MongoStore({ mongooseConnection: dbConnection }),
+    resave: false,
+    saveUninitialized: false
   })
 );
 
