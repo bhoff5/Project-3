@@ -4,6 +4,7 @@ const passport = require("passport");
 const routes = require("./routes");
 const dbConnection = require("./config/");
 const app = express();
+const path = require("path");
 const PORT = process.env.PORT || 3001;
 
 var session = require("express-session"),
@@ -41,10 +42,15 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, "client/build")));
 }
 // Add routes, both API and view
+
 app.use(routes);
 
 app.use(
