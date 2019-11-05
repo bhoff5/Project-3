@@ -25,8 +25,5 @@ export default {
   },
   signup: function(userData) {
     return axios.post("/api/users/signup", userData);
-  },
-  getTenants: function() {}
-    return axios.get("/api/bills");   
-  )
+  }
 };
