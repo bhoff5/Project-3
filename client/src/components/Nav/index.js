@@ -56,12 +56,11 @@ class Nav extends Component {
                 </a> */}
               </li>
               <li>
-                <a
-                  href="collapsible.html"
-                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
-                >
-                  Log Out
-                </a>
+                <Link to="/login">
+                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                    Log In
+                  </button>{" "}
+                </Link>
               </li>
             </ul>
           </div>
