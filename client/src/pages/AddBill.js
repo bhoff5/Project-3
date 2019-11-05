@@ -13,10 +13,22 @@ class AddBill extends Component {
     description: "",
     amount: 0,
     dueDate: "",
-    creator: ""
+    creator: "",
+    assignedToPay: ""
   };
 
   componentDidMount() {}
+
+  // loadTenants = () => {
+  //   API.getBills()
+  //     .then(res => {
+  //       this.setState({
+  //         bills: res.data,
+  //         assignedToPay: "test"
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
