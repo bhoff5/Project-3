@@ -115,21 +115,12 @@ class Main extends Component {
   };
 
   render() {
-<<<<<<< HEAD
-    let cInd = 0;
-    let uInd = 0;
-    let resetVariables = function () {
-      cInd = 0;
-      uInd = 0;
-    };
-=======
     // let cInd = 0;
     // let uInd = 0;
     // let resetVariables = function() {
     //   cInd = 0;
     //   uInd = 0;
     // };
->>>>>>> e50b0a28fe04c33ce8d11d07c4fc0fae6c102dc3
     // let payerLength;
     // let payerLengthFunc = function() {
     //   payerLength = this.state.bill.assignedToPay.length;
@@ -184,19 +175,11 @@ class Main extends Component {
                           <div id="itemCountSpacer">
                             {this.uInd === 0
                               ? `Everyone has paid!`
-<<<<<<< HEAD
-                              : cInd === 0
-                                ? `No one has paid`
-                                : cInd === 1
-                                  ? `${cInd} person has paid`
-                                  : `${cInd} people have paid`}
-=======
                               : this.cInd === 0
-                              ? `No one has paid`
-                              : this.cInd === 1
-                              ? `${this.cInd} person has paid`
-                              : `${this.cInd} people have paid`}
->>>>>>> e50b0a28fe04c33ce8d11d07c4fc0fae6c102dc3
+                                ? `No one has paid`
+                                : this.cInd === 1
+                                  ? `${this.cInd} person has paid`
+                                  : `${this.cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"
