@@ -1,8 +1,8 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": ".",
   "private": true,
+  "homepage": "https://infinite-crag-35268.herokuapp.com/",
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.19.0",
