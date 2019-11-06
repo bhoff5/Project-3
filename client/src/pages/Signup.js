@@ -10,10 +10,11 @@ class Signup extends Component {
     displayName: "",
     password: "",
     email: "",
+    household: "",
     msg: ""
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -29,7 +30,8 @@ class Signup extends Component {
         username: this.state.username,
         displayName: this.state.displayName,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        household: this.state.household
       })
         .then(res => this.setState({ msg: res.data.msg }))
         .catch(err => console.log(err));
@@ -45,12 +47,6 @@ class Signup extends Component {
               <h1>Sign Up</h1>
             </Jumbotron>
             <form>
-              <Input
-                value={this.state.emailAddress}
-                onChange={this.handleInputChange}
-                name="emailAddress"
-                placeholder="Email address (required)"
-              />
               <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
@@ -74,6 +70,16 @@ class Signup extends Component {
                 onChange={this.handleInputChange}
                 name="email"
                 placeholder="Email (required)"
+              />
+              <p>
+                If you are joining an existing household, enter code here.
+                Otherwise leave blank.
+              </p>
+              <Input
+                value={this.state.household}
+                onChange={this.handleInputChange}
+                name="household"
+                placeholder="Household Code"
               />
               <FormBtn
                 disabled={

@@ -35,7 +35,7 @@ class Login extends Component {
               username: response.data.username,
               email: response.data.email,
               displayName: response.data.displayName,
-              households: response.data.households
+              household: response.data.household
             });
             this.setState({
               redirectTo: "/"

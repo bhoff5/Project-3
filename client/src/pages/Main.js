@@ -22,7 +22,7 @@ class Main extends Component {
   };
 
   componentDidMount() {
-    this.loadBills();
+    this.loadBills(this.props.household);
   }
 
   componentDidUpdate() {
@@ -30,8 +30,9 @@ class Main extends Component {
     this.uInd = 0;
   }
 
-  loadBills = () => {
-    API.getBills()
+  loadBills = household => {
+    console.log(this.props);
+    API.getBill(household)
       .then(res => {
         this.setState({
           bills: res.data,
@@ -50,7 +51,7 @@ class Main extends Component {
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function (item) {
+      .filter(function(item) {
         if (item._id === id) {
           return item;
         }
@@ -84,9 +85,9 @@ class Main extends Component {
       assignedToPay:
         item._id === id
           ? item.assignedToPay.map(item => ({
-            ...item,
-            paid: item.name === name ? !item.paid : item.paid
-          }))
+              ...item,
+              paid: item.name === name ? !item.paid : item.paid
+            }))
           : item.assignedToPay
     }));
 
@@ -176,10 +177,10 @@ class Main extends Component {
                             {this.uInd === 0
                               ? `Everyone has paid!`
                               : this.cInd === 0
-                                ? `No one has paid`
-                                : this.cInd === 1
-                                  ? `${this.cInd} person has paid`
-                                  : `${this.cInd} people have paid`}
+                              ? `No one has paid`
+                              : this.cInd === 1
+                              ? `${this.cInd} person has paid`
+                              : `${this.cInd} people have paid`}
                           </div>
                           <div
                             id="items-completed-spacer"
@@ -194,8 +195,8 @@ class Main extends Component {
                 ))}
               </List>
             ) : (
-                <p>No Results to Display</p>
-              )}
+              <p>No Results to Display</p>
+            )}
           </Col>
         </Row>
       </Container>
