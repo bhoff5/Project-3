@@ -25,5 +25,11 @@ export default {
   },
   signup: function(userData) {
     return axios.post("/api/users/signup", userData);
+  },
+  findUsersByHousehold: function(household) {
+    return axios.get("/api/users/byhousehold/" + household)
+  },
+  findBillsByHousehold: function(household) {
+    return axios.get("/api/bills/byhousehold/" + household)
   }
 };
