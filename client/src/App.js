@@ -13,7 +13,10 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      email: null,
+      displayName: null,
+      households: null
     };
     this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -32,7 +35,7 @@ class App extends Component {
     axios.get("/api/users/").then(response => {
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
-
+        console.log(response.data.user);
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -59,36 +62,55 @@ class App extends Component {
         <div className="App">
           <Nav />
           <Switch>
-            <Route exact path="/"
-              render={() => <Main
-                username={this.state.username}
-                displayName={this.state.displayName}
-                email={this.state.email}
-                households={this.state.households}/>}
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Main
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  households={this.state.households}
+                />
+              )}
             />
-            <Route exact path="/login"
-              render={() =>
-                <Login updateUser={this.updateUser}
-                username={this.state.username}
-                displayName={this.state.displayName}
-                email={this.state.email}
-                households={this.state.households} 
-              />}
+            <Route
+              exact
+              path="/login"
+              render={() => (
+                <Login
+                  updateUser={this.updateUser}
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  households={this.state.households}
+                />
+              )}
             />
-            <Route exact path="/newbill"
-              render={() => <AddBill 
-                username={this.state.username}
-                displayName={this.state.displayName}
-                email={this.state.email}
-                households={this.state.households}
-                />} 
+            <Route
+              exact
+              path="/newbill"
+              render={() => (
+                <AddBill
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  households={this.state.households}
+                />
+              )}
             />
-            <Route exact path="/signup"
-              render={() => <Signup
-                username={this.state.username}
-                displayName={this.state.displayName}
-                email={this.state.email}
-                households={this.state.households}/>} />
+            <Route
+              exact
+              path="/signup"
+              render={() => (
+                <Signup
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  households={this.state.households}
+                />
+              )}
+            />
             <Route component={NoMatch} />
           </Switch>
         </div>

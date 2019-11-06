@@ -9,6 +9,7 @@ class Signup extends Component {
     username: "",
     displayName: "",
     password: "",
+    email: "",
     msg: ""
   };
 
@@ -27,7 +28,8 @@ class Signup extends Component {
       API.signup({
         username: this.state.username,
         displayName: this.state.displayName,
-        password: this.state.password
+        password: this.state.password,
+        email: this.state.email
       })
         .then(res => this.setState({ msg: res.data.msg }))
         .catch(err => console.log(err));
@@ -66,6 +68,12 @@ class Signup extends Component {
                 onChange={this.handleInputChange}
                 name="password"
                 placeholder="Password (required)"
+              />
+              <Input
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                name="email"
+                placeholder="Email (required)"
               />
               <FormBtn
                 disabled={
