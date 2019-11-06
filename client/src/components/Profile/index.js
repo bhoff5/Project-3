@@ -15,7 +15,7 @@ export function Profile(props) {
                         Your info
                         </div>
                     <div class="card-content">
-                        <span>Your email address:{props.emailAddress}</span>
+                        <span>Your email address:{props.email}</span>
                         <br />
                         <span>Your username name:{props.username}</span>
                         <br />

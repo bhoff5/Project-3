@@ -12,7 +12,7 @@ export function InviteUserCard(props) {
             <div class="row">
                 <div class="card" id="household-info">
                     <div class="card-title">
-                        {props.householdID}
+                        {props.household}
                     </div>
                     <div class="card-content">
                         <div class="input-field">

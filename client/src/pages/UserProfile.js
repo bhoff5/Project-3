@@ -5,10 +5,10 @@ import Profile from "../components/Profile";
 class Main extends Component {
 
     state = {
-        emailAddress: this.state.emailAddress,
+        emais: this.state.email,
         username: this.state.username,
         displayName: this.state.displayName,
-        householdID: this.state.householdID
+        household: this.state.household
     };
 
     componentDidMount() { }
@@ -16,13 +16,13 @@ class Main extends Component {
         return (
             <div>
                 <Profile
-                    emailAddress={this.state.emailAddress}
+                    email={this.state.email}
                     username={this.state.username}
                     displayName={this.state.displayName}
                 />
                 <br />
                 <InviteUserCard
-                    householdID={this.state.householdID}
+                    household={this.state.household}
                 />
             </div>
         );
