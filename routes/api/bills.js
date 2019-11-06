@@ -6,7 +6,7 @@ router.route("/")
   .post(billController.create);
 
 router
-  .route("/byhousehold/:household")
+  .route("/:id")
   .get(billController.findByHousehold)
   .put(billController.update)
   .delete(billController.remove);
