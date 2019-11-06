@@ -17,7 +17,7 @@ class App extends Component {
       username: null,
       email: null,
       displayName: null,
-      households: null
+      household: null
     };
     this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -42,7 +42,7 @@ class App extends Component {
           username: response.data.user.username,
           email: response.data.user.email,
           displayName: response.data.user.displayName,
-          households: response.data.user.households
+          household: response.data.user.household
         });
       } else {
         console.log("Get user: no user");
@@ -51,7 +51,7 @@ class App extends Component {
           username: null,
           email: null,
           displayName: null,
-          households: null
+          household: null
         });
       }
     });
@@ -72,7 +72,7 @@ class App extends Component {
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
-                  households={this.state.households}
+                  household={this.state.household}
                 />
               )}
             />
@@ -85,7 +85,7 @@ class App extends Component {
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
-                  households={this.state.households}
+                  household={this.state.household}
                 />
               )}
             />
@@ -97,7 +97,7 @@ class App extends Component {
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
-                  households={this.state.households}
+                  household={this.state.household}
                 />
               )}
             />
@@ -109,7 +109,7 @@ class App extends Component {
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
-                  households={this.state.households}
+                  household={this.state.household}
                 />
               )}
             />

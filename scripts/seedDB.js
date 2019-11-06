@@ -3,7 +3,7 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
-// const householdSeed = [
+// const householdeed = [
 //   {
 //     name: "bhoff",
 //     dateCreated: new Date(Date.now()),
@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 // ];
 
 // db.Household.remove({})
-//   .then(() => db.Household.collection.insertMany(householdSeed))
+//   .then(() => db.Household.collection.insertMany(householdeed))
 //   .then(data => {
 //     console.log(data.result.n + " records inserted!");
 //     process.exit(0);

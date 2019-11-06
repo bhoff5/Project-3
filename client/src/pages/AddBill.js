@@ -8,7 +8,7 @@ import { runInThisContext } from "vm";
 
 class AddBill extends Component {
   state = {
-    household: [],
+    household: "",
     title: "",
     description: "",
     amount: 0,
@@ -17,7 +17,7 @@ class AddBill extends Component {
     assignedToPay: ""
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   // loadTenants = () => {
   //   API.getBills()
@@ -31,6 +31,7 @@ class AddBill extends Component {
   // };
 
   handleInputChange = event => {
+    console.log(this.props);
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -41,7 +42,7 @@ class AddBill extends Component {
     event.preventDefault();
     if (true) {
       API.saveBill({
-        household: this.props.households,
+        household: this.props.household,
         title: this.state.title,
         description: this.state.description,
         amount: this.state.amount,
@@ -90,12 +91,7 @@ class AddBill extends Component {
                 name="dueDate"
                 placeholder="Due Date (required)"
               />
-              <Input
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                name="description"
-                placeholder="Description (required)"
-              />
+
               {/* <Input
                 value={this.state.assignedToPay}
                 onChange={this.handleInputChange}

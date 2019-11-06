@@ -23,9 +23,9 @@ export default {
     return axios.post("/api/users/signup", userData);
   },
   createNewHousehold: function(userData) {
-    return axios.post("/api/households/", userData);
+    return axios.post("/api/household/", userData);
   },
   addUserToHousehold: function(household, userData) {
-    return axios.put("/api/households/addUser/" + household, userData);
+    return axios.put("/api/household/addUser/" + household, userData);
   }
 };
