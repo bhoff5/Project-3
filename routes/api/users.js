@@ -57,4 +57,10 @@ router.post("/logout", (req, res) => {
 router.route("/byhousehold/:household")
   .get(userController.findByHousehold);
 
+router
+  .route("/:username")
+  .get(userController.findById)
+  .put(userController.update)
+  .delete(userController.remove);
+
 module.exports = router;
