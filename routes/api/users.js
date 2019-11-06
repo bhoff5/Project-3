@@ -40,7 +40,10 @@ router.post("/login",
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     let userInfo = {
-      username: req.user.username
+      username: req.user.username,
+      displayName: req.user.displayName,
+      email: req.user.email,
+      household: req.user.household
     };
     res.send(userInfo);
 });
