@@ -43,19 +43,22 @@ router.post("/login",
       username: req.user.username
     };
     res.send(userInfo);
-  });
+});
 
 router.post("/logout", (req, res) => {
   if (req.user) {
     req.logout();
-    res.send({ msg: "logging out " })
+    res.send({ msg: "logging out "})
   } else {
-    res.send({ msg: "no user to log out" })
+    res.send({ msg: "no user to log out"})
   }
 });
 
-router.route("/byhousehold/:household")
-  .get(userController.findByHousehold);
+router
+  .route("/:username")
+  .get(userController.findById)
+  .put(userController.update)
+  .delete(userController.remove);
 
 router
   .route("/:username")

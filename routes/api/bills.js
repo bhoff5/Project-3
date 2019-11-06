@@ -11,8 +11,4 @@ router
   .put(billController.update)
   .delete(billController.remove);
 
-router
-  .route("/byhousehold/:household")
-  .get(billController.findByHousehold);
-
 module.exports = router;
