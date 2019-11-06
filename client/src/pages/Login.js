@@ -75,7 +75,10 @@ class Login extends Component {
                   Submit
                 </FormBtn>
                 <p>
-                  Not a member? <a href="/signup">Sign up now!</a>
+                  Not a member?
+                  <Link to="/signup">
+                    <a> Sign up now!</a>
+                  </Link>
                 </p>
               </form>
             </Col>

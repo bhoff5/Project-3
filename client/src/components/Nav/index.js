@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import Logo from "./apartgandw.png";
+import { Link } from "react-router-dom";
 
 class Nav extends Component {
   render() {
@@ -13,38 +14,53 @@ class Nav extends Component {
             </a>
             <ul id="nav-mobile" className="left">
               <li>
-                <a
+                <Link to="/">
+                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                    Home
+                  </button>{" "}
+                </Link>
+                {/* <a
                   href="/"
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Home
-                </a>
+                </a> */}
               </li>
               <li>
-                <a
+                <Link to="/signup">
+                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                    Sign Up
+                  </button>{" "}
+                </Link>
+                {/* <a
                   href="/signup"
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   Invite
-                </a>
+                </a> */}
               </li>
               <li>
-                <a
+                <Link to="/newbill">
+                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                    Create Bill
+                  </button>{" "}
+                </Link>
+
+                {/* <a
 
                   href="/newbill"
 
                   className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
                 >
                   New Bill
-                </a>
+                </a> */}
               </li>
               <li>
-                <a
-                  href="collapsible.html"
-                  className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn"
-                >
-                  Log Out
-                </a>
+                <Link to="/login">
+                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                    Log In
+                  </button>{" "}
+                </Link>
               </li>
             </ul>
           </div>
