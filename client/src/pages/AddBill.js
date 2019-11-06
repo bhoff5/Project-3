@@ -17,7 +17,7 @@ class AddBill extends Component {
     assignedToPay: ""
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   // loadTenants = () => {
   //   API.getBills()
