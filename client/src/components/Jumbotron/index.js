@@ -5,7 +5,7 @@ function Jumbotron({ children }) {
   return (
     <div
       style={{
-        height: 200,
+        height: 180,
         clear: "both",
         textAlign: "center",
         marginTop: 20,

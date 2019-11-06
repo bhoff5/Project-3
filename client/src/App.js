@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Logonav from "./components/logonav";
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
 
@@ -60,6 +61,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Logonav />
           <Nav />
           <Switch>
             <Route
