@@ -7,10 +7,10 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <nav class="menunav">
+        <nav className="menunav">
           <div className="nav-wrapper green accent-4">
             <a href="/" className="brand-logo right">
-              <img src={Logo} alt="website logo" class="bottomlogo toplogo" />
+              <img src={Logo} alt="website logo" className="bottomlogo toplogo" />
             </a>
             <ul id="nav-mobile" className="left">
               <li>
