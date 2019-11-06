@@ -10,7 +10,7 @@ module.exports = {
   },
   findByHousehold: function(req, res) {
     db.Bill
-      .find({household: req.params.id})
+      .find({household: req.params.household})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

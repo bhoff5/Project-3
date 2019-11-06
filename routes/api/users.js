@@ -60,4 +60,10 @@ router
   .put(userController.update)
   .delete(userController.remove);
 
+router
+  .route("/byhousehold/:household")
+  .get(userController.findByHousehold)
+  .put(userController.update)
+  .delete(userController.remove);
+
 module.exports = router;
