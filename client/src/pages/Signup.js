@@ -46,12 +46,6 @@ class Signup extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.emailAddress}
-                onChange={this.handleInputChange}
-                name="emailAddress"
-                placeholder="Email address (required)"
-              />
-              <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 name="username"
