@@ -10,10 +10,11 @@ class Signup extends Component {
     displayName: "",
     password: "",
     email: "",
+    household: "",
     msg: ""
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -23,15 +24,38 @@ class Signup extends Component {
   };
 
   handleFormSubmit = event => {
+    let householdKey = this.state.household;
     event.preventDefault();
-    if (this.state.username && this.state.password && this.state.displayName) {
+    if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey === "") {
+      API.createNewHousehold({
+        username: this.state.username
+      }).then(
+        API.signup({
+          username: this.state.username,
+          displayName: this.state.displayName,
+          password: this.state.password,
+          email: this.state.email,
+          household: this.state.username
+        })
+      ).then(
+        API.addUserToHousehold(this.state.username, {
+          username: this.state.username
+        })
+      ).then(res => this.setState({ msg: res.data.msg }))
+        .catch(err => console.log(err));
+    }
+    else if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey !== "") {
       API.signup({
         username: this.state.username,
         displayName: this.state.displayName,
         password: this.state.password,
-        email: this.state.email
-      })
-        .then(res => this.setState({ msg: res.data.msg }))
+        email: this.state.email,
+        household: this.state.household
+      }).then(
+        API.addUserToHousehold(householdKey, {
+          username: this.state.username
+        })
+      ).then(res => this.setState({ msg: res.data.msg }))
         .catch(err => console.log(err));
     }
   };
@@ -68,6 +92,16 @@ class Signup extends Component {
                 onChange={this.handleInputChange}
                 name="email"
                 placeholder="Email (required)"
+              />
+              <p>
+                If you are joining an existing household, enter code here.
+                Otherwise leave blank.
+              </p>
+              <Input
+                value={this.state.household}
+                onChange={this.handleInputChange}
+                name="household"
+                placeholder="Household Code"
               />
               <FormBtn
                 disabled={

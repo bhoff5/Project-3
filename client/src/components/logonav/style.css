@@ -1,0 +1,12 @@
+@media(min-width: 600px) {
+    .brandbar {
+      display:none; 
+     }
+  }
+  
+ .mobilelogo {
+
+    top: 7px;
+    padding-bottom: 7px;
+  
+  }

@@ -14,9 +14,9 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  createNewHousehold: function(req, res) {
     db.Household
-      .create(req.body)
+      .create({ name: req.body.username })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -30,6 +30,13 @@ module.exports = {
     db.Household
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  addUserToHousehold: function(req, res) {
+    db.Household
+      .updateOne({ name: req.params.household },
+        { $push: { tenants: req.body.username }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

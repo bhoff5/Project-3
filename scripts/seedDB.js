@@ -5,14 +5,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/apartdb");
 
 const householdSeed = [
   {
-    _id: "qwerty12345",
-    name: "Test House",
+    name: "bhoff",
     dateCreated: new Date(Date.now()),
-    tenants: ["bhoff", "SpinningRobo", "pdlampe", "shanyon"]
+    tenants: ["bhoff", "celving", "pdlampe", "shanyon"]
   },
   {
-    _id: "asfdjkl",
-    name: "Test House 2: Test Houser",
+    name: "ElTester",
     dateCreated: new Date(Date.now()),
     tenants: ["ElTester"]
   }
@@ -37,35 +35,35 @@ db.Household.remove({})
 //     email: "test@test.test",
 //     displayName: "Testman",
 //     password: "bigtest",
-//     households: ["asdfjkl"]
+//     household: "ElTester"
 //   },
 //   {
-//     username: "SpinningRobo",
+//     username: "celving",
 //     email: "colin@test.com",
 //     displayName: "Colin",
 //     password: "password",
-//     households: ["qwerty12345"]
+//     household: "bhoff"
 //   },
 //   {
 //     username: "shanyon",
 //     email: "shannonburke.art@gmail.com",
 //     displayName: "Shannon",
 //     password: "password",
-//     households: ["qwerty12345"]
+//     household: "bhoff"
 //   },
 //   {
 //     username: "pdlampe",
 //     email: "paul@test.com",
 //     displayName: "Paul",
 //     password: "password",
-//     households: ["qwerty12345"]
+//     household: "bhoff"
 //   },
 //   {
 //     username: "bhoff",
 //     email: "brian@test.com",
 //     displayName: "Brian",
 //     password: "password",
-//     households: ["qwerty12345"]
+//     household: "bhoff"
 //   }
 // ];
 
@@ -80,9 +78,11 @@ db.Household.remove({})
 //     process.exit(1);
 //   });
 
+// And once more with the code below.
+
 // const billSeed = [
 //   {
-//     household: "qwerty12345",
+//     household: "bhoff",
 //     title: "Monthly Rent",
 //     description: "Rent for the month of November",
 //     amount: 1500,
@@ -95,7 +95,7 @@ db.Household.remove({})
 //     ]
 //   },
 //   {
-//     household: "asdfjkl",
+//     household: "ElTester",
 //     title: "Electric Bill",
 //     description: "MORE POWER",
 //     amount: 150,

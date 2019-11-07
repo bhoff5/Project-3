@@ -15,7 +15,7 @@ require("dotenv").config();
 const MongoStore = require("connect-mongo")(session);
 
 //Makes the server CORS-ENABLE
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-app.get("/*", function(req, res) {
+app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
@@ -67,6 +67,6 @@ app.use(
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
