@@ -9,14 +9,14 @@ export function InviteUserCard(props) {
         <div>
             {/* should display household ID with button to invite a user to the household */}
 
-            <div class="row">
-                <div class="card" id="household-info">
-                    <div class="card-title">
+            <div className="row">
+                <div className="card" id="household-info">
+                    <div className="card-title">
                         {props.household}
                     </div>
-                    <div class="card-content">
-                        <div class="input-field">
-                            <input id="invite-email" type="text" class="validate" />
+                    <div className="card-content">
+                        <div className="input-field">
+                            <input id="invite-email" type="text" className="validate" />
                             <label for="invite-email">Enter recipient email</label>
                         </div>
                         <button id="invite-button">Send invite</button>
