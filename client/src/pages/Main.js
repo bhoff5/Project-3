@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import Post from "../components/Post";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 class Main extends Component {
   state = {
@@ -80,19 +82,36 @@ class Main extends Component {
   }
 
   toggleItem(name, id) {
-    let updatedItems = this.state.bills.map(item => ({
-      ...item,
-      assignedToPay:
-        item._id === id
-          ? item.assignedToPay.map(item => ({
+    confirmAlert({
+      title: "Confirm to change",
+      message: `Are you sure you want to change ${name}'s payment status?`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            let updatedItems = this.state.bills.map(item => ({
               ...item,
-              paid: item.name === name ? !item.paid : item.paid
-            }))
-          : item.assignedToPay
-    }));
+              assignedToPay:
+                item._id === id
+                  ? item.assignedToPay.map(item => ({
+                      ...item,
+                      paid: item.name === name ? !item.paid : item.paid
+                    }))
+                  : item.assignedToPay
+            }));
 
-    this.setState({ bills: updatedItems });
-    setTimeout(() => this.updateBill(id), 1000);
+            this.setState({ bills: updatedItems });
+            setTimeout(() => this.updateBill(id), 1000);
+          }
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          }
+        }
+      ]
+    });
   }
 
   handleInputChange = event => {
