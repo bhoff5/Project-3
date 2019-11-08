@@ -4,7 +4,8 @@ import API from "../utils/API";
 import BillForm from "../components/BillForm";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
-import { runInThisContext } from "vm";
+import TenantList from "../components/TenantList";
+import { List, ListItem } from "../components/List";
 
 class AddBill extends Component {
   state = {
@@ -14,32 +15,61 @@ class AddBill extends Component {
     amount: 0,
     dueDate: "",
     creator: "",
-    assignedToPay: ""
+    assignedToPay: [],
+    modifiedAssignedToPay: [],
+    test: 3
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props);
+    this.loadTenants(this.props.household);
+  }
 
-  // loadTenants = () => {
-  //   API.getBills()
-  //     .then(res => {
-  //       this.setState({
-  //         bills: res.data,
-  //         assignedToPay: "test"
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  toggleTenant = name => {
+    let tempArr = this.state.modifiedAssignedToPay;
+    let ind = tempArr.indexOf(name);
+    if (ind !== -1) {
+      console.log("true");
+      tempArr.splice(ind, 1);
+    } else {
+      console.log("false");
+      tempArr.push(name);
+    }
+    this.setState({
+      modifiedAssignedToPay: tempArr
+    });
+    this.mapModifiedAssignedToPay();
+  };
+
+  loadTenants = name => {
+    API.getHouseholdsbyName(name)
+      .then(res => {
+        this.setState({
+          assignedToPay: res.data[0].tenants
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   handleInputChange = event => {
-    console.log(this.props);
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
 
+  mapModifiedAssignedToPay = () => {
+    let y = this.state.modifiedAssignedToPay.map(item => ({
+      name: item,
+      paid: false
+    }));
+    return y;
+    console.log(JSON.stringify(y));
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
+
     if (true) {
       API.saveBill({
         household: this.props.household,
@@ -48,11 +78,7 @@ class AddBill extends Component {
         amount: this.state.amount,
         dueDate: this.state.dueDate,
         creator: this.props.displayName,
-        assignedToPay: [
-          { name: "Brian", paid: false },
-          { name: "Shannon", paid: false },
-          { name: "Paul", paid: false }
-        ]
+        assignedToPay: this.mapModifiedAssignedToPay()
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
@@ -91,13 +117,18 @@ class AddBill extends Component {
                 name="dueDate"
                 placeholder="Due Date (required)"
               />
+              <List>
+                {this.state.assignedToPay.map(tenant => (
+                  <TenantList
+                    key={tenant}
+                    name={tenant}
+                    toggleTenant={this.toggleTenant}
+                  >
+                    {tenant}
+                  </TenantList>
+                ))}
+              </List>
 
-              {/* <Input
-                value={this.state.assignedToPay}
-                onChange={this.handleInputChange}
-                name="assignedToPay"
-                placeholder="Assigned To Pay (required)"
-              /> */}
               <FormBtn
                 disabled={!(this.state.title && this.state.amount)}
                 onClick={this.handleFormSubmit}

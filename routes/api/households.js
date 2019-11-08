@@ -1,18 +1,17 @@
 const router = require("express").Router();
 const householdController = require("../../controllers/householdController");
 
-router.route("/")
+router
+  .route("/")
   .get(householdController.findAll)
   .post(householdController.createNewHousehold);
 
 router
   .route("/:id")
-  .get(householdController.findById)
+  .get(householdController.findByName)
   .put(householdController.update)
   .delete(householdController.remove);
 
-router
-  .route("/addUser/:household")
-  .put(householdController.addUserToHousehold);
+router.route("/addUser/:household").put(householdController.addUserToHousehold);
 
 module.exports = router;
