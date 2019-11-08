@@ -76,9 +76,7 @@ class Login extends Component {
                 </FormBtn>
                 <p>
                   Not a member?
-                  <Link to="/signup">
-                    <a> Sign up now!</a>
-                  </Link>
+                  <Link to="/signup">Sign up now!</Link>
                 </p>
               </form>
             </Col>

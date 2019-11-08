@@ -148,16 +148,15 @@ class Main extends Component {
                           amount={bill.amount}
                           creator={bill.creator}
                           dueDate={bill.dueDate}
+                          tenantLength={bill.assignedToPay.length}
                         ></Post>
                       </Col>
                       <Col size="md-6">
                         <List>
-                          {/* {payerLengthFunc()} */}
                           {bill.assignedToPay.map(payer => (
                             <ListName
                               key={payer.name}
                               paid={payer.paid}
-                              // eachAmount={bill.amount / payerLength}
                               height={this.getHeight(bill._id)}
                               index={payer.paid ? this.cInd++ : this.uInd++}
                               id={payer.name}
