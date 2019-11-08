@@ -31,7 +31,7 @@ class Main extends Component {
   }
 
   loadBills = household => {
-    console.log(this.props);
+    console.log(household);
     API.getBill(household)
       .then(res => {
         this.setState({

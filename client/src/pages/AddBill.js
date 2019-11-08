@@ -17,7 +17,8 @@ class AddBill extends Component {
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
-    msg: ""
+    successMsg: "",
+    failMsg: ""
   };
 
   componentDidMount() {
@@ -82,15 +83,22 @@ class AddBill extends Component {
         .then(res => {
           if (res.status === 200) {
             this.setState({
-              msg: "Bill creation successful!"
+              successMsg: "Bill creation successful!",
+              failMsg: ""
             });
           } else {
             this.setState({
-              msg: "Error"
+              successMsg: "",
+              failMsg: "Error"
             });
           }
         })
-        .catch(err => console.log(err));
+        .catch(err =>
+          this.setState({
+            successMsg: "",
+            failMsg: "Error"
+          })
+        );
     }
   };
   render() {
@@ -140,7 +148,8 @@ class AddBill extends Component {
               <FormBtn
                 disabled={!(this.state.title && this.state.amount)}
                 onClick={this.handleFormSubmit}
-                msg={this.state.msg}
+                successMsg={this.state.successMsg}
+                failMsg={this.state.failMsg}
               >
                 Submit
               </FormBtn>
