@@ -6,10 +6,12 @@ import InviteUserCard from "../components/InviteUserCard";
 class Main extends Component {
 
     state = {
+
         email: this.props.email,
         username: this.props.username,
         displayName: this.props.displayName,
         household: this.props.household
+
     };
 
     componentDidMount() { }
