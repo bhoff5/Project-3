@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import Logonav from "./components/logonav";
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
+import UserProfile from "./pages/UserProfile";
 
 class App extends Component {
   constructor() {
@@ -106,6 +107,18 @@ class App extends Component {
               path="/signup"
               render={() => (
                 <Signup
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  household={this.state.household}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => (
+                <UserProfile
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
