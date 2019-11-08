@@ -42,12 +42,13 @@ class Signup extends Component {
         API.addUserToHousehold(this.state.username, {
           username: this.state.username
         })
+      ).catch(err => console.log(err)
       ).then(
         this.setState({
           redirectTo: "/login"
         })
-        .catch(err => console.log(err))
-      )}
+      )
+    }
     else if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey !== "") {
       API.signup({
         username: this.state.username,
@@ -59,11 +60,12 @@ class Signup extends Component {
         API.addUserToHousehold(householdKey, {
           username: this.state.username
         })
+      ).catch(err => console.log(err)
       ).then(
         this.setState({
           redirectTo: "/login"
         })
-      ).catch(err => console.log(err));
+      )
     }
   };
 
