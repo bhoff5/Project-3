@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Logonav from "./components/logonav";
+import Iconnav from "./components/iconnav";
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
@@ -63,9 +64,14 @@ class App extends Component {
       <Router>
         <div className="App">
           <Logonav />
+
+       
+          <Iconnav />
+
           <Nav 
             loggedIn={this.state.loggedIn}
           />
+
           <Switch>
             <Route
               exact
