@@ -25,51 +25,6 @@ class Signup extends Component {
     });
   };
 
-  // signupMethod = () => {
-  //   let householdKey = this.state.household;
-  //   API.signup({
-  //     username: this.state.username,
-  //     displayName: this.state.displayName,
-  //     password: this.state.password,
-  //     email: this.state.email,
-  //     household: this.state.username
-  //   })
-  //     .then(
-  //       API.addUserToHousehold(this.state.username, {
-  //         username: this.state.username
-  //       })
-  //     )
-  //     .catch(err => console.log(err))
-  //     .then(
-  //       this.setState({
-  //         redirectTo: "/login"
-  //       })
-  //     );
-  // };
-
-  // handleFormSubmit = event => {
-  //   let householdKey = this.state.household;
-  //   event.preventDefault();
-
-  //   if (
-  //     this.state.username &&
-  //     this.state.password &&
-  //     this.state.displayName &&
-  //     this.state.email
-  //   ) {
-  //     if (householdKey === "") {
-  //       API.createNewHousehold({
-  //         username: this.state.username
-  //       }).then(this.signupMethod());
-  //       console.log("household test");
-  //     } else {
-  //       this.signupMethod();
-  //     }
-  //   } else {
-  //     this.setState({ failMsg: "Please fill out all fields" });
-  //   }
-  // };
-
   responseMethod = response => {
     if (response.status === 200) {
       console.log("Sign-in successful");
