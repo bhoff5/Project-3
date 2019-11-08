@@ -9,12 +9,12 @@ export function Profile(props) {
         <div>
             {/* should display username, display name, andassociated email */}
 
-            <div class="row">
-                <div class="card" id="basic-info">
-                    <div class="card-title">
+            <div className="row">
+                <div className="card" id="basic-info">
+                    <div className="card-title">
                         Your info
                         </div>
-                    <div class="card-content">
+                    <div className="card-content">
                         <span>Your email address:{props.email}</span>
                         <br />
                         <span>Your username name:{props.username}</span>
