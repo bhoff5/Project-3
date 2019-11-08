@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Logonav from "./components/logonav";
+import Iconnav from "./components/iconnav";
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
 
@@ -63,6 +64,7 @@ class App extends Component {
         <div className="App">
           <Logonav />
           <Nav />
+          <Iconnav />
           <Switch>
             <Route
               exact

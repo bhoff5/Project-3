@@ -3,11 +3,11 @@ import "./style.css";
 import Logo from "./apartgandw.png";
 import { Link } from "react-router-dom";
 
-class Nav extends Component {
+class Iconnav extends Component {
   render() {
     return (
-      <div>
-        <nav className="hideoriginalnav">
+      <div className="brand-logo center">
+        <nav className="hide-on-med-and-up iconnavbottom">
           <div className="nav-wrapper green accent-4">
             <a href="/" className="brand-logo right">
               <img src={Logo} alt="website logo" className="bottomlogo toplogo" />
@@ -15,9 +15,7 @@ class Nav extends Component {
             <ul id="nav-mobile" className="left">
               <li>
                 <Link to="/">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Home
-                  </button>{" "}
+                  <i className=" material-icons" >home</i>{" "}
                 </Link>
                 {/* <a
                   href="/"
@@ -41,9 +39,7 @@ class Nav extends Component {
               </li > */}
               <li>
                 <Link to="/newbill">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Create Bill
-                  </button>{" "}
+                  <i class="material-icons">monetization_on</i>{" "}
                 </Link>
 
                 {/* <a
@@ -57,16 +53,12 @@ class Nav extends Component {
               </li>
               <li>
                 <Link to="/profile">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Your Profile
-                  </button>{" "}
+                  <i class="material-icons">person</i>{" "}
                 </Link>
               </li>
               <li>
                 <Link to="/login">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Log In
-                  </button>{" "}
+                  <i class="material-icons">lock_outline</i>{" "}
                 </Link>
               </li>
 
@@ -78,4 +70,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default Iconnav;

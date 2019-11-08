@@ -1,0 +1,35 @@
+
+.iconnavbottom {
+ position:fixed; bottom:0; left:0; z-index:1030;
+         }
+  
+.bigger {
+      font-size: 30px
+      }
+
+  .toplogo {
+   position: absolute;
+   left: -235px;
+   top: 10px;
+ }
+
+ @media(max-width: 700px) {
+   .bottomlogo {
+      display: none;
+    }
+ }
+ 
+ /* nav.nav-center ul {
+  text-align: center;
+}
+
+ nav.nav-center ul li {
+  display: inline;
+  float: none;
+}
+ 
+
+nav.nav-center ul li a {
+  display: inline-block;
+} */
+
