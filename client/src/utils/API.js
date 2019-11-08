@@ -27,5 +27,13 @@ export default {
   },
   addUserToHousehold: function(household, userData) {
     return axios.put("/api/households/addUser/" + household, userData);
+  },
+
+  getAllHouseholds: function() {
+    return axios.get("/api/households/");
+  },
+  getHouseholdsbyName: function(name) {
+    return axios.get("/api/households/" + name);
+
   }
 };

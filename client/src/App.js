@@ -9,6 +9,7 @@ import Logonav from "./components/logonav";
 import Iconnav from "./components/iconnav";
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
+import UserProfile from "./pages/UserProfile";
 
 class App extends Component {
   constructor() {
@@ -37,7 +38,7 @@ class App extends Component {
     axios.get("/api/users/").then(response => {
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
-        console.log(response.data.user);
+        console.log(response.data.user.username);
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -63,8 +64,14 @@ class App extends Component {
       <Router>
         <div className="App">
           <Logonav />
-          <Nav />
+
+       
           <Iconnav />
+
+          <Nav 
+            loggedIn={this.state.loggedIn}
+          />
+
           <Switch>
             <Route
               exact
@@ -108,6 +115,19 @@ class App extends Component {
               path="/signup"
               render={() => (
                 <Signup
+                  updateUser={this.updateUser}
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  household={this.state.household}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => (
+                <UserProfile
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
