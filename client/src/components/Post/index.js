@@ -12,7 +12,7 @@ export function Post(props) {
       <br />
       Total amount due: ${props.amount}
       <br />
-      Your part: ${props.amount / 4}
+      Your part: ${props.amount / props.tenantLength}
       <br />
       Due date: {props.dueDate}
     </div>
