@@ -1,5 +1,5 @@
 .list-overflow-container {
-  height: 245px;
+  /* height: 245px; */
   /* border: 1px #dddddd solid; */
   /* border-radius: 4px; */
   /* overflow-y: scroll; */
@@ -89,18 +89,16 @@
   border-radius: 5px;
 }
 
-@media(max-width: 900px) {
+@media (max-width: 900px) {
   .billContainer {
     width: 70%;
-   }
+  }
 }
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .billContainer {
     width: 90%;
-   }
+  }
 }
-
-
 
 #items-uncompleted-spacer {
   width: 100%;

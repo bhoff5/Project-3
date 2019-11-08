@@ -12,10 +12,11 @@ class Signup extends Component {
     password: "",
     email: "",
     household: "",
-    msg: ""
+    successMsg: "",
+    failMsg: ""
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -24,48 +25,124 @@ class Signup extends Component {
     });
   };
 
+  // signupMethod = () => {
+  //   let householdKey = this.state.household;
+  //   API.signup({
+  //     username: this.state.username,
+  //     displayName: this.state.displayName,
+  //     password: this.state.password,
+  //     email: this.state.email,
+  //     household: this.state.username
+  //   })
+  //     .then(
+  //       API.addUserToHousehold(this.state.username, {
+  //         username: this.state.username
+  //       })
+  //     )
+  //     .catch(err => console.log(err))
+  //     .then(
+  //       this.setState({
+  //         redirectTo: "/login"
+  //       })
+  //     );
+  // };
+
+  // handleFormSubmit = event => {
+  //   let householdKey = this.state.household;
+  //   event.preventDefault();
+
+  //   if (
+  //     this.state.username &&
+  //     this.state.password &&
+  //     this.state.displayName &&
+  //     this.state.email
+  //   ) {
+  //     if (householdKey === "") {
+  //       API.createNewHousehold({
+  //         username: this.state.username
+  //       }).then(this.signupMethod());
+  //       console.log("household test");
+  //     } else {
+  //       this.signupMethod();
+  //     }
+  //   } else {
+  //     this.setState({ failMsg: "Please fill out all fields" });
+  //   }
+  // };
+
+  responseMethod = response => {
+    if (response.status === 200) {
+      console.log("Sign-in successful");
+      this.setState({
+        successMsg: "Sign Up Successful",
+        failMsg: ""
+      });
+      setTimeout(() => this.setState({ redirectTo: "/login" }), 1000);
+    } else {
+      this.setState({
+        successMsg: "",
+        failMsg: "System Error. Please try again later."
+      });
+    }
+  };
+
   handleFormSubmit = event => {
     let householdKey = this.state.household;
     event.preventDefault();
-    if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey === "") {
-      API.createNewHousehold({
-        username: this.state.username
-      }).then(
+    if (
+      this.state.username &&
+      this.state.password &&
+      this.state.displayName &&
+      this.state.email
+    ) {
+      if (householdKey === "") {
+        API.createNewHousehold({
+          username: this.state.username
+        })
+          .then(
+            API.signup({
+              username: this.state.username,
+              displayName: this.state.displayName,
+              password: this.state.password,
+              email: this.state.email,
+              household: this.state.username
+            })
+          )
+          .then(
+            API.addUserToHousehold(this.state.username, {
+              username: this.state.username
+            })
+          )
+          .then(response => this.responseMethod(response))
+          .catch(err =>
+            this.setState({
+              successMsg: "",
+              failMsg: "Username or password is incorrect"
+            })
+          );
+      } else if (householdKey !== "") {
         API.signup({
           username: this.state.username,
           displayName: this.state.displayName,
           password: this.state.password,
           email: this.state.email,
-          household: this.state.username
+          household: this.state.household
         })
-      ).then(
-        API.addUserToHousehold(this.state.username, {
-          username: this.state.username
-        })
-      ).catch(err => console.log(err)
-      ).then(
-        this.setState({
-          redirectTo: "/login"
-        })
-      )
-    }
-    else if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey !== "") {
-      API.signup({
-        username: this.state.username,
-        displayName: this.state.displayName,
-        password: this.state.password,
-        email: this.state.email,
-        household: this.state.household
-      }).then(
-        API.addUserToHousehold(householdKey, {
-          username: this.state.username
-        })
-      ).catch(err => console.log(err)
-      ).then(
-        this.setState({
-          redirectTo: "/login"
-        })
-      )
+          .then(
+            API.addUserToHousehold(householdKey, {
+              username: this.state.username
+            })
+          )
+          .then(response => this.responseMethod(response))
+          .catch(err =>
+            this.setState({
+              successMsg: "",
+              failMsg: "Username or password is incorrect"
+            })
+          );
+      }
+    } else {
+      this.setState({ failMsg: "Please fill out all fields" });
     }
   };
 
@@ -108,7 +185,7 @@ class Signup extends Component {
                 <p>
                   If you are joining an existing household, enter code here.
                   Otherwise leave blank.
-              </p>
+                </p>
                 <Input
                   value={this.state.household}
                   onChange={this.handleInputChange}
@@ -125,17 +202,19 @@ class Signup extends Component {
                     )
                   }
                   onClick={this.handleFormSubmit}
+                  successMsg={this.state.successMsg}
+                  failMsg={this.state.failMsg}
                 >
                   Submit
-              </FormBtn>
+                </FormBtn>
                 {this.state.msg}
               </form>
             </Col>
           </Row>
         </Container>
-      )
-    };
-  };
-};
+      );
+    }
+  }
+}
 
 export default Signup;

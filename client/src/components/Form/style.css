@@ -1,0 +1,19 @@
+.msg {
+  color: #00c85c;
+  position: absolute;
+  right: 0;
+  top: 60px;
+}
+
+.buttonContainer {
+  padding-top: 20px;
+  position: relative;
+}
+
+.successMsg {
+  color: #00c85c;
+}
+
+.failMsg {
+  color: red;
+}
