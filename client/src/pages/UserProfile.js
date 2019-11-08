@@ -5,7 +5,7 @@ import Profile from "../components/Profile";
 class Main extends Component {
 
     state = {
-        emais: this.state.email,
+        email: this.state.email,
         username: this.state.username,
         displayName: this.state.displayName,
         household: this.state.household

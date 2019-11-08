@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 
@@ -14,7 +15,7 @@ class Signup extends Component {
     msg: ""
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -41,7 +42,26 @@ class Signup extends Component {
         API.addUserToHousehold(this.state.username, {
           username: this.state.username
         })
-      ).then(res => this.setState({ msg: res.data.msg }))
+      ).then(
+        API.login({
+          username: this.state.username,
+          password: this.state.password
+        })).then(
+          response => {
+            if (response.status === 200) {
+              console.log("Sign-in successful");
+              this.props.updateUser({
+                loggedIn: true,
+                username: response.data.username,
+                email: response.data.email,
+                displayName: response.data.displayName,
+                household: response.data.household
+              });
+              this.setState({
+                redirectTo: "/"
+              });
+            }
+          })
         .catch(err => console.log(err));
     }
     else if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey !== "") {
@@ -55,73 +75,97 @@ class Signup extends Component {
         API.addUserToHousehold(householdKey, {
           username: this.state.username
         })
-      ).then(res => this.setState({ msg: res.data.msg }))
+      ).then(
+        API.login({
+          username: this.state.username,
+          password: this.state.password
+        })).then(
+          response => {
+            if (response.status === 200) {
+              console.log("Sign-in successful");
+              this.props.updateUser({
+                loggedIn: true,
+                username: response.data.username,
+                email: response.data.email,
+                displayName: response.data.displayName,
+                household: response.data.household
+              });
+              this.setState({
+                redirectTo: "/"
+              });
+            }
+          })
         .catch(err => console.log(err));
     }
   };
 
   render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Sign Up</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                name="username"
-                placeholder="Username (required)"
-              />
-              <Input
-                value={this.state.displayName}
-                onChange={this.handleInputChange}
-                name="displayName"
-                placeholder="Display Name (required)"
-              />
-              <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                placeholder="Password (required)"
-              />
-              <Input
-                value={this.state.email}
-                onChange={this.handleInputChange}
-                name="email"
-                placeholder="Email (required)"
-              />
-              <p>
-                If you are joining an existing household, enter code here.
-                Otherwise leave blank.
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Sign Up</h1>
+              </Jumbotron>
+              <form>
+                <Input
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  name="username"
+                  placeholder="Username (required)"
+                />
+                <Input
+                  value={this.state.displayName}
+                  onChange={this.handleInputChange}
+                  name="displayName"
+                  placeholder="Display Name (required)"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  placeholder="Password (required)"
+                />
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Email (required)"
+                />
+                <p>
+                  If you are joining an existing household, enter code here.
+                  Otherwise leave blank.
               </p>
-              <Input
-                value={this.state.household}
-                onChange={this.handleInputChange}
-                name="household"
-                placeholder="Household Code"
-              />
-              <FormBtn
-                disabled={
-                  !(
-                    this.state.username &&
-                    this.state.password &&
-                    this.state.displayName
-                  )
-                }
-                onClick={this.handleFormSubmit}
-              >
-                Submit
+                <Input
+                  value={this.state.household}
+                  onChange={this.handleInputChange}
+                  name="household"
+                  placeholder="Household Code"
+                />
+                <FormBtn
+                  disabled={
+                    !(
+                      this.state.username &&
+                      this.state.password &&
+                      this.state.displayName &&
+                      this.state.email
+                    )
+                  }
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit
               </FormBtn>
-              {this.state.msg}
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+                {this.state.msg}
+              </form>
+            </Col>
+          </Row>
+        </Container>
+      )
+    };
+  };
+};
 
 export default Signup;

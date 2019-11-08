@@ -36,7 +36,7 @@ class App extends Component {
     axios.get("/api/users/").then(response => {
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
-        console.log(response.data.user);
+        console.log(response.data.user.username);
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -62,7 +62,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Logonav />
-          <Nav />
+          <Nav 
+            loggedIn={this.state.loggedIn}
+          />
           <Switch>
             <Route
               exact
@@ -106,6 +108,7 @@ class App extends Component {
               path="/signup"
               render={() => (
                 <Signup
+                  updateUser={this.updateUser}
                   username={this.state.username}
                   displayName={this.state.displayName}
                   email={this.state.email}
