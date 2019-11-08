@@ -87,6 +87,7 @@
   margin-right: auto;
   box-shadow: 0 0 4px 2px #00000038;
   border-radius: 5px;
+  transition: all 0.3s ease-in;
 }
 
 @media (max-width: 900px) {
@@ -146,4 +147,8 @@
 
 .listName {
   cursor: pointer;
+}
+
+.tenantList {
+  padding-top: 30px;
 }

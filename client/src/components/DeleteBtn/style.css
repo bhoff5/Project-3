@@ -1,4 +1,7 @@
 .delete-btn {
   float: right;
   color: #e74944;
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
