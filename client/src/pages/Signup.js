@@ -24,6 +24,16 @@ class Signup extends Component {
     });
   };
 
+  // setStateFunction = () => {
+  //   this.setState({
+  //     redirectTo: "/"
+  //   });
+  // };
+
+  // timeoutFunction = () => {
+  //   setTimeout(this.setStateFunction(), 3000);
+  // };
+
   handleFormSubmit = event => {
     let householdKey = this.state.household;
     event.preventDefault();
@@ -43,27 +53,11 @@ class Signup extends Component {
           username: this.state.username
         })
       ).then(
-        API.login({
-          username: this.state.username,
-          password: this.state.password
-        })).then(
-          response => {
-            if (response.status === 200) {
-              console.log("Sign-in successful");
-              this.props.updateUser({
-                loggedIn: true,
-                username: response.data.username,
-                email: response.data.email,
-                displayName: response.data.displayName,
-                household: response.data.household
-              });
-              this.setState({
-                redirectTo: "/"
-              });
-            }
-          })
-        .catch(err => console.log(err));
-    }
+        this.setState({
+          redirectTo: "/login"
+        })
+        .catch(err => console.log(err))
+      )}
     else if (this.state.username && this.state.password && this.state.displayName && this.state.email && householdKey !== "") {
       API.signup({
         username: this.state.username,
@@ -76,26 +70,10 @@ class Signup extends Component {
           username: this.state.username
         })
       ).then(
-        API.login({
-          username: this.state.username,
-          password: this.state.password
-        })).then(
-          response => {
-            if (response.status === 200) {
-              console.log("Sign-in successful");
-              this.props.updateUser({
-                loggedIn: true,
-                username: response.data.username,
-                email: response.data.email,
-                displayName: response.data.displayName,
-                household: response.data.household
-              });
-              this.setState({
-                redirectTo: "/"
-              });
-            }
-          })
-        .catch(err => console.log(err));
+        this.setState({
+          redirectTo: "/login"
+        })
+      ).catch(err => console.log(err));
     }
   };
 
