@@ -17,7 +17,8 @@ class AddBill extends Component {
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
-    test: 3
+    successMsg: "",
+    failMsg: ""
   };
 
   componentDidMount() {
@@ -64,7 +65,6 @@ class AddBill extends Component {
       paid: false
     }));
     return y;
-    console.log(JSON.stringify(y));
   };
 
   handleFormSubmit = event => {
@@ -80,8 +80,25 @@ class AddBill extends Component {
         creator: this.props.displayName,
         assignedToPay: this.mapModifiedAssignedToPay()
       })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .then(res => {
+          if (res.status === 200) {
+            this.setState({
+              successMsg: "Bill creation successful!",
+              failMsg: ""
+            });
+          } else {
+            this.setState({
+              successMsg: "",
+              failMsg: "Error"
+            });
+          }
+        })
+        .catch(err =>
+          this.setState({
+            successMsg: "",
+            failMsg: "Error"
+          })
+        );
     }
   };
   render() {
@@ -128,14 +145,14 @@ class AddBill extends Component {
                   </TenantList>
                 ))}
               </List>
-
               <FormBtn
                 disabled={!(this.state.title && this.state.amount)}
                 onClick={this.handleFormSubmit}
+                successMsg={this.state.successMsg}
+                failMsg={this.state.failMsg}
               >
                 Submit
               </FormBtn>
-              {this.state.msg}
             </form>
           </Col>
         </Row>

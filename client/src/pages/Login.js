@@ -9,6 +9,8 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
+    successMsg: "",
+    failMsg: "",
     redirectTo: null
   };
 
@@ -30,6 +32,10 @@ class Login extends Component {
           console.log(response.data);
           if (response.status === 200) {
             console.log("Sign-in successful");
+            this.setState({
+              successMsg: "Log In Successful",
+              failMsg: ""
+            });
             this.props.updateUser({
               loggedIn: true,
               username: response.data.username,
@@ -37,12 +43,20 @@ class Login extends Component {
               displayName: response.data.displayName,
               household: response.data.household
             });
+            setTimeout(() => this.setState({ redirectTo: "/" }), 1000);
+          } else {
             this.setState({
-              redirectTo: "/"
+              successMsg: "",
+              failMsg: "System Error. Please try again later."
             });
           }
         })
-        .catch(err => console.log(err));
+        .catch(err =>
+          this.setState({
+            successMsg: "",
+            failMsg: "Username or password is incorrect"
+          })
+        );
     }
   };
 
@@ -71,12 +85,17 @@ class Login extends Component {
                   placeholder="Password (required)"
                 />
 
-                <FormBtn disabled="" onClick={this.handleFormSubmit}>
+                <FormBtn
+                  successMsg={this.state.successMsg}
+                  failMsg={this.state.failMsg}
+                  disabled=""
+                  onClick={this.handleFormSubmit}
+                >
                   Submit
                 </FormBtn>
                 <p>
                   Not a member?
-                  <Link to="/signup">Sign up now!</Link>
+                  <Link to="/signup"> Sign up now!</Link>
                 </p>
               </form>
             </Col>
