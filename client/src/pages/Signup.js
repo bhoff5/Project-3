@@ -24,16 +24,6 @@ class Signup extends Component {
     });
   };
 
-  // setStateFunction = () => {
-  //   this.setState({
-  //     redirectTo: "/"
-  //   });
-  // };
-
-  // timeoutFunction = () => {
-  //   setTimeout(this.setStateFunction(), 3000);
-  // };
-
   handleFormSubmit = event => {
     let householdKey = this.state.household;
     event.preventDefault();
