@@ -3,7 +3,7 @@ const userController = require("../../controllers/userController");
 const passport = require("passport");
 const User = require("../../models/user");
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   console.log("====user!!====");
   console.log(req.user);
   if (req.user) {
@@ -50,7 +50,10 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 router.get("/logout", (req, res) => {
   if (req.user) {
     req.logout();
-    res.send({ msg: "logging out " });
+    req.session.destroy((err) => {
+      if(err) console.log(err);
+      res.send({ msg: "logging out " });
+  })
   } else {
     res.send({ msg: "no user to log out" });
   }

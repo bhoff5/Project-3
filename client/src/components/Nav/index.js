@@ -35,7 +35,7 @@ class Nav extends Component {
     let button;
 
     if (loggedInVar) {
-      button = <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+      button = <button onClick={ this.handleLogoutClick } className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
         Log Out
     </button>
     }

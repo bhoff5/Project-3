@@ -80,6 +80,7 @@ class App extends Component {
             email={this.state.email}
             household={this.state.household}
             loggedIn={this.state.loggedIn}
+            updateUser={this.updateUser}
           />
 
           <Switch>
