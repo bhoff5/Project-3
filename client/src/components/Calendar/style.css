@@ -1,0 +1,14 @@
+.calendarContainer {
+  display: inline-block;
+  /* height: 500px; */
+}
+
+.modal {
+  bottom: auto;
+  outline: none;
+  overflow: none;
+}
+
+.input-field.col {
+  padding-left: 0;
+}
