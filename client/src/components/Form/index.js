@@ -11,6 +11,14 @@ export function Input(props) {
   );
 }
 
+export function PasswordInput(props) {
+  return (
+    <div className="form-group">
+      <input className="form-control" type="password" {...props} />
+    </div>
+  );
+}
+
 export function CurrencyInput(props) {
   return (
     // <div className="form-group">
