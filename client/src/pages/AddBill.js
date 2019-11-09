@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 import BillForm from "../components/BillForm";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
+
 import Calendar from "../components/Calendar";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import MomentLocaleUtils, {
@@ -13,6 +15,7 @@ import MomentLocaleUtils, {
   parseDate
 } from "react-day-picker/moment";
 import "moment/locale/it";
+
 
 class AddBill extends Component {
   state = {
@@ -30,9 +33,13 @@ class AddBill extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    this.loadTenants(this.props.household);
-  }
+    if (!this.props.loggedIn) {
+      this.setState({ redirectTo: "/login" });
+    } else {
+      console.log(this.props);
+      this.loadTenants(this.props.household);
+    };
+  };
 
   handleDayChange = day => {
     this.setState({ dueDate: formatDate(new Date(day)) });
@@ -174,7 +181,8 @@ class AddBill extends Component {
           </Row>
         </Container>
       );
-    }
-  }
-}
+    };
+  };
+};
+
 export default AddBill;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 import Profile from "../components/Profile";
 import InviteUserCard from "../components/InviteUserCard";
 
@@ -14,23 +15,31 @@ class Main extends Component {
 
     };
 
-    componentDidMount() { }
+    componentDidMount() {
+        if (!this.props.loggedIn) {
+            this.setState({ redirectTo: "/login" })
+        }
+    }
 
     render() {
-        return (
-            <div>
-                <Profile
-                    email={this.props.email}
-                    username={this.props.username}
-                    displayName={this.props.displayName}
-                />
-                <br />
-                <InviteUserCard
-                    household={this.props.household}
-                />
-            </div>
-        );
-    }
-}
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />;
+        } else {
+            return (
+                <div>
+                    <Profile
+                        email={this.props.email}
+                        username={this.props.username}
+                        displayName={this.props.displayName}
+                    />
+                    <br />
+                    <InviteUserCard
+                        household={this.props.household}
+                    />
+                </div>
+            );
+        };
+    };
+};
 
 export default Main;
