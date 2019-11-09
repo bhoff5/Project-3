@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./style.css";
-import Logo from "./apartgandw.png";
+import Logo from "./whiteapartlogo.png";
 
 class Logonav extends Component {
     render() {
         return (
 
             <nav class="brandbar">
-                <div class="nav-wrapper green accent-4">
+                <div class="nav-wrapper brandcolorbar">
                     <a href="/" className="brand-logo center">
                         <img src={Logo} alt="website logo" class="mobilelogo" />
                     </a>
