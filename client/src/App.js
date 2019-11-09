@@ -82,6 +82,7 @@ class App extends Component {
                   displayName={this.state.displayName}
                   email={this.state.email}
                   household={this.state.household}
+                  loggedIn={this.state.loggedIn}
                 />
               )}
             />
@@ -107,6 +108,7 @@ class App extends Component {
                   displayName={this.state.displayName}
                   email={this.state.email}
                   household={this.state.household}
+                  loggedIn={this.state.loggedIn}
                 />
               )}
             />
@@ -132,6 +134,7 @@ class App extends Component {
                   displayName={this.state.displayName}
                   email={this.state.email}
                   household={this.state.household}
+                  loggedIn={this.state.loggedIn}
                 />
               )}
             />

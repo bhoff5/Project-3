@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 import BillForm from "../components/BillForm";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
@@ -22,9 +23,13 @@ class AddBill extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    this.loadTenants(this.props.household);
-  }
+    if (!this.props.loggedIn) {
+      this.setState({ redirectTo: "/login" });
+    } else {
+      console.log(this.props);
+      this.loadTenants(this.props.household);
+    };
+  };
 
   toggleTenant = name => {
     let tempArr = this.state.modifiedAssignedToPay;
@@ -102,63 +107,67 @@ class AddBill extends Component {
     }
   };
   render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Create Bill</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                name="description"
-                placeholder="Description (required)"
-              />
-              <Input
-                value={this.state.amount}
-                onChange={this.handleInputChange}
-                name="amount"
-                placeholder="Amount (required)"
-              />
-              <Input
-                value={this.state.dueDate}
-                onChange={this.handleInputChange}
-                name="dueDate"
-                placeholder="Due Date (required)"
-              />
-              <List>
-                {this.state.assignedToPay.map(tenant => (
-                  <TenantList
-                    key={tenant}
-                    name={tenant}
-                    toggleTenant={this.toggleTenant}
-                  >
-                    {tenant}
-                  </TenantList>
-                ))}
-              </List>
-              <FormBtn
-                disabled={!(this.state.title && this.state.amount)}
-                onClick={this.handleFormSubmit}
-                successMsg={this.state.successMsg}
-                failMsg={this.state.failMsg}
-              >
-                Submit
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Create Bill</h1>
+              </Jumbotron>
+              <form>
+                <Input
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
+                  name="title"
+                  placeholder="Title (required)"
+                />
+                <Input
+                  value={this.state.description}
+                  onChange={this.handleInputChange}
+                  name="description"
+                  placeholder="Description (required)"
+                />
+                <Input
+                  value={this.state.amount}
+                  onChange={this.handleInputChange}
+                  name="amount"
+                  placeholder="Amount (required)"
+                />
+                <Input
+                  value={this.state.dueDate}
+                  onChange={this.handleInputChange}
+                  name="dueDate"
+                  placeholder="Due Date (required)"
+                />
+                <List>
+                  {this.state.assignedToPay.map(tenant => (
+                    <TenantList
+                      key={tenant}
+                      name={tenant}
+                      toggleTenant={this.toggleTenant}
+                    >
+                      {tenant}
+                    </TenantList>
+                  ))}
+                </List>
+                <FormBtn
+                  disabled={!(this.state.title && this.state.amount)}
+                  onClick={this.handleFormSubmit}
+                  successMsg={this.state.successMsg}
+                  failMsg={this.state.failMsg}
+                >
+                  Submit
               </FormBtn>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+              </form>
+            </Col>
+          </Row>
+        </Container>
+      );
+    };
+  };
+};
 
 export default AddBill;
