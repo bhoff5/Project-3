@@ -20,7 +20,7 @@ class AddBill extends Component {
     household: "",
     title: "",
     description: "",
-    amount: 0,
+    amount: null,
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],

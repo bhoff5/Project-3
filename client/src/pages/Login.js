@@ -3,7 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import { Input, PasswordInput, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 
 class Login extends Component {
   state = {
@@ -78,7 +78,7 @@ class Login extends Component {
                   name="username"
                   placeholder="Username (required)"
                 />
-                <Input
+                <PasswordInput
                   value={this.state.password}
                   onChange={this.handleInputChange}
                   name="password"
