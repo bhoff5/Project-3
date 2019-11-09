@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
 import Post from "../components/Post";
@@ -24,7 +24,11 @@ class Main extends Component {
   };
 
   componentDidMount() {
-    this.loadBills(this.props.household);
+    if (!this.props.loggedIn) {
+      this.setState({ redirectTo: "/login" })
+    } else {
+      this.loadBills(this.props.household);
+    }
   }
 
   componentDidUpdate() {
@@ -46,20 +50,20 @@ class Main extends Component {
 
   deleteBill = id => {
     API.deleteBill(id)
-      .then(res => {
-        let updatedItems = this.state.bills.map(item => ({
-          ...item
-        }));
+    .then(res => {
+      let updatedItems = this.state.bills.map(item => ({
+        ...item
+      }));
 
-        this.setState({ bills: updatedItems });
-      })
+      this.setState({ bills: updatedItems });
+    })
       .catch(err => console.log(err));
   };
 
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function(item) {
+      .filter(function (item) {
         if (item._id === id) {
           return item;
         }
@@ -91,6 +95,7 @@ class Main extends Component {
     API.deleteBill(id).then(this.loadBills(this.props.household));
   };
 
+
   toggleItem(name, id) {
     confirmAlert({
       title: "Confirm to change",
@@ -104,9 +109,9 @@ class Main extends Component {
               assignedToPay:
                 item._id === id
                   ? item.assignedToPay.map(item => ({
-                      ...item,
-                      paid: item.name === name ? !item.paid : item.paid
-                    }))
+                    ...item,
+                    paid: item.name === name ? !item.paid : item.paid
+                  }))
                   : item.assignedToPay
             }));
 
@@ -155,32 +160,35 @@ class Main extends Component {
     // let payerLengthFunc = function() {
     //   payerLength = this.state.bill.assignedToPay.length;
     // };
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>Active Bills</h1>
-            </Jumbotron>
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col size="md-12">
+              <Jumbotron>
+                <h1>Active Bills</h1>
+              </Jumbotron>
 
-            {this.state.bills.length ? (
-              <List>
-                {this.state.bills.map(bill => (
-                  <ListItem key={bill._id}>
-                    <div>{this.resetVariables()}</div>
-                    <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
-                    <Row>
-                      <Col size="md-6">
-                        <Post
-                          title={bill.title}
-                          description={bill.description}
-                          amount={bill.amount}
-                          creator={bill.creator}
-                          dueDate={bill.dueDate}
-                          tenantLength={bill.assignedToPay.length}
-                        ></Post>
-                      </Col>
-                      <Col size="md-6">
+              {this.state.bills.length ? (
+                <List>
+                  {this.state.bills.map(bill => (
+                    <ListItem key={bill._id}>
+                      <div>{this.resetVariables()}</div>
+                      <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
+                      <Row>
+                        <Col size="md-6">
+                          <Post
+                            title={bill.title}
+                            description={bill.description}
+                            amount={bill.amount}
+                            creator={bill.creator}
+                            dueDate={bill.dueDate}
+                            tenantLength={bill.assignedToPay.length}
+                          ></Post>
+                        </Col>
+                        <Col size="md-6">
                         <div className="tenantList">
                           <List>
                             {bill.assignedToPay.map(payer => (
@@ -221,18 +229,19 @@ class Main extends Component {
                             ></div>
                           </List>
                         </div>
-                      </Col>
-                    </Row>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <p>No Results to Display</p>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
+                        </Col>
+                      </Row>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <p>No Results to Display</p>
+                )}
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 
