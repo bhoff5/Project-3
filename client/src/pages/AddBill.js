@@ -7,7 +7,6 @@ import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
 import Calendar from "../components/Calendar";
-import { Redirect } from "react-router-dom";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import MomentLocaleUtils, {
   formatDate,
