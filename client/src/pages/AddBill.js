@@ -7,7 +7,6 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
-import { Redirect } from "react-router-dom";
 
 class AddBill extends Component {
   state = {

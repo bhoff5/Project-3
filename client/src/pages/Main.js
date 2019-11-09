@@ -189,6 +189,7 @@ class Main extends Component {
                           ></Post>
                         </Col>
                         <Col size="md-6">
+                        <div className="tenantList">
                           <List>
                             {bill.assignedToPay.map(payer => (
                               <ListName
@@ -207,16 +208,18 @@ class Main extends Component {
 
                             <div
                               id="items-uncompleted-spacer"
-                              style={{ height: `${this.getHeight(bill._id)}px` }}
+                              style={{
+                                height: `${this.getHeight(bill._id)}px`
+                              }}
                             ></div>
                             <div id="itemCountSpacer">
                               {this.uInd === 0
                                 ? `Everyone has paid!`
                                 : this.cInd === 0
-                                  ? `No one has paid`
-                                  : this.cInd === 1
-                                    ? `${this.cInd} person has paid`
-                                    : `${this.cInd} people have paid`}
+                                ? `No one has paid`
+                                : this.cInd === 1
+                                ? `${this.cInd} person has paid`
+                                : `${this.cInd} people have paid`}
                             </div>
                             <div
                               id="items-completed-spacer"
@@ -225,6 +228,7 @@ class Main extends Component {
                               }}
                             ></div>
                           </List>
+                        </div>
                         </Col>
                       </Row>
                     </ListItem>
