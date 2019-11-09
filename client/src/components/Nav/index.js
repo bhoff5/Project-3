@@ -3,31 +3,32 @@ import "./style.css";
 import Logo from "./apartgandw.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API from "../../utils/API";
 
 
 class Nav extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  }
 
-  // handleLogoutClick() {
-  //   axios.post('/user/logout').then(response => {
-  //     console.log(response.data)
-  //     if (response.status === 200) {
-  //       this.props.updateUser({
-  //         loggedIn: false,
-  //         username: null,
-  //         displayName: null,
-  //         email: null,
-  //         household: null
-  //       })
-  //     }
-  //   }
-  // }
+  handleLogoutClick() {
+    API.logout().then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        this.props.updateUser({
+          loggedIn: false,
+          username: null,
+          displayName: null,
+          email: null,
+          household: null
+        })
+      }
+    })
+  }
 
-  render(props) {
+  render() {
 
     const loggedInVar = this.props.loggedIn;
     console.log(loggedInVar);

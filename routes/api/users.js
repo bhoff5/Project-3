@@ -13,7 +13,7 @@ router.get("/", (req, res, next) => {
   }
 });
 
-router.post("/signup", function(req, res) {
+router.post("/signup", function (req, res) {
   if (!req.body.username || !req.body.displayName || !req.body.password) {
     res.json({ success: false, msg: "Please fill out all required fields." });
   } else {
@@ -25,7 +25,7 @@ router.post("/signup", function(req, res) {
       household: req.body.household
     });
 
-    newUser.save(function(err) {
+    newUser.save(function (err) {
       if (err) {
         console.log(err);
         return res.json({ success: false, msg: "Username already exists." });
@@ -47,7 +47,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   res.send(userInfo);
 });
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   if (req.user) {
     req.logout();
     res.send({ msg: "logging out " });

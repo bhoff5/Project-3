@@ -36,6 +36,6 @@ export default {
     return axios.get("/api/households/" + name);
   },
   logout: function () {
-    return axios.post("/api/users/logout")
+    return axios.get("/api/users/logout")
   }
 };

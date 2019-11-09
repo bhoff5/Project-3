@@ -65,10 +65,20 @@ class App extends Component {
         <div className="App">
           <Logonav />
 
-       
-          <Iconnav />
 
-          <Nav 
+          <Iconnav
+            username={this.state.username}
+            displayName={this.state.displayName}
+            email={this.state.email}
+            household={this.state.household}
+            loggedIn={this.state.loggedIn}
+          />
+
+          <Nav
+            username={this.state.username}
+            displayName={this.state.displayName}
+            email={this.state.email}
+            household={this.state.household}
             loggedIn={this.state.loggedIn}
           />
 
