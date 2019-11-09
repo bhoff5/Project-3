@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
+import { Redirect } from "react-router-dom";
 
 class AddBill extends Component {
   state = {
@@ -19,7 +20,8 @@ class AddBill extends Component {
     assignedToPay: [],
     modifiedAssignedToPay: [],
     successMsg: "",
-    failMsg: ""
+    failMsg: "",
+    redirectTo: ""
   };
 
   componentDidMount() {
@@ -91,6 +93,7 @@ class AddBill extends Component {
               successMsg: "Bill creation successful!",
               failMsg: ""
             });
+            setTimeout(() => this.setState({ redirectTo: "/" }), 1000);
           } else {
             this.setState({
               successMsg: "",
@@ -160,7 +163,7 @@ class AddBill extends Component {
                   failMsg={this.state.failMsg}
                 >
                   Submit
-              </FormBtn>
+                </FormBtn>
               </form>
             </Col>
           </Row>

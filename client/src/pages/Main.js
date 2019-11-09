@@ -50,7 +50,13 @@ class Main extends Component {
 
   deleteBill = id => {
     API.deleteBill(id)
-      .then(res => this.loadBills())
+    .then(res => {
+      let updatedItems = this.state.bills.map(item => ({
+        ...item
+      }));
+
+      this.setState({ bills: updatedItems });
+    })
       .catch(err => console.log(err));
   };
 
@@ -84,6 +90,11 @@ class Main extends Component {
       .assignedToPay.filter(item => item.paid).length;
     return unpaidItems * 43;
   }
+
+  deleteBill = id => {
+    API.deleteBill(id).then(this.loadBills(this.props.household));
+  };
+
 
   toggleItem(name, id) {
     confirmAlert({
@@ -165,7 +176,7 @@ class Main extends Component {
                   {this.state.bills.map(bill => (
                     <ListItem key={bill._id}>
                       <div>{this.resetVariables()}</div>
-
+                      <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
                       <Row>
                         <Col size="md-6">
                           <Post
