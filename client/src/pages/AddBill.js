@@ -6,7 +6,14 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
+import Calendar from "../components/Calendar";
 import { Redirect } from "react-router-dom";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate
+} from "react-day-picker/moment";
+import "moment/locale/it";
 
 class AddBill extends Component {
   state = {
@@ -14,12 +21,12 @@ class AddBill extends Component {
     title: "",
     description: "",
     amount: 0,
-    dueDate: "",
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
     successMsg: "",
     failMsg: "",
+    dueDate: undefined,
     redirectTo: ""
   };
 
@@ -27,6 +34,10 @@ class AddBill extends Component {
     console.log(this.props);
     this.loadTenants(this.props.household);
   }
+
+  handleDayChange = day => {
+    this.setState({ dueDate: formatDate(new Date(day)) });
+  };
 
   toggleTenant = name => {
     let tempArr = this.state.modifiedAssignedToPay;
@@ -120,25 +131,25 @@ class AddBill extends Component {
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
-                  placeholder="Title (required)"
+                  data="Title (required)"
                 />
                 <Input
                   value={this.state.description}
                   onChange={this.handleInputChange}
                   name="description"
-                  placeholder="Description (required)"
+                  data="Description (required)"
                 />
                 <Input
                   value={this.state.amount}
                   onChange={this.handleInputChange}
                   name="amount"
-                  placeholder="Amount (required)"
+                  data="Amount (required)"
                 />
-                <Input
+                <Calendar
                   value={this.state.dueDate}
-                  onChange={this.handleInputChange}
+                  onDayChange={this.handleDayChange}
                   name="dueDate"
-                  placeholder="Due Date (required)"
+                  data="Due Date (required)"
                 />
                 <List>
                   {this.state.assignedToPay.map(tenant => (

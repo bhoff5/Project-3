@@ -87,13 +87,33 @@ class Main extends Component {
     return unpaidItems * 43;
   }
 
+  confirmDelete = id => {
+    confirmAlert({
+      message: `Are you sure you want to delete this bill?`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            console.log("test");
+            this.deleteBill(id);
+          }
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          }
+        }
+      ]
+    });
+  };
+
   deleteBill = id => {
     API.deleteBill(id).then(this.loadBills(this.props.household));
   };
 
   toggleItem(name, id) {
     confirmAlert({
-      title: "Confirm to change",
       message: `Are you sure you want to change ${name}'s payment status?`,
       buttons: [
         {
@@ -168,7 +188,7 @@ class Main extends Component {
                 {this.state.bills.map(bill => (
                   <ListItem key={bill._id}>
                     <div>{this.resetVariables()}</div>
-                    <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
+                    <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
                     <Row>
                       <Col size="md-6">
                         <Post
