@@ -17,4 +17,11 @@
     }
  }
  
- 
+ .brandcolorbar {
+  color: #009933c
+}
+
+nav ul li:hover {
+  background-color: #004D1A;
+  color: #f5f5f5;
+}

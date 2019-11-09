@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-import Logo from "./apartgandw.png";
+import Logo from "./whiteapartlogo.png";
 import { Link } from "react-router-dom";
 
 class Iconnav extends Component {
@@ -8,7 +8,7 @@ class Iconnav extends Component {
     return (
       <div className="brand-logo center">
         <nav className="hide-on-med-and-up iconnavbottom">
-          <div className="nav-wrapper green accent-4">
+          <div className="nav-wrapper brandcolorbar">
             <a href="/" className="brand-logo right">
               <img src={Logo} alt="website logo" className="bottomlogo toplogo" />
             </a>

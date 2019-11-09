@@ -1,3 +1,6 @@
 node_modules
 config/index.js
 scripts/seedDB.js
+
+package-lock.json
+package.json
