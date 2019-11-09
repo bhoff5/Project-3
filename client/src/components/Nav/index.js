@@ -2,9 +2,43 @@ import React, { Component } from "react";
 import "./style.css";
 import Logo from "./apartgandw.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 class Nav extends Component {
-  render() {
+
+  // constructor(props) {
+  //   super(props);
+  //   this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  // }
+
+  // handleLogoutClick() {
+  //   axios.post('/user/logout').then(response => {
+  //     console.log(response.data)
+  //     if (response.status === 200) {
+  //       this.props.updateUser({
+  //         loggedIn: false,
+  //         username: null,
+  //         displayName: null,
+  //         email: null,
+  //         household: null
+  //       })
+  //     }
+  //   }
+  // }
+
+  render(props) {
+
+    const loggedInVar = this.props.loggedIn;
+    console.log(loggedInVar);
+    let button;
+
+    if (loggedInVar) {
+      button = <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+        Log Out
+    </button>
+    }
+
     return (
       <div>
         <nav className="hideoriginalnav">
@@ -64,9 +98,10 @@ class Nav extends Component {
               </li>
               <li>
                 <Link to="/login">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Log In
-                  </button>{" "}
+                  {/* <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                  Log Out
+                  </button>{" "} */}
+                  {button}
                 </Link>
               </li>
 
