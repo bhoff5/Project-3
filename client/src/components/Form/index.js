@@ -5,8 +5,9 @@ import "./style.css";
 
 export function Input(props) {
   return (
-    <div className="form-group">
-      <input className="form-control" {...props} />
+    <div className="input-field form-group">
+      <input className="form-control" type="text" {...props} />
+      <label for={props.name}>{props.data}</label>
     </div>
   );
 }
