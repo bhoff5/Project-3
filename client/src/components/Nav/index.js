@@ -4,7 +4,18 @@ import Logo from "./apartgandw.png";
 import { Link } from "react-router-dom";
 
 class Nav extends Component {
-  render() {
+  render(props) {
+
+    const loggedInVar = this.props.loggedIn;
+    console.log(loggedInVar);
+    let button;
+
+    if (loggedInVar) {
+      button = <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+        Log Out
+    </button>
+    };
+
     return (
       <div>
         <nav className="hideoriginalnav">
@@ -64,9 +75,10 @@ class Nav extends Component {
               </li>
               <li>
                 <Link to="/login">
-                  <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-                    Log In
-                  </button>{" "}
+                  {/* <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
+                  Log Out
+                  </button>{" "} */}
+                  {button}
                 </Link>
               </li>
 
