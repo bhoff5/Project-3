@@ -62,6 +62,7 @@ class AddBill extends Component {
   loadTenants = name => {
     API.getHouseholdsbyName(name)
       .then(res => {
+        console.log(res);
         this.setState({
           assignedToPay: res.data[0].tenants
         });
