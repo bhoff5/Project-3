@@ -3,9 +3,15 @@ import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import {
+  CardTenantCol,
+  CardCol,
+  Col,
+  Row,
+  Container
+} from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
-import Post from "../components/Post";
+import { BillTitle, Post } from "../components/Post";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -25,7 +31,7 @@ class Main extends Component {
 
   componentDidMount() {
     if (!this.props.loggedIn) {
-      this.setState({ redirectTo: "/login" })
+      this.setState({ redirectTo: "/login" });
     } else {
       this.loadBills(this.props.household);
     }
@@ -50,20 +56,20 @@ class Main extends Component {
 
   deleteBill = id => {
     API.deleteBill(id)
-    .then(res => {
-      let updatedItems = this.state.bills.map(item => ({
-        ...item
-      }));
+      .then(res => {
+        let updatedItems = this.state.bills.map(item => ({
+          ...item
+        }));
 
-      this.setState({ bills: updatedItems });
-    })
+        this.setState({ bills: updatedItems });
+      })
       .catch(err => console.log(err));
   };
 
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function (item) {
+      .filter(function(item) {
         if (item._id === id) {
           return item;
         }
@@ -116,7 +122,6 @@ class Main extends Component {
     API.deleteBill(id).then(this.loadBills(this.props.household));
   };
 
-
   toggleItem(name, id) {
     confirmAlert({
       message: `Are you sure you want to change ${name}'s payment status?`,
@@ -129,9 +134,9 @@ class Main extends Component {
               assignedToPay:
                 item._id === id
                   ? item.assignedToPay.map(item => ({
-                    ...item,
-                    paid: item.name === name ? !item.paid : item.paid
-                  }))
+                      ...item,
+                      paid: item.name === name ? !item.paid : item.paid
+                    }))
                   : item.assignedToPay
             }));
 
@@ -187,7 +192,7 @@ class Main extends Component {
       return (
         <Container fluid>
           <Row>
-            <Col size="md-12">
+            <Col>
               <Jumbotron>
                 <h1>Active Bills</h1>
               </Jumbotron>
@@ -198,8 +203,11 @@ class Main extends Component {
                     <ListItem key={bill._id}>
                       <div>{this.resetVariables()}</div>
                       <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
+                      {/* <Row> */}
+                      {/* </Row> */}
                       <Row>
-                        <Col size="md-6">
+                        <BillTitle title={bill.title} />
+                        <CardCol size="md-6">
                           <Post
                             title={bill.title}
                             description={bill.description}
@@ -208,57 +216,58 @@ class Main extends Component {
                             dueDate={bill.dueDate}
                             tenantLength={bill.assignedToPay.length}
                           ></Post>
-                        </Col>
-                        <Col size="md-6">
+                        </CardCol>
+                        <CardTenantCol>
+                          <div className="tenantList">
+                            <List>
+                              {bill.assignedToPay.map(payer => (
+                                <ListName
+                                  key={payer.name}
+                                  paid={payer.paid}
+                                  height={this.getHeight(bill._id)}
+                                  index={payer.paid ? this.cInd++ : this.uInd++}
+                                  id={payer.name}
+                                  onClick={() => {
+                                    this.toggleItem(payer.name, bill._id);
+                                  }}
+                                >
+                                  {payer.name}
+                                </ListName>
+                              ))}
 
-                        <div className="tenantList">
-                          <List>
-                            {bill.assignedToPay.map(payer => (
-                              <ListName
-                                key={payer.name}
-                                paid={payer.paid}
-                                height={this.getHeight(bill._id)}
-                                index={payer.paid ? this.cInd++ : this.uInd++}
-                                id={payer.name}
-                                onClick={() => {
-                                  this.toggleItem(payer.name, bill._id);
+                              <div
+                                id="items-uncompleted-spacer"
+                                style={{
+                                  height: `${this.getHeight(bill._id)}px`
                                 }}
-                              >
-                                {payer.name}
-                              </ListName>
-                            ))}
-
-                            <div
-                              id="items-uncompleted-spacer"
-                              style={{
-                                height: `${this.getHeight(bill._id)}px`
-                              }}
-                            ></div>
-                            <div id="itemCountSpacer">
-                              {this.uInd === 0
-                                ? `Everyone has paid!`
-                                : this.cInd === 0
-                                ? `No one has paid`
-                                : this.cInd === 1
-                                ? `${this.cInd} person has paid`
-                                : `${this.cInd} people have paid`}
-                            </div>
-                            <div
-                              id="items-completed-spacer"
-                              style={{
-                                height: `${this.getCompletedHeight(bill._id)}px`
-                              }}
-                            ></div>
-                          </List>
-                        </div>
-                        </Col>
+                              ></div>
+                              <div id="itemCountSpacer">
+                                {this.uInd === 0
+                                  ? `Everyone has paid!`
+                                  : this.cInd === 0
+                                  ? `No one has paid`
+                                  : this.cInd === 1
+                                  ? `${this.cInd} person has paid`
+                                  : `${this.cInd} people have paid`}
+                              </div>
+                              <div
+                                id="items-completed-spacer"
+                                style={{
+                                  height: `${this.getCompletedHeight(
+                                    bill._id
+                                  )}px`
+                                }}
+                              ></div>
+                            </List>
+                          </div>
+                        </CardTenantCol>
                       </Row>
                     </ListItem>
                   ))}
                 </List>
               ) : (
-                  <p>No Results to Display</p>
-                )}
+                <p>No Results to Display</p>
+              )}
             </Col>
           </Row>
         </Container>
