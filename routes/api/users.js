@@ -50,10 +50,12 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 router.post("/logout", (req, res) => {
   if (req.user) {
     req.logout();
+    req.session.destroy((err) => {
     res.send({ msg: "logging out " });
+    });
   } else {
     res.send({ msg: "no user to log out" });
-  }
+  };
 });
 
 router
