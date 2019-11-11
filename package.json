@@ -34,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
+    "momentjs": "^2.0.0",
     "mongoose": "^5.7.8",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",

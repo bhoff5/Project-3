@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const passport = require("passport");
 const routes = require("./routes");
 const dbConnection = require("./config/");
@@ -7,7 +6,7 @@ const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 
-var session = require("express-session"),
+const session = require("express-session"),
   bodyParser = require("body-parser");
 
 require("dotenv").config();
@@ -26,7 +25,15 @@ app.use(function (req, res, next) {
 
 //Initializes Passport
 app.use(express.static("public"));
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(
+  session({
+    secret: "additional-pylons",
+    store: new MongoStore({ mongooseConnection: dbConnection }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge : 1800000}
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -57,14 +64,7 @@ app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.use(
-  session({
-    secret: "additional-pylons",
-    store: new MongoStore({ mongooseConnection: dbConnection }),
-    resave: false,
-    saveUninitialized: false
-  })
-);
+
 
 // Start the API server
 app.listen(PORT, function () {

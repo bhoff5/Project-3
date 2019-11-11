@@ -63,13 +63,26 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Logonav />
-
-       
-          <Iconnav />
-
-          <Nav 
+          <Logonav
             loggedIn={this.state.loggedIn}
+          />
+
+          <Iconnav
+            loggedIn={this.state.loggedIn}
+            updateUser={this.updateUser}
+            username={this.state.username}
+            displayName={this.state.displayName}
+            email={this.state.email}
+            household={this.state.household}
+          />
+
+          <Nav
+            loggedIn={this.state.loggedIn}
+            updateUser={this.updateUser}
+            username={this.state.username}
+            displayName={this.state.displayName}
+            email={this.state.email}
+            household={this.state.household}
           />
 
           <Switch>
