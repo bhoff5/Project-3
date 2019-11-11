@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
+import API from "../../utils/API";
 import Logo from "./whiteapartlogo.png";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 
 class Nav extends Component {
@@ -13,21 +13,23 @@ class Nav extends Component {
   }
 
   handleLogoutClick() {
-    axios.post('/user/logout').then(response => {
+    API.logout().then(response => {
       console.log(response.data)
       if (response.status === 200) {
-        this.props.updateUser({
-          loggedIn: false,
-          username: null,
-          displayName: null,
-          email: null,
-          household: null
-        })
+        setTimeout(() =>
+          this.props.updateUser({
+            loggedIn: false,
+            username: null,
+            displayName: null,
+            email: null,
+            household: null
+          }), 1000
+        );
       }
-    })
-  }
+    });
+  };
 
-  render(props) {
+  render() {
 
     const loggedInVar = this.props.loggedIn;
     console.log(loggedInVar);

@@ -2,8 +2,32 @@ import React, { Component } from "react";
 import "./style.css";
 import Logo from "./whiteapartlogo.png";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
 class Iconnav extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  };
+
+  handleLogoutClick() {
+    API.logout().then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        setTimeout(() =>
+          this.props.updateUser({
+            loggedIn: false,
+            username: null,
+            displayName: null,
+            email: null,
+            household: null
+          }), 1000
+        );
+      }
+    });
+  };
+
   render() {
     return (
       <div className="brand-logo center">
