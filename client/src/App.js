@@ -63,13 +63,17 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Logonav />
+          <Logonav
+            loggedIn={this.state.loggedIn}
+            updateUser={this.updateUser}
+          />
 
-       
+
           <Iconnav />
 
-          <Nav 
+          <Nav
             loggedIn={this.state.loggedIn}
+            updateUser={this.updateUser}
           />
 
           <Switch>

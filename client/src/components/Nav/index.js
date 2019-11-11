@@ -7,25 +7,25 @@ import axios from "axios";
 
 class Nav extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  }
 
-  // handleLogoutClick() {
-  //   axios.post('/user/logout').then(response => {
-  //     console.log(response.data)
-  //     if (response.status === 200) {
-  //       this.props.updateUser({
-  //         loggedIn: false,
-  //         username: null,
-  //         displayName: null,
-  //         email: null,
-  //         household: null
-  //       })
-  //     }
-  //   }
-  // }
+  handleLogoutClick() {
+    axios.post('/user/logout').then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        this.props.updateUser({
+          loggedIn: false,
+          username: null,
+          displayName: null,
+          email: null,
+          household: null
+        })
+      }
+    })
+  }
 
   render(props) {
 
@@ -34,9 +34,11 @@ class Nav extends Component {
     let button;
 
     if (loggedInVar) {
-      button = <button className="green-text text-darken-2 green lighten-5 waves-effect waves-light btn">
-        Log Out
-    </button>
+      button = <li>
+        <Link to="/login">
+          <span onClick={this.handleLogoutClick}>LOG OUT{" "}</span>
+        </Link>
+      </li>
     }
 
     return (
@@ -94,14 +96,7 @@ class Nav extends Component {
                   YOUR PROFILE{" "}
                 </Link>
               </li>
-              <li>
-                <Link to="/login">
-
-
-                  LOG IN{" "}
-
-                </Link>
-              </li>
+              {button}
 
             </ul>
           </div>
