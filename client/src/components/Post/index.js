@@ -4,8 +4,9 @@ export function Post(props) {
   console.log(props);
   return (
     <div>
-      <h3>{props.title}</h3>
-      <br />
+      <div className="row">
+        <h3>{props.title}</h3>
+      </div>
       {props.description}
       <br />
       Bill posted by: {props.creator}

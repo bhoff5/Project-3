@@ -1,6 +1,6 @@
 
 import React from "react";
-//import "./style.css";
+import "./style.css";
 
 export function InviteUserCard(props) {
     console.log(props);
@@ -11,8 +11,8 @@ export function InviteUserCard(props) {
 
             <div className="row">
                 <div className="card" id="household-info">
-                    <div className="card-title">
-                        {props.household}
+                    <div className="card-content center-align">
+                        <h3>{props.household}</h3>
                     </div>
                     <div className="card-content">
                         <div className="input-field">
