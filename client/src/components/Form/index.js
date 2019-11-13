@@ -5,7 +5,7 @@ import "./style.css";
 
 export function Input(props) {
   return (
-    <div className="input-field form-group">
+    <div className="input-field">
       <input className="form-control" type="text" {...props} />
       <label for={props.name}>{props.data}</label>
     </div>
@@ -15,7 +15,7 @@ export function Input(props) {
 export function PasswordInput(props) {
   return (
     <div className="form-group">
-      <input className="form-control" type="password" {...props} />
+      <input type="password" {...props} />
     </div>
   );
 }
@@ -56,7 +56,7 @@ export function FormBtn(props) {
       <button
         {...props}
         style={{ float: "right", marginBottom: 10 }}
-        className="btn btn-success"
+        className="btn drkgreen "
       >
         {props.children}
       </button>

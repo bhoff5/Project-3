@@ -8,6 +8,7 @@ import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import TenantList from "../components/TenantList";
 import { List, ListItem } from "../components/List";
 import Calendar from "../components/Calendar";
+import "./addbill.css";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import MomentLocaleUtils, {
   formatDate,
@@ -131,24 +132,30 @@ class AddBill extends Component {
                 <h1>Create Bill</h1>
               </Jumbotron>
               <form>
+
                 <Input
                   value={this.state.title}
                   onChange={this.handleInputChange}
                   name="title"
                   data="Title (required)"
                 />
+
+
                 <Input
                   value={this.state.description}
                   onChange={this.handleInputChange}
                   name="description"
                   data="Description (required)"
                 />
+
+
                 <Input
                   value={this.state.amount}
                   onChange={this.handleInputChange}
                   name="amount"
                   data="Amount (required)"
                 />
+
                 <Calendar
                   value={this.state.dueDate}
                   onDayChange={this.handleDayChange}
