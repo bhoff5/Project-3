@@ -5,20 +5,21 @@ import Logo from "./whiteapartlogo.png";
 class Logonav extends Component {
     render() {
         return (
+            <div>
+                <nav class="hide-on-med-and-up nvpad">
+                    <div class="nav-wrapper brandcolorbar">
+                        <a href="/" className="brand-logo center">
+                            <img src={Logo} alt="website logo" className="mobilelogo" />
+                        </a>
+                        <ul id="nav-mobile" class="left ">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
 
-            <nav class="hide-on-med-and-up">
-                <div class="nav-wrapper brandcolorbar">
-                    <a href="/" className="brand-logo center">
-                        <img src={Logo} alt="website logo" className="mobilelogo" />
-                    </a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="sass.html">&nbsp;</a></li>
-                        <li><a href="badges.html">&nbsp;</a></li>
-                        <li><a href="collapsible.html">&nbsp;</a></li>
-                    </ul>
-
-                </div>
-            </nav>
+                    </div>
+                </nav>
+            </div>
         );
     }
 }

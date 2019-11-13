@@ -1,12 +1,12 @@
 
 
-
+/* 
 
  @media(min-width: 600px) {
   .bottomnav  {
     display:none !important; 
    }
-}
+} */
 
  /* Place the navbar at the bottom of the page, and make it stick */
 .bottomnav {
@@ -20,6 +20,9 @@
  height: 80px;
  justify-content: space-around;
  align-items: center;
+ 
+ z-index: 200; 
+ 
 
 }
 
