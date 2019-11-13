@@ -7,7 +7,7 @@ class Logonav extends Component {
     render() {
         return (
 
-            <nav className="brandbar">
+            <nav className="hide-on-med-and-up">
                 <div className="nav-wrapper brandcolorbar">
                     <a href="/" className="brand-logo center">
                         <img src={Logo} alt="website logo" className="mobilelogo" />
