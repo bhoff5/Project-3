@@ -62,3 +62,9 @@
   top: 0px;
   width: 100%;
 }
+
+.tenantListGroup {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}

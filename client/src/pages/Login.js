@@ -3,7 +3,17 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+<<<<<<< HEAD
+import {
+  Input,
+  PasswordInput,
+  TextArea,
+  FormBtn,
+  CurrencyInput
+} from "../components/Form";
+=======
 import { Input, PasswordInput, FormBtn } from "../components/Form";
+>>>>>>> origin
 
 class Login extends Component {
   state = {
@@ -86,8 +96,8 @@ class Login extends Component {
                 />
 
                 <FormBtn
-                  successMsg={this.state.successMsg}
-                  failMsg={this.state.failMsg}
+                  successmsg={this.state.successMsg}
+                  failmsg={this.state.failMsg}
                   disabled=""
                   onClick={this.handleFormSubmit}
                 >

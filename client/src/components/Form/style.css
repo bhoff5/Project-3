@@ -1,5 +1,5 @@
 .msg {
-  color: #00c85c;
+  color: #004d1a;
   position: absolute;
   right: 0;
   top: 60px;
@@ -11,9 +11,59 @@
 }
 
 .successMsg {
-  color: #00c85c;
+  color: #004d1a;
 }
 
 .failMsg {
-  color: red;
+  color: #990400;
+}
+
+[type="checkbox"]:checked + span:not(.lever):before {
+  border-right: 2px solid #004d1a;
+  border-bottom: 2px solid #004d1a;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+input[type="email"]:not(.browser-default):focus:not([readonly]),
+input[type="url"]:not(.browser-default):focus:not([readonly]),
+input[type="time"]:not(.browser-default):focus:not([readonly]),
+input[type="date"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
+input[type="tel"]:not(.browser-default):focus:not([readonly]),
+input[type="number"]:not(.browser-default):focus:not([readonly]),
+input[type="search"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #004d1a;
+  -webkit-box-shadow: 0 1px 0 0 #004d1a;
+  box-shadow: 0 1px 0 0 #004d1a;
+}
+
+input[type="text"]:not(.browser-default):focus:not([readonly]) + label,
+a {
+  color: #004d1a;
+}
+
+a {
+  color: #009933;
+}
+
+.btn,
+.btn-large,
+.btn-small {
+  background-color: #009933;
+}
+
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover,
+.btn:active,
+.btn-large:active,
+.btn-small:active,
+.btn:focus,
+.btn-large:focus,
+.btn-small:focus {
+  background-color: #004d1a;
 }

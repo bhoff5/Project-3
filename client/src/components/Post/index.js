@@ -5,17 +5,14 @@ export function Post(props) {
   console.log(props);
   return (
     <div>
+      <span style={{ fontSize: 40 }}>${props.amount}&nbsp;</span>
+      <span style={{ fontSize: 12 }}>total</span>
       <blockquote>{props.description}</blockquote>
       Posted by {props.creator}
       <br />
+      Each tenant owes ${props.amount / props.tenantLength}
       <br />
-      Total amount due: ${props.amount}
-      <br />
-      <br />
-      Your part: ${props.amount / props.tenantLength}
-      <br />
-      <br />
-      Due date: {props.dueDate}
+      Due on {props.dueDate}
     </div>
   );
 }

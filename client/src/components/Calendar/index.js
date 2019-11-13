@@ -21,7 +21,7 @@ class Calendar extends Component {
     return (
       <div>
         {selectedDay && <p>Day: {formatDate(new Date(selectedDay))}</p>}
-        {!selectedDay && <p>Choose a day</p>}
+        {!selectedDay && <p style={{ display: "inline" }}>Due Date:&nbsp;</p>}
         <DayPickerInput
           {...this.props}
           formatDate={formatDate}
