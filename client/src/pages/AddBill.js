@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 import TenantList from "../components/TenantList";
-import { List } from "../components/List";
 import Calendar from "../components/Calendar";
 import { formatDate } from "react-day-picker/moment";
 import "moment/locale/it";
@@ -15,11 +14,7 @@ class AddBill extends Component {
     household: "",
     title: "",
     description: "",
-<<<<<<< HEAD
     amount: 0,
-=======
-    amount: "",
->>>>>>> origin
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
