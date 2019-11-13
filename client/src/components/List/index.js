@@ -22,7 +22,7 @@ export function ListItem(props) {
 
 export function ListName(props) {
   function getTop() {
-    const { meta, id, index, height, paid } = props;
+    const { index, height, paid } = props;
     // let position = index * 60;
     let prevHeight = paid
       ? index * 43

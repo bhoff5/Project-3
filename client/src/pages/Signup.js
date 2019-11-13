@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { Input, TextArea, PasswordInput, FormBtn, CurrencyInput } from "../components/Form";
+import { Input, PasswordInput, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 
 class Signup extends Component {
