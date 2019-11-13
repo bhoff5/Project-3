@@ -5,3 +5,60 @@
 .cardContent {
   font-size: 0.8rem;
 }
+
+.billTitle {
+  font-size: 3rem;
+  padding-left: 10px;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.billContainer {
+  /* margin: 20px; */
+  position: relative;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.705);
+  /* width: 700px; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  box-shadow: 0 0 4px 2px #00000038;
+  border-radius: 5px;
+  /* transition: all 0.3s ease-in; */
+  margin: 50px;
+}
+
+.alignleft {
+  float: left;
+  margin: 0;
+}
+.alignright {
+  float: right;
+  margin: 0;
+}
+
+.itemNameTextContent {
+  width: 80%;
+}
+
+.listName {
+  cursor: pointer;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.card .card-title {
+  font-size: 30px;
+  font-weight: bolder;
+  color: #009933;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid #004d1a;
+  font-style: italic;
+}

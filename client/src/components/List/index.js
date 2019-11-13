@@ -6,15 +6,15 @@ import "./checkbox.css";
 
 export function List({ children }) {
   return (
-    <div className="list-overflow-container">
-      <ul className="list-group">{children}</ul>
-    </div>
+    // <div className="list-overflow-container">
+    <ul className="list-group">{children}</ul>
+    // </div>
   );
 }
 
 export function ListItem(props) {
   return (
-    <li className="list-group-item billContainer" onClick={props.onClick}>
+    <li className="billContainer card" onClick={props.onClick}>
       {props.children}
     </li>
   );

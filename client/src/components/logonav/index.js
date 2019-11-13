@@ -3,6 +3,7 @@ import "./style.css";
 import Logo from "./whiteapartlogo.png";
 
 class Logonav extends Component {
+
     render() {
         return (
 
@@ -21,6 +22,7 @@ class Logonav extends Component {
             </nav>
         );
     }
+
 }
 
 export default Logonav;
