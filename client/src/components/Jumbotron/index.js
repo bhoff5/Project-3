@@ -1,5 +1,4 @@
 import React from "react";
-import { NONAME } from "dns";
 
 function Jumbotron({ children }) {
   return (
