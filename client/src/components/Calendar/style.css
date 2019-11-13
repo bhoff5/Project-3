@@ -12,3 +12,7 @@
 .input-field.col {
   padding-left: 0;
 }
+
+.DayPickerInput {
+  width: 105px;
+}

@@ -5,9 +5,9 @@ import "./style.css";
 
 export function Input(props) {
   return (
-    <div className="input-field">
-      <input className="form-control" type="text" {...props} />
-      <label for={props.name}>{props.data}</label>
+    <div className="input-field form-group ">
+      <input className="form-control" id={props.name} type="text" {...props} />
+      <label htmlFor={props.name}>{props.data}</label>
     </div>
   );
 }
@@ -60,8 +60,8 @@ export function FormBtn(props) {
       >
         {props.children}
       </button>
-      <div className="msg successMsg">{props.successMsg}</div>
-      <div className="msg failMsg">{props.failMsg}</div>
+      <div className="msg successMsg">{props.successmsg}</div>
+      <div className="msg failMsg">{props.failmsg}</div>
     </div>
   );
 }
