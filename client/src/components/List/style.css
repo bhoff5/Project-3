@@ -1,35 +1,6 @@
-.list-overflow-container {
-  /* height: 245px; */
-  /* border: 1px #dddddd solid; */
-  /* border-radius: 4px; */
-  /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
+.list-group {
   position: relative;
-  /* transition: all 0.3s ease-in;
-  transition-delay: 0.4s; */
 }
-
-.list-overflow-container ul {
-  margin: 0;
-}
-
-/* .list-overflow-container li {
-  border-radius: 0px;
-  border-left: none;
-  border-right: none;
-} */
-
-.list-overflow-container li a {
-  color: #2a878c;
-}
-
-/* .list-overflow-container li:first-child {
-  border-top: none;
-}
-
-.list-overflow-container li:last-child {
-  border-bottom: none;
-} */
 
 .item {
   /* background-color: rgb(255, 95, 95); */
@@ -58,47 +29,6 @@
 .list-group-item {
   padding: 0 0;
   border: 0;
-  font-size: 1.25rem;
-  /* border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;  */
-}
-
-/* .list-overflow-container li:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.list-overflow-container li:last-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-} */
-
-.billContainer {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.705);
-  width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 0 4px 2px #00000038;
-  border-radius: 5px;
-  transition: all 0.3s ease-in;
-}
-
-@media (max-width: 900px) {
-  .billContainer {
-    width: 70%;
-  }
-}
-@media (max-width: 600px) {
-  .billContainer {
-    width: 90%;
-  }
 }
 
 #items-uncompleted-spacer {
@@ -116,7 +46,6 @@
 #itemCountSpacer {
   width: 100%;
   height: 43px;
-  /* background-color: red; */
   position: relative;
   color: #c8c8c8;
   margin-top: 10px;
@@ -134,23 +63,8 @@
   width: 100%;
 }
 
-.alignleft {
-  float: left;
-  margin: 0;
-}
-.alignright {
-  float: right;
-  margin: 0;
-}
-
-.itemNameTextContent {
-  width: 80%;
-}
-
-.listName {
-  cursor: pointer;
-}
-
-.tenantList {
-  padding-top: 30px;
+.tenantListGroup {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }

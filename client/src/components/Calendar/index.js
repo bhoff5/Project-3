@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
-import MomentLocaleUtils, {
+import {
   formatDate,
   parseDate
 } from "react-day-picker/moment";
@@ -21,7 +21,7 @@ class Calendar extends Component {
     return (
       <div>
         {selectedDay && <p>Day: {formatDate(new Date(selectedDay))}</p>}
-        {!selectedDay && <p>Choose a day</p>}
+        {!selectedDay && <p style={{ display: "inline" }}>Due Date:&nbsp;</p>}
         <DayPickerInput
           {...this.props}
           formatDate={formatDate}

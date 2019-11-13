@@ -3,6 +3,7 @@ import "./style.css";
 import Logo from "./whiteapartlogo.png";
 
 class Logonav extends Component {
+
     render() {
         return (
             <div>
@@ -17,11 +18,14 @@ class Logonav extends Component {
                             <li>&nbsp;</li>
                         </ul>
 
+
                     </div>
                 </nav>
             </div>
+
         );
     }
+
 }
 
 export default Logonav;

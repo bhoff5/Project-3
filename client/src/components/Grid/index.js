@@ -1,4 +1,5 @@
 import React from "react";
+import { PromiseProvider } from "mongoose";
 
 // Exporting the Container, Row, and Col components from this file
 
@@ -15,14 +16,23 @@ export function Row({ fluid, children }) {
 // This Col component lets us size bootstrap columns with less syntax
 // e.g. <Col size="md-12"> instead of <div className="col-md-12">
 export function Col({ size, children }) {
+  return <div className="col l6 offset-l3 m8 offset-m2 s12">{children}</div>;
+}
+
+export function Card({ size, children }) {
+  return <div className="col l10 offset-l1 m12 offset-m0 s12">{children}</div>;
+}
+
+export function CardCol({ size, children }) {
   return (
-    <div
-      className={size
-        .split(" ")
-        .map(size => "col-" + size)
-        .join(" ")}
-    >
-      {children}
-    </div>
+    // <div className="col l8 offset-l1 s10 offset-s2 m10 offset-m1">
+    <div className="col l6 m6 s12 card-content">{children}</div>
+  );
+}
+
+export function CardTenantCol({ size, children }) {
+  return (
+    // <div className="col l8 offset-l1 s10 offset-s2 m10 offset-m1">
+    <div className="col l6 m6 s12 card-content">{children}</div>
   );
 }
