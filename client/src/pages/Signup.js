@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
+<<<<<<< HEAD
 import {
   Input,
   TextArea,
@@ -9,6 +10,9 @@ import {
   FormBtn,
   CurrencyInput
 } from "../components/Form";
+=======
+import { Input, PasswordInput, FormBtn } from "../components/Form";
+>>>>>>> origin
 import { Col, Row, Container } from "../components/Grid";
 
 class Signup extends Component {

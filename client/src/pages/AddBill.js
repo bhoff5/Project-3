@@ -2,17 +2,12 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import BillForm from "../components/BillForm";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 import TenantList from "../components/TenantList";
-import { List, ListItem } from "../components/List";
+import { List } from "../components/List";
 import Calendar from "../components/Calendar";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate
-} from "react-day-picker/moment";
+import { formatDate } from "react-day-picker/moment";
 import "moment/locale/it";
 
 class AddBill extends Component {
@@ -20,7 +15,11 @@ class AddBill extends Component {
     household: "",
     title: "",
     description: "",
+<<<<<<< HEAD
     amount: 0,
+=======
+    amount: "",
+>>>>>>> origin
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],

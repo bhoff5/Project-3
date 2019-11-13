@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 class TenantList extends React.Component {
   state = { checked: false };

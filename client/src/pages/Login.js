@@ -3,6 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+<<<<<<< HEAD
 import {
   Input,
   PasswordInput,
@@ -10,6 +11,9 @@ import {
   FormBtn,
   CurrencyInput
 } from "../components/Form";
+=======
+import { Input, PasswordInput, FormBtn } from "../components/Form";
+>>>>>>> origin
 
 class Login extends Component {
   state = {
