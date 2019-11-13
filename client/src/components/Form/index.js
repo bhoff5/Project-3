@@ -55,7 +55,7 @@ export function FormBtn(props) {
     <div className="buttonContainer">
       <button
         {...props}
-        style={{ float: "right", marginBottom: 10 }}
+        style={{ float: "right", marginBottom: 50 }}
         className="btn drkgreen "
       >
         {props.children}
