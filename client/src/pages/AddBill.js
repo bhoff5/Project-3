@@ -20,7 +20,7 @@ class AddBill extends Component {
     household: "",
     title: "",
     description: "",
-    amount: null,
+    amount: 0,
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
@@ -156,7 +156,10 @@ class AddBill extends Component {
                   name="dueDate"
                   data="Due Date (required)"
                 />
-                <List>
+                <br />
+
+                <div>Select Tenants to Include: </div>
+                <ul className="tenantListGroup" style={{ marginLeft: 30 }}>
                   {this.state.assignedToPay.map(tenant => (
                     <TenantList
                       key={tenant}
@@ -166,12 +169,12 @@ class AddBill extends Component {
                       {tenant}
                     </TenantList>
                   ))}
-                </List>
+                </ul>
                 <FormBtn
                   disabled={!(this.state.title && this.state.amount)}
                   onClick={this.handleFormSubmit}
-                  successMsg={this.state.successMsg}
-                  failMsg={this.state.failMsg}
+                  successmsg={this.state.successMsg}
+                  failmsg={this.state.failMsg}
                 >
                   Submit
                 </FormBtn>

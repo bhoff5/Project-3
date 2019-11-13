@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { Input, TextArea, PasswordInput, FormBtn, CurrencyInput } from "../components/Form";
+import {
+  Input,
+  TextArea,
+  PasswordInput,
+  FormBtn,
+  CurrencyInput
+} from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 
 class Signup extends Component {
@@ -16,7 +22,7 @@ class Signup extends Component {
     failMsg: ""
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -157,8 +163,8 @@ class Signup extends Component {
                     )
                   }
                   onClick={this.handleFormSubmit}
-                  successMsg={this.state.successMsg}
-                  failMsg={this.state.failMsg}
+                  successmsg={this.state.successMsg}
+                  failmsg={this.state.failMsg}
                 >
                   Submit
                 </FormBtn>

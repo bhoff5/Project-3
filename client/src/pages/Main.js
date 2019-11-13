@@ -4,6 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import {
+  Card,
   CardTenantCol,
   CardCol,
   Col,
@@ -192,7 +193,7 @@ class Main extends Component {
       return (
         <Container fluid>
           <Row>
-            <Col>
+            <Card>
               <Jumbotron>
                 <h1>Active Bills</h1>
               </Jumbotron>
@@ -268,7 +269,7 @@ class Main extends Component {
               ) : (
                 <p>No Results to Display</p>
               )}
-            </Col>
+            </Card>
           </Row>
         </Container>
       );
