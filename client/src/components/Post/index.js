@@ -10,7 +10,7 @@ export function Post(props) {
       <blockquote>{props.description}</blockquote>
       Posted by {props.creator}
       <br />
-      Each tenant owes ${props.amount / props.tenantLength}
+      Each tenant owes ${(props.amount / props.tenantLength).toFixed(2)}
       <br />
       Due on {props.dueDate}
     </div>
