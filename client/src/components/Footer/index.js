@@ -9,7 +9,6 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                <div className="footer-control"></div>
                 <div className="footer hide-on-small-only valign-wrapper">
                     <Link to="/about"><img src={Team} /></Link>
                 </div>

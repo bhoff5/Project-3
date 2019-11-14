@@ -8,6 +8,7 @@ import { List, ListItem, ListName } from "../components/List";
 import Post from "../components/Post";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import FooterControl from "../components/FooterControl";
 
 class Main extends Component {
   state = {
@@ -50,13 +51,13 @@ class Main extends Component {
 
   deleteBill = id => {
     API.deleteBill(id)
-    .then(res => {
-      let updatedItems = this.state.bills.map(item => ({
-        ...item
-      }));
+      .then(res => {
+        let updatedItems = this.state.bills.map(item => ({
+          ...item
+        }));
 
-      this.setState({ bills: updatedItems });
-    })
+        this.setState({ bills: updatedItems });
+      })
       .catch(err => console.log(err));
   };
 
@@ -186,81 +187,83 @@ class Main extends Component {
     } else {
       return (
         <Container fluid>
-          <Row>
-            <Col size="md-12">
-              <Jumbotron>
-                <h1>Active Bills</h1>
-              </Jumbotron>
+          <FooterControl>
+            <Row>
+              <Col size="md-12">
+                <Jumbotron>
+                  <h1>Active Bills</h1>
+                </Jumbotron>
 
-              {this.state.bills.length ? (
-                <List>
-                  {this.state.bills.map(bill => (
-                    <ListItem key={bill._id}>
-                      <div>{this.resetVariables()}</div>
-                      <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
-                      <Row>
-                        <Col size="md-6">
-                          <Post
-                            title={bill.title}
-                            description={bill.description}
-                            amount={bill.amount}
-                            creator={bill.creator}
-                            dueDate={bill.dueDate}
-                            tenantLength={bill.assignedToPay.length}
-                          ></Post>
-                        </Col>
-                        <Col size="md-6">
+                {this.state.bills.length ? (
+                  <List>
+                    {this.state.bills.map(bill => (
+                      <ListItem key={bill._id}>
+                        <div>{this.resetVariables()}</div>
+                        <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
+                        <Row>
+                          <Col size="md-6">
+                            <Post
+                              title={bill.title}
+                              description={bill.description}
+                              amount={bill.amount}
+                              creator={bill.creator}
+                              dueDate={bill.dueDate}
+                              tenantLength={bill.assignedToPay.length}
+                            ></Post>
+                          </Col>
+                          <Col size="md-6">
 
-                        <div className="tenantList">
-                          <List>
-                            {bill.assignedToPay.map(payer => (
-                              <ListName
-                                key={payer.name}
-                                paid={payer.paid}
-                                height={this.getHeight(bill._id)}
-                                index={payer.paid ? this.cInd++ : this.uInd++}
-                                id={payer.name}
-                                onClick={() => {
-                                  this.toggleItem(payer.name, bill._id);
-                                }}
-                              >
-                                {payer.name}
-                              </ListName>
-                            ))}
+                            <div className="tenantList">
+                              <List>
+                                {bill.assignedToPay.map(payer => (
+                                  <ListName
+                                    key={payer.name}
+                                    paid={payer.paid}
+                                    height={this.getHeight(bill._id)}
+                                    index={payer.paid ? this.cInd++ : this.uInd++}
+                                    id={payer.name}
+                                    onClick={() => {
+                                      this.toggleItem(payer.name, bill._id);
+                                    }}
+                                  >
+                                    {payer.name}
+                                  </ListName>
+                                ))}
 
-                            <div
-                              id="items-uncompleted-spacer"
-                              style={{
-                                height: `${this.getHeight(bill._id)}px`
-                              }}
-                            ></div>
-                            <div id="itemCountSpacer">
-                              {this.uInd === 0
-                                ? `Everyone has paid!`
-                                : this.cInd === 0
-                                ? `No one has paid`
-                                : this.cInd === 1
-                                ? `${this.cInd} person has paid`
-                                : `${this.cInd} people have paid`}
+                                <div
+                                  id="items-uncompleted-spacer"
+                                  style={{
+                                    height: `${this.getHeight(bill._id)}px`
+                                  }}
+                                ></div>
+                                <div id="itemCountSpacer">
+                                  {this.uInd === 0
+                                    ? `Everyone has paid!`
+                                    : this.cInd === 0
+                                      ? `No one has paid`
+                                      : this.cInd === 1
+                                        ? `${this.cInd} person has paid`
+                                        : `${this.cInd} people have paid`}
+                                </div>
+                                <div
+                                  id="items-completed-spacer"
+                                  style={{
+                                    height: `${this.getCompletedHeight(bill._id)}px`
+                                  }}
+                                ></div>
+                              </List>
                             </div>
-                            <div
-                              id="items-completed-spacer"
-                              style={{
-                                height: `${this.getCompletedHeight(bill._id)}px`
-                              }}
-                            ></div>
-                          </List>
-                        </div>
-                        </Col>
-                      </Row>
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                  <p>No Results to Display</p>
-                )}
-            </Col>
-          </Row>
+                          </Col>
+                        </Row>
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                    <p>No Results to Display</p>
+                  )}
+              </Col>
+            </Row>
+          </FooterControl>
         </Container>
       );
     }

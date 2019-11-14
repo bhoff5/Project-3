@@ -14,6 +14,7 @@ import MomentLocaleUtils, {
   parseDate
 } from "react-day-picker/moment";
 import "moment/locale/it";
+import FooterControl from "../components/FooterControl";
 
 class AddBill extends Component {
   state = {
@@ -125,58 +126,60 @@ class AddBill extends Component {
     } else {
       return (
         <Container fluid>
-          <Row>
-            <Col size="md-6">
-              <Jumbotron>
-                <h1>Create Bill</h1>
-              </Jumbotron>
-              <form>
-                <Input
-                  value={this.state.title}
-                  onChange={this.handleInputChange}
-                  name="title"
-                  data="Title (required)"
-                />
-                <Input
-                  value={this.state.description}
-                  onChange={this.handleInputChange}
-                  name="description"
-                  data="Description (required)"
-                />
-                <Input
-                  value={this.state.amount}
-                  onChange={this.handleInputChange}
-                  name="amount"
-                  data="Amount (required)"
-                />
-                <Calendar
-                  value={this.state.dueDate}
-                  onDayChange={this.handleDayChange}
-                  name="dueDate"
-                  data="Due Date (required)"
-                />
-                <List>
-                  {this.state.assignedToPay.map(tenant => (
-                    <TenantList
-                      key={tenant}
-                      name={tenant}
-                      toggleTenant={this.toggleTenant}
-                    >
-                      {tenant}
-                    </TenantList>
-                  ))}
-                </List>
-                <FormBtn
-                  disabled={!(this.state.title && this.state.amount)}
-                  onClick={this.handleFormSubmit}
-                  successMsg={this.state.successMsg}
-                  failMsg={this.state.failMsg}
-                >
-                  Submit
+          <FooterControl>
+            <Row>
+              <Col size="md-6">
+                <Jumbotron>
+                  <h1>Create Bill</h1>
+                </Jumbotron>
+                <form>
+                  <Input
+                    value={this.state.title}
+                    onChange={this.handleInputChange}
+                    name="title"
+                    data="Title (required)"
+                  />
+                  <Input
+                    value={this.state.description}
+                    onChange={this.handleInputChange}
+                    name="description"
+                    data="Description (required)"
+                  />
+                  <Input
+                    value={this.state.amount}
+                    onChange={this.handleInputChange}
+                    name="amount"
+                    data="Amount (required)"
+                  />
+                  <Calendar
+                    value={this.state.dueDate}
+                    onDayChange={this.handleDayChange}
+                    name="dueDate"
+                    data="Due Date (required)"
+                  />
+                  <List>
+                    {this.state.assignedToPay.map(tenant => (
+                      <TenantList
+                        key={tenant}
+                        name={tenant}
+                        toggleTenant={this.toggleTenant}
+                      >
+                        {tenant}
+                      </TenantList>
+                    ))}
+                  </List>
+                  <FormBtn
+                    disabled={!(this.state.title && this.state.amount)}
+                    onClick={this.handleFormSubmit}
+                    successMsg={this.state.successMsg}
+                    failMsg={this.state.failMsg}
+                  >
+                    Submit
                 </FormBtn>
-              </form>
-            </Col>
-          </Row>
+                </form>
+              </Col>
+            </Row>
+          </FooterControl>
         </Container>
       );
     }
