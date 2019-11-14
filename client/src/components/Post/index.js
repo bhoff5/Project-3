@@ -1,22 +1,26 @@
 import React from "react";
+import "./style.css";
 
 export function Post(props) {
   console.log(props);
   return (
     <div>
-      <div className="row">
-        <h3>{props.title}</h3>
-      </div>
-      {props.description}
+      <span style={{ fontSize: 40 }}>${props.amount}&nbsp;</span>
+      <span style={{ fontSize: 12 }}>total</span>
+      <blockquote>{props.description}</blockquote>
+      Posted by {props.creator}
       <br />
-      Bill posted by: {props.creator}
+      Each tenant owes ${props.amount / props.tenantLength}
       <br />
-      Total amount due: ${props.amount}
-      <br />
-      Your part: ${props.amount / props.tenantLength}
-      <br />
-      Due date: {props.dueDate}
+      Due on {props.dueDate}
     </div>
   );
 }
-export default Post;
+
+export function BillTitle(props) {
+  return (
+    <div className="card-content" style={{ paddingBottom: 0 }}>
+      <div className="card-title">{props.title}</div>
+    </div>
+  );
+}

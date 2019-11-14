@@ -34,12 +34,16 @@ class Iconnav extends Component {
         <nav className="hide-on-med-and-up iconnavbottom">
           <div className="nav-wrapper brandcolorbar">
             <a href="/" className="brand-logo right">
-              <img src={Logo} alt="website logo" className="bottomlogo toplogo" />
+              <img
+                src={Logo}
+                alt="website logo"
+                className="bottomlogo toplogo"
+              />
             </a>
             <ul id="nav-mobile" className="left">
               <li>
                 <Link to="/">
-                  <i className=" material-icons" >home</i>{" "}
+                  <i className=" material-icons">home</i>{" "}
                 </Link>
                 {/* <a
                   href="/"
@@ -63,7 +67,7 @@ class Iconnav extends Component {
               </li > */}
               <li>
                 <Link to="/newbill">
-                  <i class="material-icons">monetization_on</i>{" "}
+                  <i className="material-icons">monetization_on</i>{" "}
                 </Link>
 
                 {/* <a
@@ -77,15 +81,14 @@ class Iconnav extends Component {
               </li>
               <li>
                 <Link to="/profile">
-                  <i class="material-icons">person</i>{" "}
+                  <i className="material-icons">person</i>{" "}
                 </Link>
               </li>
               <li>
                 <Link to="/login">
-                  <i class="material-icons">lock_outline</i>{" "}
+                  <i className="material-icons">lock_outline</i>{" "}
                 </Link>
               </li>
-
             </ul>
           </div>
         </nav>

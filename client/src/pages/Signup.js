@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { Input, TextArea, PasswordInput, FormBtn, CurrencyInput } from "../components/Form";
+import { Input, PasswordInput, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 import FooterControl from "../components/FooterControl";
 
@@ -159,8 +159,8 @@ class Signup extends Component {
                       )
                     }
                     onClick={this.handleFormSubmit}
-                    successMsg={this.state.successMsg}
-                    failMsg={this.state.failMsg}
+                    successmsg={this.state.successMsg}
+                    failmsg={this.state.failMsg}
                   >
                     Submit
                 </FormBtn>

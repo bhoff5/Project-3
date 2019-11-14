@@ -3,9 +3,16 @@ import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import {
+  Card,
+  CardTenantCol,
+  CardCol,
+  Col,
+  Row,
+  Container
+} from "../components/Grid";
 import { List, ListItem, ListName } from "../components/List";
-import Post from "../components/Post";
+import { BillTitle, Post } from "../components/Post";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import FooterControl from "../components/FooterControl";
@@ -26,7 +33,7 @@ class Main extends Component {
 
   componentDidMount() {
     if (!this.props.loggedIn) {
-      this.setState({ redirectTo: "/login" })
+      this.setState({ redirectTo: "/login" });
     } else {
       this.loadBills(this.props.household);
     }
@@ -117,7 +124,6 @@ class Main extends Component {
     API.deleteBill(id).then(this.loadBills(this.props.household));
   };
 
-
   toggleItem(name, id) {
     confirmAlert({
       message: `Are you sure you want to change ${name}'s payment status?`,
@@ -189,7 +195,7 @@ class Main extends Component {
         <Container fluid>
           <FooterControl>
             <Row>
-              <Col size="md-12">
+              <Card>
                 <Jumbotron>
                   <h1>Active Bills</h1>
                 </Jumbotron>
@@ -200,8 +206,11 @@ class Main extends Component {
                       <ListItem key={bill._id}>
                         <div>{this.resetVariables()}</div>
                         <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
+                        {/* <Row> */}
+                        {/* </Row> */}
                         <Row>
-                          <Col size="md-6">
+                          <BillTitle title={bill.title} />
+                          <CardCol size="md-6">
                             <Post
                               title={bill.title}
                               description={bill.description}
@@ -210,9 +219,8 @@ class Main extends Component {
                               dueDate={bill.dueDate}
                               tenantLength={bill.assignedToPay.length}
                             ></Post>
-                          </Col>
-                          <Col size="md-6">
-
+                          </CardCol>
+                          <CardTenantCol>
                             <div className="tenantList">
                               <List>
                                 {bill.assignedToPay.map(payer => (
@@ -248,12 +256,14 @@ class Main extends Component {
                                 <div
                                   id="items-completed-spacer"
                                   style={{
-                                    height: `${this.getCompletedHeight(bill._id)}px`
+                                    height: `${this.getCompletedHeight(
+                                      bill._id
+                                    )}px`
                                   }}
                                 ></div>
                               </List>
                             </div>
-                          </Col>
+                          </CardTenantCol>
                         </Row>
                       </ListItem>
                     ))}
@@ -261,7 +271,7 @@ class Main extends Component {
                 ) : (
                     <p>No Results to Display</p>
                   )}
-              </Col>
+              </Card>
             </Row>
           </FooterControl>
         </Container>

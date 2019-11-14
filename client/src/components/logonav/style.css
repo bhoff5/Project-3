@@ -1,16 +1,24 @@
-@media(min-width: 600px) {
+/* @media(min-width: 600px) {
     .brandbar {
       display:none; 
      }
-  }
+  } */
   
  .mobilelogo {
+/* display: flex;
+align-items: center; */
+margin-top: 15px;
+margin-bottom: 3px; 
 
-    top: 7px;
-    padding-bottom: 7px;
   
   }
 
   .brandcolorbar {
-    color: #009933
+    color: #009933;
+    
   }
+
+  .nvpad {
+    height: 80px;
+  }
+

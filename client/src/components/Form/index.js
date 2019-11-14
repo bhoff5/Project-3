@@ -5,9 +5,9 @@ import "./style.css";
 
 export function Input(props) {
   return (
-    <div className="input-field form-group">
-      <input className="form-control" type="text" {...props} />
-      <label for={props.name}>{props.data}</label>
+    <div className="input-field form-group ">
+      <input className="form-control" id={props.name} type="text" {...props} />
+      <label htmlFor={props.name}>{props.data}</label>
     </div>
   );
 }
@@ -15,7 +15,7 @@ export function Input(props) {
 export function PasswordInput(props) {
   return (
     <div className="form-group">
-      <input className="form-control" type="password" {...props} />
+      <input type="password" {...props} />
     </div>
   );
 }
@@ -55,13 +55,13 @@ export function FormBtn(props) {
     <div className="buttonContainer">
       <button
         {...props}
-        style={{ float: "right", marginBottom: 10 }}
-        className="btn btn-success"
+        style={{ float: "right", marginBottom: 50 }}
+        className="btn drkgreen "
       >
         {props.children}
       </button>
-      <div className="msg successMsg">{props.successMsg}</div>
-      <div className="msg failMsg">{props.failMsg}</div>
+      <div className="msg successMsg">{props.successmsg}</div>
+      <div className="msg failMsg">{props.failmsg}</div>
     </div>
   );
 }

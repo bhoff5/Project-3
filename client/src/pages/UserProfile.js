@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Profile from "../components/Profile";
 import InviteUserCard from "../components/InviteUserCard";

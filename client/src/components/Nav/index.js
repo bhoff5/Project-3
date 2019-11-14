@@ -45,7 +45,7 @@ class Nav extends Component {
 
     return (
       <div>
-        <nav className="hideoriginalnav">
+        <nav className="hide-on-small-only">
           <div className="nav-wrapper brandcolorbar">
             <a href="/" className="brand-logo right">
               <img src={Logo} alt="website logo" className="bottomlogo toplogo" />

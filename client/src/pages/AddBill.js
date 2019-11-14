@@ -2,17 +2,11 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import BillForm from "../components/BillForm";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 import TenantList from "../components/TenantList";
-import { List, ListItem } from "../components/List";
 import Calendar from "../components/Calendar";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate
-} from "react-day-picker/moment";
+import { formatDate } from "react-day-picker/moment";
 import "moment/locale/it";
 import FooterControl from "../components/FooterControl";
 
@@ -21,7 +15,7 @@ class AddBill extends Component {
     household: "",
     title: "",
     description: "",
-    amount: null,
+    amount: "",
     creator: "",
     assignedToPay: [],
     modifiedAssignedToPay: [],
@@ -63,6 +57,7 @@ class AddBill extends Component {
   loadTenants = name => {
     API.getHouseholdsbyName(name)
       .then(res => {
+        console.log(res);
         this.setState({
           assignedToPay: res.data[0].tenants
         });
@@ -133,31 +128,40 @@ class AddBill extends Component {
                   <h1>Create Bill</h1>
                 </Jumbotron>
                 <form>
+
                   <Input
                     value={this.state.title}
                     onChange={this.handleInputChange}
                     name="title"
                     data="Title (required)"
                   />
+
+
                   <Input
                     value={this.state.description}
                     onChange={this.handleInputChange}
                     name="description"
                     data="Description (required)"
                   />
+
+
                   <Input
                     value={this.state.amount}
                     onChange={this.handleInputChange}
                     name="amount"
                     data="Amount (required)"
                   />
+
                   <Calendar
                     value={this.state.dueDate}
                     onDayChange={this.handleDayChange}
                     name="dueDate"
                     data="Due Date (required)"
                   />
-                  <List>
+                  <br />
+
+                  <div>Select Tenants to Include: </div>
+                  <ul className="tenantListGroup" style={{ marginLeft: 30 }}>
                     {this.state.assignedToPay.map(tenant => (
                       <TenantList
                         key={tenant}
@@ -167,12 +171,12 @@ class AddBill extends Component {
                         {tenant}
                       </TenantList>
                     ))}
-                  </List>
+                  </ul>
                   <FormBtn
                     disabled={!(this.state.title && this.state.amount)}
                     onClick={this.handleFormSubmit}
-                    successMsg={this.state.successMsg}
-                    failMsg={this.state.failMsg}
+                    successmsg={this.state.successMsg}
+                    failmsg={this.state.failMsg}
                   >
                     Submit
                 </FormBtn>

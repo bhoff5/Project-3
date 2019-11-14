@@ -3,8 +3,8 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, PasswordInput, TextArea, FormBtn, CurrencyInput } from "../components/Form";
 import FooterControl from "../components/FooterControl";
+import { Input, PasswordInput, FormBtn } from "../components/Form";
 
 class Login extends Component {
   state = {
@@ -79,6 +79,7 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     name="username"
                     placeholder="Username (required)"
+
                   />
                   <PasswordInput
                     value={this.state.password}
@@ -88,8 +89,8 @@ class Login extends Component {
                   />
 
                   <FormBtn
-                    successMsg={this.state.successMsg}
-                    failMsg={this.state.failMsg}
+                    successmsg={this.state.successMsg}
+                    failmsg={this.state.failMsg}
                     disabled=""
                     onClick={this.handleFormSubmit}
                   >

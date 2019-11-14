@@ -37,7 +37,7 @@ label {
 .toggleButton input + div svg {
   fill: none;
   stroke-width: 3.6;
-  stroke: rgb(255, 76, 76);
+  stroke: #990400;
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 44px;
@@ -58,7 +58,7 @@ label {
   content: "";
   width: 3px;
   height: 16px;
-  background: rgb(255, 76, 76);
+  background: #990400;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -82,7 +82,7 @@ label {
   stroke-dashoffset: 162.6;
   stroke-dasharray: 0 162.6 28 134.6;
   transition: all 0.4s ease 0.2s;
-  stroke: rgb(0, 255, 13);
+  stroke: #004d1a;
 }
 .toggleButton input:checked + div:before {
   opacity: 0;
