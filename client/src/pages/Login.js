@@ -4,6 +4,8 @@ import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, PasswordInput, TextArea, FormBtn, CurrencyInput } from "../components/Form";
+import Footer from "../components/Footer";
+import FooterControl from "../components/FooterControl";
 
 class Login extends Component {
   state = {
@@ -66,40 +68,43 @@ class Login extends Component {
     } else {
       return (
         <Container fluid>
-          <Row>
-            <Col size="md-6">
-              <Jumbotron>
-                <h1>Log In</h1>
-              </Jumbotron>
-              <form>
-                <Input
-                  value={this.state.username}
-                  onChange={this.handleInputChange}
-                  name="username"
-                  placeholder="Username (required)"
-                />
-                <PasswordInput
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name="password"
-                  placeholder="Password (required)"
-                />
+          <FooterControl>
+            <Row>
+              <Col size="md-6">
+                <Jumbotron>
+                  <h1>Log In</h1>
+                </Jumbotron>
+                <form>
+                  <Input
+                    value={this.state.username}
+                    onChange={this.handleInputChange}
+                    name="username"
+                    placeholder="Username (required)"
+                  />
+                  <PasswordInput
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name="password"
+                    placeholder="Password (required)"
+                  />
 
-                <FormBtn
-                  successMsg={this.state.successMsg}
-                  failMsg={this.state.failMsg}
-                  disabled=""
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit
+                  <FormBtn
+                    successMsg={this.state.successMsg}
+                    failMsg={this.state.failMsg}
+                    disabled=""
+                    onClick={this.handleFormSubmit}
+                  >
+                    Submit
                 </FormBtn>
-                <p>
-                  Not a member?
+                  <p>
+                    Not a member?
                   <Link to="/signup"> Sign up now!</Link>
-                </p>
-              </form>
-            </Col>
-          </Row>
+                  </p>
+                </form>
+              </Col>
+            </Row>
+          </FooterControl>
+          <Footer />
         </Container>
       );
     }
