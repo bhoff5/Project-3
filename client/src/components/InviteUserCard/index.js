@@ -15,12 +15,13 @@ export function InviteUserCard(props) {
                         <h3>{props.household}</h3>
                     </div>
                     <div className="card-content">
-                        <div className="input-field">
+                        {/* <div className="input-field">
                             <input id="invite-email" type="text" className="validate" />
                             <label for="invite-email">Enter recipient email</label>
                         </div>
                         <button id="invite-button">Send invite</button>
-                        <br />
+                        <br /> */}
+                        <p>This is your household ID. In order for a new user to join your household, they must enter this code when creating their account.</p>
                     </div>
                 </div>
             </div>
