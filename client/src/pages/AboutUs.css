@@ -1,0 +1,19 @@
+.team-photo {
+    width: 100%;
+}
+
+.team-name:hover {
+    text-shadow: 5px 5px #004D1A;
+}
+
+.team-name {
+    /* line-height: 50px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.team-tagline {
+    /* color: #004D1A; */
+    font-weight: bold;
+}

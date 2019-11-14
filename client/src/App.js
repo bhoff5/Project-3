@@ -6,10 +6,11 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Logonav from "./components/logonav";
-
 import AddBill from "./pages/AddBill";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
+import Footer from "./components/Footer";
+import AboutUs from "./pages/AboutUs";
 import Ctmnav from "./components/customiconnav";
 
 class App extends Component {
@@ -87,6 +88,8 @@ class App extends Component {
             household={this.state.household}
           />
 
+
+
           <Switch>
             <Route
               exact
@@ -153,9 +156,23 @@ class App extends Component {
                 />
               )}
             />
+            <Route
+              exact
+              path="/about"
+              render={() => (
+                <AboutUs
+                  username={this.state.username}
+                  displayName={this.state.displayName}
+                  email={this.state.email}
+                  household={this.state.household}
+                  loggedIn={this.state.loggedIn}
+                />
+              )}
+            />
             <Route component={NoMatch} />
           </Switch>
         </div>
+        <Footer></Footer>
       </Router>
     );
   }
