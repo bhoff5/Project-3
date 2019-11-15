@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import { Container } from "../components/Grid";
 import FooterControl from "../components/FooterControl";
-import brian from "../images/brian.jpeg";
+import brian from "../images/brian.jpg";
 import colin from "../images/colin.jpeg";
 import shannon from "../images/shannon.jpg";
 import paul from "../images/paul.jpeg";
