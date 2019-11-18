@@ -15,11 +15,12 @@ import { List, ListItem, ListName } from "../components/List";
 import { BillTitle, Post } from "../components/Post";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import SplashScreen from "../components/SplashScreen";
 
 class Main extends Component {
   state = {
     bills: "",
-    assignedToPay: "test1"
+    assignedToPay: ""
   };
 
   cInd = 0;
@@ -192,6 +193,9 @@ class Main extends Component {
     } else {
       return (
         <Container fluid>
+          <div>
+            <SplashScreen delay={3000}>hello</SplashScreen>
+          </div>
           <Row>
             <Card>
               <Jumbotron>
