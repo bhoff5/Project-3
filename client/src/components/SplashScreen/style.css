@@ -1,0 +1,136 @@
+.splashScreen {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: hsl(0, 0%, 100%);
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+  opacity: 1;
+  -webkit-animation: splash 3s;
+  animation: splash 3s;
+}
+
+@keyframes splash {
+  0% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.svg-wrapper {
+  height: 110px;
+  margin: 0 auto;
+  position: relative;
+  /* top: 50%; */
+  transform: translateY(-50%);
+  width: 110px;
+  transform: translateX(0);
+  animation: moveWrapper 1s 1.2s ease-out forwards;
+}
+
+#aGraphic {
+  position: absolute;
+  height: 43px;
+  width: auto;
+  bottom: 43px;
+  left: 12px;
+}
+
+.shape {
+  fill: transparent;
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  /* stroke-width: 5px; */
+  stroke: #b3b3b3;
+}
+
+.text {
+  position: absolute;
+  bottom: 0px;
+  z-index: 0;
+  left: -230px;
+  height: 100%;
+  width: auto;
+  animation: moveText 1s 1.2s ease-out forwards;
+  opacity: 1;
+}
+
+.textContainer {
+  position: absolute;
+  bottom: 37px;
+  left: 35px;
+  overflow: hidden;
+  width: 300px;
+  height: 70px;
+  z-index: -100;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 0px;
+    stroke-alignment: inner;
+    fill: transparent;
+  }
+  70% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
+    stroke-alignment: inner;
+    fill: transparent;
+  }
+
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 5px;
+    stroke-alignment: inner;
+    fill: #b3b3b3;
+  }
+}
+
+@keyframes moveText {
+  0% {
+    left: -400px;
+    opacity: 1;
+  }
+
+  100% {
+    left: 44px;
+    opacity: 1;
+  }
+}
+
+@keyframes moveWrapper {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-110px);
+    opacity: 1;
+  }
+}
+
+.svg-wrapper .shape {
+  -webkit-animation: draw 1, 5s linear forwards;
+  animation: draw 1.2s linear forwards;
+}
