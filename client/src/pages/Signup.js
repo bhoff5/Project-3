@@ -4,6 +4,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import { Input, PasswordInput, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
+import FooterControl from "../components/FooterControl";
 
 class Signup extends Component {
   state = {
@@ -16,7 +17,7 @@ class Signup extends Component {
     failMsg: ""
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -107,65 +108,67 @@ class Signup extends Component {
     } else {
       return (
         <Container fluid>
-          <Row>
-            <Col size="md-6">
-              <Jumbotron>
-                <h1>Sign Up</h1>
-              </Jumbotron>
-              <form>
-                <Input
-                  value={this.state.username}
-                  onChange={this.handleInputChange}
-                  name="username"
-                  placeholder="Username (required)"
-                />
-                <Input
-                  value={this.state.displayName}
-                  onChange={this.handleInputChange}
-                  name="displayName"
-                  placeholder="Display Name (required)"
-                />
-                <PasswordInput
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name="password"
-                  placeholder="Password (required)"
-                />
-                <Input
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  name="email"
-                  placeholder="Email (required)"
-                />
-                <p>
-                  If you are joining an existing household, enter code here.
-                  Otherwise leave blank.
+          <FooterControl>
+            <Row>
+              <Col size="md-6">
+                <Jumbotron>
+                  <h1>Sign Up</h1>
+                </Jumbotron>
+                <form>
+                  <Input
+                    value={this.state.username}
+                    onChange={this.handleInputChange}
+                    name="username"
+                    placeholder="Username (required)"
+                  />
+                  <Input
+                    value={this.state.displayName}
+                    onChange={this.handleInputChange}
+                    name="displayName"
+                    placeholder="Display Name (required)"
+                  />
+                  <PasswordInput
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name="password"
+                    placeholder="Password (required)"
+                  />
+                  <Input
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    name="email"
+                    placeholder="Email (required)"
+                  />
+                  <p>
+                    If you are joining an existing household, enter code here.
+                    Otherwise leave blank.
                 </p>
-                <Input
-                  value={this.state.household}
-                  onChange={this.handleInputChange}
-                  name="household"
-                  placeholder="Household Code"
-                />
-                <FormBtn
-                  disabled={
-                    !(
-                      this.state.username &&
-                      this.state.password &&
-                      this.state.displayName &&
-                      this.state.email
-                    )
-                  }
-                  onClick={this.handleFormSubmit}
-                  successmsg={this.state.successMsg}
-                  failmsg={this.state.failMsg}
-                >
-                  Submit
+                  <Input
+                    value={this.state.household}
+                    onChange={this.handleInputChange}
+                    name="household"
+                    placeholder="Household Code"
+                  />
+                  <FormBtn
+                    disabled={
+                      !(
+                        this.state.username &&
+                        this.state.password &&
+                        this.state.displayName &&
+                        this.state.email
+                      )
+                    }
+                    onClick={this.handleFormSubmit}
+                    successmsg={this.state.successMsg}
+                    failmsg={this.state.failMsg}
+                  >
+                    Submit
                 </FormBtn>
-                {this.state.msg}
-              </form>
-            </Col>
-          </Row>
+                  {this.state.msg}
+                </form>
+              </Col>
+            </Row>
+          </FooterControl>
         </Container>
       );
     }
