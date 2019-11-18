@@ -40,5 +40,13 @@ module.exports = {
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  removeUserFromHousehold: function(req, res) {
+    db.Household.updateOne(
+      { name: req.params.household },
+      { $pull: { tenants: req.body.username } }
+    )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

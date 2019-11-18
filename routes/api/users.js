@@ -65,9 +65,7 @@ router
   .delete(userController.remove);
 
 router
-  .route("/:username")
-  .get(userController.findById)
-  .put(userController.update)
-  .delete(userController.remove);
+  .route("/dropHousehold/:username")
+  .put(userController.dropHousehold);
 
 module.exports = router;

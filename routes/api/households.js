@@ -12,6 +12,12 @@ router
   .put(householdController.update)
   .delete(householdController.remove);
 
-router.route("/addUser/:household").put(householdController.addUserToHousehold);
+router
+  .route("/addUser/:household")
+  .put(householdController.addUserToHousehold);
+
+router
+  .route("/removeUser/:household")
+  .put(householdController.removeUserFromHousehold);
 
 module.exports = router;
