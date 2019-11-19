@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Profile from "../components/Profile";
 import InviteUserCard from "../components/InviteUserCard";
+import Jumbotron from "../components/Jumbotron";
 
 class Main extends Component {
 
@@ -25,16 +26,21 @@ class Main extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />;
         } else {
             return (
-                <div>
-                    <Profile
-                        email={this.props.email}
-                        username={this.props.username}
-                        displayName={this.props.displayName}
-                    />
-                    <br />
-                    <InviteUserCard
-                        household={this.props.household}
-                    />
+                <div className="row">
+                    <Jumbotron>
+                        <h1>Your Profile</h1>
+                    </Jumbotron>
+                    <div className="col m4 offset-m4 s10 offset-s1">
+                        <Profile
+                            email={this.props.email}
+                            username={this.props.username}
+                            displayName={this.props.displayName}
+                        />
+                        <br />
+                        <InviteUserCard
+                            household={this.props.household}
+                        />
+                    </div>
                 </div>
             );
         };

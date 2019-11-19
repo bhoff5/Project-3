@@ -67,3 +67,22 @@ a {
 .btn-small:focus {
   background-color: #004d1a;
 }
+
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+  }
+
+  .drkgreen {
+
+    background-color: #004D1A;
+    color: white;
+  }
+  .btn:hover {
+    background-color: #009933
+  }
+
+  .input-field input[type=text]:focus + label {
+    color: #000;
+  }

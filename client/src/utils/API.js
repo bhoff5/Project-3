@@ -22,13 +22,18 @@ export default {
   signup: function (userData) {
     return axios.post("/api/users/signup", userData);
   },
+  dropUserFromHousehold: function (username) {
+    return axios.put("/api/users/dropHousehold/" + username);
+  },
   createNewHousehold: function (userData) {
     return axios.post("/api/households/", userData);
   },
   addUserToHousehold: function (household, userData) {
     return axios.put("/api/households/addUser/" + household, userData);
   },
-
+  removeUserFromHousehold: function (household, userData) {
+    return axios.put("/api/households/removeUser/" + household, userData);
+  },
   getAllHouseholds: function () {
     return axios.get("/api/households/");
   },

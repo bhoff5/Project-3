@@ -27,6 +27,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  dropHousehold: function(req, res) {
+    db.User.updateOne(
+      { username: req.params.username },
+      { $set: { household: "" } })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   remove: function(req, res) {
     db.User.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

@@ -1,6 +1,6 @@
 
 import React from "react";
-//import "./style.css";
+import "./style.css";
 
 export function Profile(props) {
     console.log(props);
@@ -11,15 +11,15 @@ export function Profile(props) {
 
             <div className="row">
                 <div className="card" id="basic-info">
-                    <div className="card-title">
-                        Your info
-                        </div>
+                    <div className="card-content center-align">
+                        <h3>Your info</h3>
+                    </div>
                     <div className="card-content">
-                        <span>Your email address:{props.email}</span>
+                        <span className="info-tags">Email </span>{props.email}
                         <br />
-                        <span>Your username name:{props.username}</span>
+                        <span className="info-tags">Username </span>{props.username}
                         <br />
-                        <span>Your display name:{props.displayName}</span>
+                        <span className="info-tags">Display name </span>{props.displayName}
                         <br />
                     </div>
                 </div>
