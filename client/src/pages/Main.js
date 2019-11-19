@@ -15,6 +15,7 @@ import { List, ListItem, ListName } from "../components/List";
 import { BillTitle, Post } from "../components/Post";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import FooterControl from "../components/FooterControl";
 import SplashScreen from "../components/SplashScreen";
 
 class Main extends Component {
@@ -71,7 +72,7 @@ class Main extends Component {
   updateBill = id => {
     let tempItem;
     this.state.bills
-      .filter(function (item) {
+      .filter(function(item) {
         if (item._id === id) {
           return item;
         }
@@ -136,9 +137,9 @@ class Main extends Component {
               assignedToPay:
                 item._id === id
                   ? item.assignedToPay.map(item => ({
-                    ...item,
-                    paid: item.name === name ? !item.paid : item.paid
-                  }))
+                      ...item,
+                      paid: item.name === name ? !item.paid : item.paid
+                    }))
                   : item.assignedToPay
             }));
 
@@ -196,18 +197,21 @@ class Main extends Component {
           <div>
             <SplashScreen delay={3000}>hello</SplashScreen>
           </div>
-          <Row>
-            <Card>
-              <Jumbotron>
-                <h1>Active Bills</h1>
-              </Jumbotron>
+          <FooterControl>
+            <Row>
+              <Card>
+                <Jumbotron>
+                  <h1>Active Bills</h1>
+                </Jumbotron>
 
                 {this.state.bills.length ? (
                   <List>
                     {this.state.bills.map(bill => (
                       <ListItem key={bill._id}>
                         <div>{this.resetVariables()}</div>
-                        <DeleteBtn onClick={() => this.confirmDelete(bill._id)} />
+                        <DeleteBtn
+                          onClick={() => this.confirmDelete(bill._id)}
+                        />
                         {/* <Row> */}
                         {/* </Row> */}
                         <Row>
@@ -230,7 +234,9 @@ class Main extends Component {
                                     key={payer.name}
                                     paid={payer.paid}
                                     height={this.getHeight(bill._id)}
-                                    index={payer.paid ? this.cInd++ : this.uInd++}
+                                    index={
+                                      payer.paid ? this.cInd++ : this.uInd++
+                                    }
                                     id={payer.name}
                                     onClick={() => {
                                       this.toggleItem(payer.name, bill._id);
@@ -250,10 +256,10 @@ class Main extends Component {
                                   {this.uInd === 0
                                     ? `Everyone has paid!`
                                     : this.cInd === 0
-                                      ? `No one has paid`
-                                      : this.cInd === 1
-                                        ? `${this.cInd} person has paid`
-                                        : `${this.cInd} people have paid`}
+                                    ? `No one has paid`
+                                    : this.cInd === 1
+                                    ? `${this.cInd} person has paid`
+                                    : `${this.cInd} people have paid`}
                                 </div>
                                 <div
                                   id="items-completed-spacer"
@@ -271,8 +277,8 @@ class Main extends Component {
                     ))}
                   </List>
                 ) : (
-                    <p>No Results to Display</p>
-                  )}
+                  <p>No Results to Display</p>
+                )}
               </Card>
             </Row>
           </FooterControl>
